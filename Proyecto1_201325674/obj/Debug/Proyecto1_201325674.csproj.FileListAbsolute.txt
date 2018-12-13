@@ -1,0 +1,13 @@
+C:\Users\Hellen\Documents\Cursos\COMPI1_VACAS_DIC_2018\Proyecto1_201325674\Proyecto1_201325674\bin\Debug\Proyecto1_201325674.exe.config
+C:\Users\Hellen\Documents\Cursos\COMPI1_VACAS_DIC_2018\Proyecto1_201325674\Proyecto1_201325674\bin\Debug\Proyecto1_201325674.exe
+C:\Users\Hellen\Documents\Cursos\COMPI1_VACAS_DIC_2018\Proyecto1_201325674\Proyecto1_201325674\bin\Debug\Proyecto1_201325674.pdb
+C:\Users\Hellen\Documents\Cursos\COMPI1_VACAS_DIC_2018\Proyecto1_201325674\Proyecto1_201325674\bin\Debug\Irony.dll
+C:\Users\Hellen\Documents\Cursos\COMPI1_VACAS_DIC_2018\Proyecto1_201325674\Proyecto1_201325674\bin\Debug\Irony.pdb
+C:\Users\Hellen\Documents\Cursos\COMPI1_VACAS_DIC_2018\Proyecto1_201325674\Proyecto1_201325674\obj\Debug\Proyecto1_201325674.csprojAssemblyReference.cache
+C:\Users\Hellen\Documents\Cursos\COMPI1_VACAS_DIC_2018\Proyecto1_201325674\Proyecto1_201325674\obj\Debug\Proyecto1_201325674.Form1.resources
+C:\Users\Hellen\Documents\Cursos\COMPI1_VACAS_DIC_2018\Proyecto1_201325674\Proyecto1_201325674\obj\Debug\Proyecto1_201325674.Properties.Resources.resources
+C:\Users\Hellen\Documents\Cursos\COMPI1_VACAS_DIC_2018\Proyecto1_201325674\Proyecto1_201325674\obj\Debug\Proyecto1_201325674.csproj.GenerateResource.cache
+C:\Users\Hellen\Documents\Cursos\COMPI1_VACAS_DIC_2018\Proyecto1_201325674\Proyecto1_201325674\obj\Debug\Proyecto1_201325674.csproj.CoreCompileInputs.cache
+C:\Users\Hellen\Documents\Cursos\COMPI1_VACAS_DIC_2018\Proyecto1_201325674\Proyecto1_201325674\obj\Debug\Proyecto1_201325674.csproj.CopyComplete
+C:\Users\Hellen\Documents\Cursos\COMPI1_VACAS_DIC_2018\Proyecto1_201325674\Proyecto1_201325674\obj\Debug\Proyecto1_201325674.exe
+C:\Users\Hellen\Documents\Cursos\COMPI1_VACAS_DIC_2018\Proyecto1_201325674\Proyecto1_201325674\obj\Debug\Proyecto1_201325674.pdb

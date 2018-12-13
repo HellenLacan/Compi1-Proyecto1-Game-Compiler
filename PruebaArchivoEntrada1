@@ -1,0 +1,51 @@
+<configuration>
+   <background> 
+   {
+        x-nombre=fondo_1;
+        x-imagen="/home/usuario/imagenes/fondo1.jpg";
+   },
+   {
+        x-nombre=fondo_2;
+        x-imagen="/home/usuario/imagenes/fondo2.jpg";
+   }
+   </background>
+
+   <figure>
+   {
+        x-nombre=MarioBros;
+        x-imagen="/home/usuario/imagenes/fondo1.jpg";
+        x-vida=50+50;
+        x-tipo=x-heroe;
+        x-descripcion="Personaje principal del juego el cual tiene como objetivo salvar a la reyna";
+   },
+   {
+        x-nombre=MarioBros;
+        x-imagen="/home/usuario/imagenes/fondo1.jpg";
+        x-vida=50+50;
+        x-tipo=x-enemigo;
+        x-descripcion="Personaje principal del juego el cual tiene como objetivo salvar a la reyna";
+   }
+   </figure>
+
+   <design>
+   {
+        x-nombre=bomba1;
+        x-imagen="/home/usuario/imagenes/fondo1.jpg";
+        x-destruir=100+50;
+        x-tipo=x-bomba;
+   },
+   {
+        x-nombre=arma1;
+        x-imagen="/home/usuario/imagenes/fondo1.jpg";
+        x-destruir=100;
+        x-tipo=x-arma;
+   } ,
+   {
+        x-nombre=rosa_1;
+        x-imagen="/home/usuario/imagenes/fondo1.jpg";
+        x-creditos=100;
+        x-tipo=x-bonus;
+   } 
+   </design>
+
+</configuration>
