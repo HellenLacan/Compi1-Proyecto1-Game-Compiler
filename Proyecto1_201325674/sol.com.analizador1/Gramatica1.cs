@@ -127,11 +127,12 @@ namespace Practica1.sol.com.analizador
                                        | Empty;
 
             ATRIBUTOS_FIGURE.Rule = ATRIBUTOS_FIGURE + _x + guion + _nombre + igual + identificador + ptoYComa
-                      | ATRIBUTOS_FIGURE + _x + guion + _imagen + igual + cadena + ptoYComa
-                      | ATRIBUTOS_FIGURE + _x + guion + _vida + igual + EXPRESION + ptoYComa
-                      | ATRIBUTOS_FIGURE + _x + guion + _tipo + igual + _x + guion + FIGURE_TIPO + ptoYComa
-                      | ATRIBUTOS_FIGURE + _x + guion + _descripcion + igual + cadena + ptoYComa
-                      | Empty;
+                                   |ATRIBUTOS_FIGURE + _x + guion + _imagen + igual + cadena + ptoYComa
+                                   |ATRIBUTOS_FIGURE + _x + guion + _vida + igual + EXPRESION + ptoYComa
+                                   |ATRIBUTOS_FIGURE + _x + guion + _tipo + igual + _x + guion + FIGURE_TIPO + ptoYComa
+                                   |ATRIBUTOS_FIGURE + _x + guion + _descripcion + igual + cadena + ptoYComa
+                                   |ATRIBUTOS_FIGURE + _x + guion + _destruir + igual + EXPRESION + ptoYComa
+                                   | Empty;
 
             ATRIBUTOS_DESIGN.Rule = ATRIBUTOS_DESIGN + _x + guion + _nombre + igual + identificador + ptoYComa
                                        | ATRIBUTOS_DESIGN + _x + guion + _destruir + igual + EXPRESION + ptoYComa

@@ -36,9 +36,9 @@ namespace Proyecto1_201325674
             {
                 MessageBox.Show("Analisis Correcto");
                 String text = "";
-                String lenguaje = (Recorrido.recorrerAST(resultado.ChildNodes.ElementAt(0), text));
+                //String lenguaje = (Recorrido.recorrerAST(resultado.ChildNodes.ElementAt(0), text));
                 //getRichTextBox2().Text = lenguaje;
-                Recorrido.traducir(resultado);
+                //Recorrido.traducir(resultado);
                 Syntactic.generarImagen(resultado);
             }
             else

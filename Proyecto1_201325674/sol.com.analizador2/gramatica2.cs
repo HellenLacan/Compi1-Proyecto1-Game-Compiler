@@ -76,8 +76,6 @@ namespace Proyecto1_201325674.sol.com.analizador2
             NonTerminal ATRIBUTOS_LISTA_PAREDES = new NonTerminal("ATRIBUTOS_LISTA_PAREDES");
             NonTerminal LISTA_EXTRAS = new NonTerminal("LISTA_EXTRAS");
             NonTerminal ATRIBUTOS_LISTA_EXTRAS = new NonTerminal("ATRIBUTOS_LISTA_EXTRAS");
-
-
             #endregion
 
             #region Gramatica
