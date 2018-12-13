@@ -1,0 +1,43 @@
+<x-escenarios background=Fondo1; ancho = 15 ; alto = 15 >
+	<x-personajes>
+		<x-heroes>
+			Rey(4,8);
+		</x-heroes>
+
+		<x-villanos>
+			soldado(4,8);
+			soldado(4,8+8);
+			soldado(9+10,8);
+		</x-villanos>
+	</x-personajes>
+
+	<x-paredes>
+		suelo(0,11);
+		suelo(1..2,11);
+		suelo(0..2,10);
+		suelo(4,9..11);
+		suelo(5,10..11);
+		suelo(7..10,11);
+		suelo(21,11..10);
+
+	</x-paredes>
+
+	<x-extras>
+		<armas>
+			arma1(10,10);
+			arma1(1,9);
+		</armas>
+
+		<bonus>
+			Diamante(10,10);
+			Diamante2(1,9);
+		</bonus>
+
+	</x-extras>
+
+
+	<meta>
+		
+	<meta>
+
+</x-escenarios>

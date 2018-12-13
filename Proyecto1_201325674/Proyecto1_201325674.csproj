@@ -56,10 +56,14 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="sol.com.analizador\Gramatica.cs" />
-    <Compile Include="sol.com.analizador\Recorrido.cs" />
-    <Compile Include="sol.com.analizador\Syntactic.cs" />
-    <Compile Include="sol.com.controlDot\ControlDot.cs" />
+    <Compile Include="sol.com.analizador1\Gramatica1.cs" />
+    <Compile Include="sol.com.analizador1\Recorrido.cs" />
+    <Compile Include="sol.com.analizador1\Syntactic.cs" />
+    <Compile Include="sol.com.analizador2\Gramatica2.cs" />
+    <Compile Include="sol.com.analizador2\Recorrido2.cs" />
+    <Compile Include="sol.com.analizador2\Sintactico2.cs" />
+    <Compile Include="sol.com.controlDot2\ControlDot2.cs" />
+    <Compile Include="sol.com.controlDot1\ControlDot.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
