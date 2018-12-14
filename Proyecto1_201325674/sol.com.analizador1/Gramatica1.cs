@@ -41,6 +41,8 @@ namespace Practica1.sol.com.analizador
             var igual = ToTerm("=");
             var ptoYComa = ToTerm(";");
             var mas = ToTerm("+");
+            var signoMas = ToTerm("+");
+            var signoMenos = ToTerm("-");
             var menos = ToTerm("-");
             var por = ToTerm("*");
             var parentAb = ToTerm("(");
@@ -157,8 +159,10 @@ namespace Practica1.sol.com.analizador
                              | EXPRESION + por + EXPRESION
                              | EXPRESION + slash + EXPRESION
                              | parentAb + EXPRESION + parentCerr
+                             | signoMenos + EXPRESION
+                             | signoMas  + EXPRESION
                              | numero
-                             | numeroDecimal
+                             |numeroDecimal
                              | identificador;
 
             #endregion
@@ -167,8 +171,14 @@ namespace Practica1.sol.com.analizador
             this.Root = INICIO;
             #endregion
          
-            MarkPunctuation(menor, mayor,coma, llaveAb, llaveCerr, guion, igual, ptoYComa, parentAb, parentCerr, slash );
+            MarkPunctuation(menor, mayor,coma, llaveAb, llaveCerr, igual, ptoYComa, slash, parentAb, parentCerr );
             MarkPunctuation(_configuration, _background, _figure, _design,_x);
+
+            this.RegisterOperators(1, Associativity.Left, "+", "-");
+
+            this.RegisterOperators(2, Associativity.Left, "*", "/");
+
+            this.RegisterOperators(3, Associativity.Left, "-", "+");
 
         }
     }

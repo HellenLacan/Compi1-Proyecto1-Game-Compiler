@@ -76,11 +76,6 @@ namespace Proyecto1_201325674
             {
                 MessageBox.Show("Analisis con errores");
 
-                /*foreach (sol.com.analyzer.Token item in Syntactic.lista)
-                {
-                    richTextBox1.Text += "\nError " + item.tipo + ": Lexema: \"" + item.lexema + "\"" + ", Linea: " + item.fila + ", Columna: " + item.columna + ", Descripcion: " + item.descripcion;
-                }*/
-
             }
         }
     }

@@ -12,6 +12,8 @@ namespace Practica1.sol.com.analyzer
     class Recorrido1
     {
         public static List<EscenarioFondo> miListaFondos = new List<EscenarioFondo>();
+        public static List<Personaje> miListaHeroes = new List<Personaje>();
+        public static List<Personaje> miListaEnemigos = new List<Personaje>();
 
         public static String recorrerAST1(ParseTreeNode root) {
             switch (root.Term.Name) {
@@ -34,95 +36,136 @@ namespace Practica1.sol.com.analyzer
                     String listaBackground = recorrerAST1(root.ChildNodes.ElementAt(0));
                     return listaBackground;
 
-                case "FIGURE":
-                    break;
-
-                case "DESIGN":
-                    break;
-
                 case "LISTA_BACKGROUND":
                     switch (root.ChildNodes.Count) {
                         case 0:
                             break;
                         case 1:
-                            String atributosBackground = recorrerAST1(root.ChildNodes.ElementAt(0));
-                            //agregarEscenarios(splitCadena(atributosBackground));
-                            return atributosBackground;
+                            recorrerAST1(root.ChildNodes.ElementAt(0));
+                            break;
                         case 2:
-                            listaBackground = recorrerAST1(root.ChildNodes.ElementAt(0));
-                            //Aqui agrego el fondo a la lista
-                            atributosBackground = recorrerAST1(root.ChildNodes.ElementAt(1));
-
-                            return listaBackground + "," + atributosBackground ;
+                            recorrerAST1(root.ChildNodes.ElementAt(0));
+                            recorrerAST1(root.ChildNodes.ElementAt(1));
+                            break;
                     }
                     break;
 
-                case "LISTA_FIGURE":
-                    break;
-
-                case "LISTA_DESIGN":
-                    break;
-
                 case "ATRIBUTOS_BACKGROUND":
-                    switch (root.ChildNodes.Count) {
+                    switch (root.ChildNodes.Count)
+                    {
                         case 0:
                             break;
                         case 3:
-                            String tipo="";
-                            String valor="";
-                            if (root.ChildNodes.ElementAt(0).ChildNodes.Count != 0) {
+                            String tipo = "";
+                            String valor = "";
+                            if (root.ChildNodes.ElementAt(0).ChildNodes.Count != 0)
+                            {
                                 tipo = recorrerAST1(root.ChildNodes.ElementAt(0));
-                                tipo+= "," + root.ChildNodes.ElementAt(1);
+                                tipo += "," + root.ChildNodes.ElementAt(1);
                                 tipo += "," + root.ChildNodes.ElementAt(2);
-                                agregarEscenarios(splitCadena(tipo));
+                                agregarEscenarios(splitComa(tipo));
                             }
-                            else {
+                            else
+                            {
                                 tipo = root.ChildNodes.ElementAt(1).ToString();
-                                valor = ","+ root.ChildNodes.ElementAt(2).ToString();
+                                valor = "," + root.ChildNodes.ElementAt(2).ToString();
 
                             }
 
-                            String atributosBackground = tipo  + valor;
+                            String atributosBackground = tipo + valor;
                             return atributosBackground;
+                    }
+                    break;
+
+                case "FIGURE":
+                    String figure = recorrerAST1(root.ChildNodes.ElementAt(0));
+                    break;
+
+                case "LISTA_FIGURE":
+                    switch (root.ChildNodes.Count) {
+                        case 0:
+                            break;
+                        case 1:
+                            String a = recorrerAST1(root.ChildNodes.ElementAt(0));
+                            return a;
+                        case 2:
+                            String listaFigureA =recorrerAST1(root.ChildNodes.ElementAt(0));
+                            agregarPersonajes(listaFigureA);
+                            String ListaFigureB = recorrerAST1(root.ChildNodes.ElementAt(1));
+                            agregarPersonajes(ListaFigureB);
+                            break;
+                            // return a + b;
                     }
                     break;
 
                 case "ATRIBUTOS_FIGURE":
+                    String atributoFigure="";
+                    String valorFigure="";
+
+                    if (root.ChildNodes.ElementAt(0).ChildNodes.Count != 0)
+                    {
+                        atributoFigure = recorrerAST1(root.ChildNodes.ElementAt(0));
+                        atributoFigure += ";" + root.ChildNodes.ElementAt(1);
+                        if (root.ChildNodes.ElementAt(2).Term.Name == "FIGURE_TIPO")
+                        {
+                            atributoFigure += "," + recorrerAST1(root.ChildNodes.ElementAt(2));
+
+                        }
+                        else {
+                            atributoFigure += "," + root.ChildNodes.ElementAt(2);
+                        }
+                    }
+                    else {
+                        atributoFigure = root.ChildNodes.ElementAt(1).ToString();
+                        valorFigure = "," + root.ChildNodes.ElementAt(2).ToString();
+                    }
+
+                    String atribFigura = atributoFigure + valorFigure;
+                    return atribFigura;
+                case "DESIGN":
                     break;
 
+                case "LISTA_DESIGN":
+                    break;
+                    
                 case "ATRIBUTOS_DESIGN":
-                    break;
-
-                case "FIGURE_TIPO":
                     break;
 
                 case "DESIGN_TIPO":
                     break;
 
+                case "FIGURE_TIPO":
+                    return root.ChildNodes.ElementAt(0).ToString();
+
                 case "EXPRESION":
+                    switch (root.ChildNodes.Count) {
+                        case 1:
+                            String[] terminalExpr = splitEspacio(root.ChildNodes.ElementAt(0).ToString());
+                            return (terminalExpr[0]);
+                        case 2:
+                            switch (root.ChildNodes.ElementAt(1).ToString()) {
+                                case "+":
+                                    break;
+                                case "-":
+                                    break;
+                                case "*":
+                                    break;
+                                case "/":
+                                    break;
+                            }
+                            break;
+                        case 3:
+                            break;
+
+                    }
                     break;
+
+
             }
             return "";
             
         }
-
-        private static String[] retornarValor(ParseTreeNode root) {
-            string[] array = new string[root.ChildNodes.Count-1];
-            switch (root.Term.Name) {
-                case "ATRIBUTOS_BACKGROUND":
-                    array[0] = root.ChildNodes.ElementAt(1).ToString();
-                    array[1] = root.ChildNodes.ElementAt(2).ToString();
-                    return array;
-            }
-            return array;
-        }
-
-        private static String[] splitCadena(String cadena)
-        {
-            String[] valor = cadena.ToString().Split(',');
-            return valor;
-        }
-
+        
         private static void agregarEscenarios(String[] lista) {
             String id="";
             String ruta="";
@@ -143,26 +186,95 @@ namespace Practica1.sol.com.analyzer
                 }
             }
 
-            if (miListaFondos.Count != 0)
-            {
+            //Verifico si el id del fondo no esta repetido, de lo contrario si ya esta solo, actualiza el path.
+            if (miListaFondos.Count != 0){
                 foreach (EscenarioFondo item in miListaFondos)
                 {
-                    if (string.Equals(item.identificador, id, StringComparison.OrdinalIgnoreCase))
-                    {
+                    if (string.Equals(item.identificador, id, StringComparison.OrdinalIgnoreCase)) {
                         item.ruta = ruta;
                         break;
-                    }
-                    else
-                    {
+                    }else{
                         miListaFondos.Add(new EscenarioFondo(id, ruta));
                         break;
                     }
                 }
-            }
-            else {
+            }else {
                 miListaFondos.Add(new EscenarioFondo(id, ruta));
             }
 
+        }
+
+        //Metodo que agrega heroes y enemigos
+        private static void agregarPersonajes(String lista) {
+            String nombre="";
+            String vida="";
+            String imagen="";
+            String tipoPersonaje = "";
+            String descripcion = "";
+            String destruir = "";
+
+            String[] personaje = splitPtoYcoma(lista);
+
+            for (int i = 0; i < personaje.Length; i++){
+                String[] datos = splitComa(personaje[i]);
+
+                String[] tipo = splitEspacio(datos[0]);
+                String[] valor = splitEspacio(datos[1]);
+
+                if (string.Equals(tipo[0], "nombre", StringComparison.OrdinalIgnoreCase)) {
+                    nombre = valor[0];
+                } else if (string.Equals(tipo[0], "vida", StringComparison.OrdinalIgnoreCase)) {
+                    vida = valor[0];
+                }
+                else if (string.Equals(tipo[0], "imagen", StringComparison.OrdinalIgnoreCase)){
+                    imagen = valor[0];
+                }
+                else if (string.Equals(tipo[0], "tipo", StringComparison.OrdinalIgnoreCase)){
+                    tipoPersonaje = valor[0];
+                }
+                else if (string.Equals(tipo[0], "descripcion", StringComparison.OrdinalIgnoreCase)) {
+                    descripcion = valor[0];
+                }
+                else if (string.Equals(tipo[0], "destruir", StringComparison.OrdinalIgnoreCase)){
+                    destruir = valor[0];
+                }
+
+            }
+
+
+            if (string.Equals(tipoPersonaje, "heroe", StringComparison.OrdinalIgnoreCase))
+            {
+                if (miListaHeroes.Count != 0)
+                {
+
+                }
+                else
+                {
+                    miListaHeroes.Add(new Personaje(nombre, vida, imagen, tipoPersonaje, descripcion));
+                }
+            }
+            else
+            {
+            }
+
+        }
+
+        private static String[] splitEspacio(String cadena)
+        {
+            String[] valor = cadena.ToString().Split(' ');
+            return valor;
+        }
+
+        private static String[] splitComa(String cadena)
+        {
+            String[] valor = cadena.ToString().Split(',');
+            return valor;
+        }
+
+        private static String[] splitPtoYcoma(String cadena)
+        {
+            String[] valor = cadena.ToString().Split(';');
+            return valor;
         }
     }
 }
