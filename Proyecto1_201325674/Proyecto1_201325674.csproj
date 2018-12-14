@@ -35,6 +35,9 @@
     <Reference Include="Irony">
       <HintPath>..\..\irony\sourceCode\irony\Irony.Interpreter\bin\Debug\Irony.dll</HintPath>
     </Reference>
+    <Reference Include="Irony.Interpreter">
+      <HintPath>..\..\irony\sourceCode\irony\Irony.Interpreter\bin\Debug\Irony.Interpreter.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -62,7 +65,8 @@
     <Compile Include="sol.com.analizador2\Gramatica2.cs" />
     <Compile Include="sol.com.analizador2\Recorrido2.cs" />
     <Compile Include="sol.com.analizador2\Sintactico2.cs" />
-    <Compile Include="sol.com.archivoConfiguracion\EscenarioFondo.cs" />
+    <Compile Include="sol.com.objetosConfiguracion\EscenarioFondo.cs" />
+    <Compile Include="sol.com.objetosConfiguracion\Personaje.cs" />
     <Compile Include="sol.com.controlDot2\ControlDot2.cs" />
     <Compile Include="sol.com.controlDot1\ControlDot.cs" />
     <EmbeddedResource Include="Form1.resx">
@@ -92,6 +96,17 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="sol.com.imagenes\" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="WINGRAPHVIZLib">
+      <Guid>{052DB09C-95F7-43BD-B7F8-492373D1151E}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

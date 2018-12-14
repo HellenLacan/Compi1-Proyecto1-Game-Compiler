@@ -24,6 +24,7 @@
         x-vida=50+50;
         x-tipo=x-enemigo;
         x-descripcion="Personaje principal del juego el cual tiene como objetivo salvar a la reyna";
+        x-destruir = 10;
    }
    </figure>
 
@@ -47,5 +48,50 @@
         x-tipo=x-bonus;
    } 
    </design>
+
+</configuration>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<configuration>
+   <background> 
+   {
+        x-nombre=fondo_1;
+        x-imagen="/home/usuario/imagenes/fondo1.jpg";
+   },
+   {
+        x-nombre=fondo_2;
+        x-imagen="/home/usuario/imagenes/fondo2.jpg";
+   },
+   {
+        x-nombre=fondo_4;
+        x-imagen="/home/usuario/imagenes/fondo4.jpg";
+   },
+   {
+        x-nombre=fondo_3;
+        x-imagen="/home/usuario/imagenes/fond3.jpg";
+   },
+   {
+        x-nombre=fondo_5;
+        x-imagen="/home/usuario/imagenes/fondo5.jpg";
+   }
+   </background>
 
 </configuration>

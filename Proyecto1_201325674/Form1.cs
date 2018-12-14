@@ -1,6 +1,7 @@
 ﻿using Irony.Parsing;
 using Practica1.sol.com.analyzer;
 using Proyecto1_201325674.sol.com.analizador2;
+using Proyecto1_201325674.sol.com.archivoConfiguracion;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -36,10 +37,15 @@ namespace Proyecto1_201325674
             {
                 MessageBox.Show("Analisis Correcto");
                 String text = "";
-                //String lenguaje = (Recorrido.recorrerAST(resultado.ChildNodes.ElementAt(0), text));
+                richTextBox2.Text = "";
+                Recorrido1.recorrerAST1(resultado.ChildNodes.ElementAt(0));
                 //getRichTextBox2().Text = lenguaje;
                 //Recorrido.traducir(resultado);
-                Syntactic.generarImagen(resultado);
+                text += "          *****FONDOS DEL JUEGO*****\n";
+                foreach (EscenarioFondo item in Recorrido1.miListaFondos) {
+                    text += "Nombre: " + item.identificador + "   ,   " + "Ruta: " + item.ruta + "\n";
+                }
+                richTextBox2.Text = text;
             }
             else
             {

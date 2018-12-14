@@ -19,15 +19,20 @@ namespace Practica1.sol.com.analyzer
             Parser p = new Parser(lenguaje);
             ParseTree tree = p.Parse(text);
             ParseTreeNode root = tree.Root;
+            if (root != null) {
+                generarImagen(root);
+            }
             return root;
+
         }
 
-        public static void generarImagen(ParseTreeNode raiz) {
+        public static String generarImagen(ParseTreeNode raiz) {
             String grafoDot = ControlDot.getDot(raiz);
-            Console.WriteLine(grafoDot);
-            //WINGRAPHVIZLib.DOT dot = new WINGRAPHVIZLib.DOT();
-           // WINGRAPHVIZLib.BinaryImage img = dot.ToPNG(grafoDot);
-            //img.Save("AST.png");
+            //Console.WriteLine(grafoDot);
+            WINGRAPHVIZLib.DOT dot = new WINGRAPHVIZLib.DOT();
+            WINGRAPHVIZLib.BinaryImage img = dot.ToPNG(grafoDot);
+            img.Save("AST.png");
+            return grafoDot;
         }
     }
 }

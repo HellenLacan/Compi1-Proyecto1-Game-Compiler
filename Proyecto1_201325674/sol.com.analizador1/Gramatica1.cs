@@ -166,9 +166,10 @@ namespace Practica1.sol.com.analizador
             #region Preferencias
             this.Root = INICIO;
             #endregion
+         
+            MarkPunctuation(menor, mayor,coma, llaveAb, llaveCerr, guion, igual, ptoYComa, parentAb, parentCerr, slash );
+            MarkPunctuation(_configuration, _background, _figure, _design,_x);
 
-            //MarkPunctuation(parentAb, parentCerr,coma, _extraer, ptoYcoma );
-            
         }
     }
 }
