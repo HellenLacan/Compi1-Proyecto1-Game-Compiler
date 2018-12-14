@@ -160,10 +160,8 @@ namespace Practica1.sol.com.analizador
                              | EXPRESION + slash + EXPRESION
                              | parentAb + EXPRESION + parentCerr
                              | signoMenos + EXPRESION
-                             | signoMas  + EXPRESION
-                             | numero
-                             |numeroDecimal
-                             | identificador;
+                             | signoMas + EXPRESION
+                             | numero;
 
             #endregion
 

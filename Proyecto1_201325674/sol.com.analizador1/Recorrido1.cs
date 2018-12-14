@@ -55,20 +55,20 @@ namespace Practica1.sol.com.analyzer
                     {
                         case 0:
                             break;
-                        case 3:
+                        case 4:
                             String tipo = "";
                             String valor = "";
                             if (root.ChildNodes.ElementAt(0).ChildNodes.Count != 0)
                             {
                                 tipo = recorrerAST1(root.ChildNodes.ElementAt(0));
-                                tipo += "," + root.ChildNodes.ElementAt(1);
                                 tipo += "," + root.ChildNodes.ElementAt(2);
+                                tipo += "," + root.ChildNodes.ElementAt(3);
                                 agregarEscenarios(splitComa(tipo));
                             }
                             else
                             {
-                                tipo = root.ChildNodes.ElementAt(1).ToString();
-                                valor = "," + root.ChildNodes.ElementAt(2).ToString();
+                                tipo = root.ChildNodes.ElementAt(2).ToString();
+                                valor = "," + root.ChildNodes.ElementAt(3).ToString();
 
                             }
 
@@ -116,8 +116,8 @@ namespace Practica1.sol.com.analyzer
                         }
                     }
                     else {
-                        atributoFigure = root.ChildNodes.ElementAt(1).ToString();
-                        valorFigure = "," + root.ChildNodes.ElementAt(2).ToString();
+                        atributoFigure = root.ChildNodes.ElementAt(2).ToString();
+                        valorFigure = "," + recorrerAST1(root.ChildNodes.ElementAt(3));
                     }
 
                     String atribFigura = atributoFigure + valorFigure;
@@ -140,22 +140,44 @@ namespace Practica1.sol.com.analyzer
                 case "EXPRESION":
                     switch (root.ChildNodes.Count) {
                         case 1:
-                            String[] terminalExpr = splitEspacio(root.ChildNodes.ElementAt(0).ToString());
-                            return (terminalExpr[0]);
-                        case 2:
-                            switch (root.ChildNodes.ElementAt(1).ToString()) {
-                                case "+":
-                                    break;
-                                case "-":
-                                    break;
-                                case "*":
-                                    break;
-                                case "/":
-                                    break;
+                            if (root.ChildNodes.ElementAt(0).Term.Name == "EXPRESION")
+                            {
+                                String terminalExpr = recorrerAST1(root.ChildNodes.ElementAt(0));
+                                return terminalExpr;
                             }
-                            break;
+                            else {
+                                String[] n = splitEspacio(root.ChildNodes.ElementAt(0).ToString());
+                                return n[0];
+                            }
+                            
+                        case 2:
+                            String numero = root.ChildNodes.ElementAt(0).ToString() + root.ChildNodes.ElementAt(1).ToString();
+                            return numero;
                         case 3:
-                            break;
+                            int resultado;
+                            String[] signo = splitEspacio(root.ChildNodes.ElementAt(1).ToString());
+                            String a = recorrerAST1(root.ChildNodes.ElementAt(0));
+                            String b = recorrerAST1(root.ChildNodes.ElementAt(2));
+                            switch (signo[0])
+                            {
+
+                                case "+":
+                                    resultado = Convert.ToInt32(a) + Convert.ToInt32(b);
+                                    return resultado.ToString();
+                                case "-":
+                                    resultado = Convert.ToInt32(a) - Convert.ToInt32(b);
+                                    return resultado.ToString();
+                                case "*":
+                                    resultado = Convert.ToInt32(a) * Convert.ToInt32(b);
+                                    return resultado.ToString();
+                                case "/":
+                                    resultado = Convert.ToInt32(a) / Convert.ToInt32(b);
+                                    return resultado.ToString();
+                                //Son parentesis
+                                default:
+                                    return recorrerAST1(root.ChildNodes.ElementAt(1)).ToString();
+
+                            }
 
                     }
                     break;
@@ -238,7 +260,6 @@ namespace Practica1.sol.com.analyzer
                 else if (string.Equals(tipo[0], "destruir", StringComparison.OrdinalIgnoreCase)){
                     destruir = valor[0];
                 }
-
             }
 
 
