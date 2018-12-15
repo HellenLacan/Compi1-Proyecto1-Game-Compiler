@@ -45,16 +45,19 @@ namespace Proyecto1_201325674
                 foreach (EscenarioFondo item in Recorrido1.miListaFondos) {
                     text += "Nombre: " + item.identificador + "   ,   " + "Ruta: " + item.ruta + "\n";
                 }
+
+                text += "\n          *****HEROES Y ENEMIGOS DEL JUEGO*****\n";
+                foreach (Personaje item in Recorrido1.miListaPersonajes)
+                {
+                    text += "Nombre: " + item.nombre + "   ,   " + " vida: " + item.vida + " tipo: " + item.tipo + " destruir: " + item.ptosDestruccion +
+                            " path: " + item.rutaImagen +  "\n";
+                }
+
                 richTextBox2.Text = text;
             }
             else
             {
                 MessageBox.Show("Analisis con errores");
-
-                /*foreach (sol.com.analyzer.Token item in Syntactic.lista)
-                {
-                    richTextBox1.Text += "\nError " + item.tipo + ": Lexema: \"" + item.lexema + "\"" + ", Linea: " + item.fila + ", Columna: " + item.columna + ", Descripcion: " + item.descripcion;
-                }*/
 
             }
         }
