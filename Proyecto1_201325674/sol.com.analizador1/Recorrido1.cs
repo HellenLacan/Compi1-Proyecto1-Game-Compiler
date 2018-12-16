@@ -466,7 +466,7 @@ namespace Practica1.sol.com.analyzer
             String ruta="";
             String tipo="";
             String bonus="";
-
+            String a;
             for (int i =0; i<atributoDesign.Length; i++) {
                 String[] tipos = splitComa(atributoDesign[i]);
                 String[] token = splitEspacio(tipos[0]);
