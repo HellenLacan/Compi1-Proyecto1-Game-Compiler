@@ -2,6 +2,7 @@
 using Practica1.sol.com.analyzer;
 using Proyecto1_201325674.sol.com.analizador2;
 using Proyecto1_201325674.sol.com.archivoConfiguracion;
+using Proyecto1_201325674.sol.com.objetosConfiguracion;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -19,11 +20,7 @@ namespace Proyecto1_201325674
         public Form1()
         {
             InitializeComponent();
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
+          
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -53,6 +50,13 @@ namespace Proyecto1_201325674
                             " path: " + item.rutaImagen +  "\n";
                 }
 
+                text += "\n          *****OBJETOS *****\n";
+                foreach (ObjetoEscenario item in Recorrido1.miListaObjetos)
+                {
+                    text += "Nombre: " + item.nombre + "   ,   " + " ptosDestruccion: " + item.ptosDestruccion + " tipo: " + item.tipo + " creditos: " + item.creditos +
+                            " path: " + item.rutaImagen + "\n";
+                }
+
                 richTextBox2.Text = text;
             }
             else
@@ -72,7 +76,6 @@ namespace Proyecto1_201325674
             if (resultado != null)
             {
                 MessageBox.Show("Analisis Correcto");
-                String text = "";
                 Syntactic.generarImagen(resultado);
             }
             else
@@ -80,6 +83,61 @@ namespace Proyecto1_201325674
                 MessageBox.Show("Analisis con errores");
 
             }
+        }
+
+        int personajeSelect = -1;
+        //Boton Anterior heroes
+        private void button3_Click(object sender, EventArgs e)
+        {
+            if (personajeSelect == -1) {
+                personajeSelect = 0;
+                pictureBox1.Image = Image.FromFile(Recorrido1.miListaPersonajes[personajeSelect].rutaImagen);
+            } else if (personajeSelect >= 0) {
+                personajeSelect -= 1;
+                pictureBox1.Image = Image.FromFile(Recorrido1.miListaPersonajes[personajeSelect].rutaImagen);
+            }
+
+            habilitarBotonesHeroes(personajeSelect);
+        }
+
+        //Boton Siguiente heroes
+        private void button4_Click(object sender, EventArgs e)
+        {
+            if (personajeSelect == -1)
+            {
+                personajeSelect = 0;
+                pictureBox1.Image = Image.FromFile(Recorrido1.miListaPersonajes[personajeSelect].rutaImagen);
+            } else if (personajeSelect <= Recorrido1.miListaPersonajes.Count-1)
+            {
+                personajeSelect += 1;
+                pictureBox1.Image = Image.FromFile(Recorrido1.miListaPersonajes[personajeSelect].rutaImagen);
+            }
+
+            habilitarBotonesHeroes(personajeSelect);
+
+        }
+
+        private void habilitarBotonesHeroes(int id) {
+            if (id == 0 && (id != Recorrido1.miListaPersonajes.Count - 1))
+            {
+                button3.Enabled = false;
+                button4.Enabled = true;
+            }
+            else if (id != 0 && (id == Recorrido1.miListaPersonajes.Count - 1))
+            {
+                button3.Enabled = true;
+                button4.Enabled = false;
+
+            }
+            else {
+                button3.Enabled = true;
+                button4.Enabled = true;
+            }
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

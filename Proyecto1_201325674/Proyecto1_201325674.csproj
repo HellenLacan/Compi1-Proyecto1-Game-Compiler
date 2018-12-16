@@ -66,6 +66,7 @@
     <Compile Include="sol.com.analizador2\Recorrido2.cs" />
     <Compile Include="sol.com.analizador2\Sintactico2.cs" />
     <Compile Include="sol.com.objetosConfiguracion\EscenarioFondo.cs" />
+    <Compile Include="sol.com.objetosConfiguracion\ObjetoEscenario.cs" />
     <Compile Include="sol.com.objetosConfiguracion\Personaje.cs" />
     <Compile Include="sol.com.controlDot2\ControlDot2.cs" />
     <Compile Include="sol.com.controlDot1\ControlDot.cs" />

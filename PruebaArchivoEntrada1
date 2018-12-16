@@ -23,23 +23,55 @@
    }
    </background>
 
-   <figure>
+     <figure>
    {
-        x-nombre=MarioBros;
-        x-imagen="/home/usuario/imagenes/fondo1.jpg";
-        x-vida=50+50;
-        x-tipo=x-heroe;
+        x-nombre=heroe1;
+        x-imagen="C:/Users/Hellen/Desktop/imagenes/heroe1.png";
+        x-vida=50+50-1;
+        x-tipo=x-HerOe;
         x-descripcion="Personaje principal del juego el cual tiene como objetivo salvar a la reyna";
    },
    {
-        x-nombre=MarioBros;
-        x-imagen="/home/usuario/imagenes/fondo1.jpg";
+        x-nombre=Enemigo1;
+        x-imagen="C:/Users/Hellen/Desktop/imagenes/enemigo1.png";
+        x-vida=50+50;
+        x-tipo=x-enemigo;
+        x-descripcion="Personaje principal del juego el cual tiene como objetivo salvar a la reyna";
+        x-destruir = 10;
+   },
+   {
+        x-nombre=Enemigo2;
+        x-imagen="C:/Users/Hellen/Desktop/imagenes/enemigo2.png";
+        x-vida=50+50;
+        x-tipo=x-enemigo;
+        x-descripcion="Personaje principal del juego el cual tiene como objetivo salvar a la reyna";
+        x-destruir = 10;
+   },
+   {
+        x-nombre=heroe2;
+        x-imagen="C:/Users/Hellen/Desktop/imagenes/heroe2.png";
+        x-vida=50+50-1;
+        x-tipo=x-HerOe;
+        x-descripcion="Personaje principal del juego el cual tiene como objetivo salvar a la reyna";
+   },
+   {
+        x-nombre=Enemigo3;
+        x-imagen="C:/Users/Hellen/Desktop/imagenes/heroe4.png";
+        x-vida=50+50;
+        x-tipo=x-enemigo;
+        x-descripcion="Personaje principal del juego el cual tiene como objetivo salvar a la reyna";
+        x-destruir = 10;
+   },
+   {
+        x-nombre=Heroe;
+        x-imagen="C:/Users/Hellen/Desktop/imagenes/heroe5.png";
         x-vida=50+50;
         x-tipo=x-enemigo;
         x-descripcion="Personaje principal del juego el cual tiene como objetivo salvar a la reyna";
         x-destruir = 10;
    }
    </figure>
+
 
    <design>
    {
@@ -57,6 +89,7 @@
    {
         x-nombre=rosa_1;
         x-imagen="/home/usuario/imagenes/fondo1.jpg";
+        x-imagen="/home/usuario/imagenes/fondo1_1.jpg";
         x-creditos=100;
         x-tipo=x-bonus;
    } 
@@ -83,23 +116,26 @@
 
 
 
-<configuration>
-    <figure>
+<configuration> 
+	<design>
    {
-        x-nombre=MarioBros;
-        x-imagen="/home/usuario/imagenes/fondo1.jpg";
-        x-vida=50+50;
-        x-tipo=x-heroe;
-        x-descripcion="Personaje principal del juego el cual tiene como objetivo salvar a la reyna";
+        x-nombre=bomba1;
+        x-imagen="/home/usuario/imagenes/fbomba1.jpg";
+        x-destruir=100+50;
+        x-tipo=x-bomba;
    },
    {
-        x-nombre=Enemigo1;
-        x-imagen="/home/usuario/imagenes/enemigo1.jpg";
-        x-vida=50+50;
-        x-tipo=x-enemigo;
-        x-descripcion="Personaje principal del juego el cual tiene como objetivo salvar a la reyna";
-        x-destruir = 10;
-   }
-   </figure>
+        x-nombre=arma1;
+        x-imagen="/home/usuario/imagenes/arma1.jpg";
+        x-destruir=100;
+        x-tipo=x-arma;
+   } ,
+   {
+        x-nombre=rosa_1;
+        x-imagen="/home/usuario/imagenes/rosa_1.jpg";
+        x-creditos=100;
+        x-tipo=x-bonus;
+   } 
+   </design>
 
 </configuration>

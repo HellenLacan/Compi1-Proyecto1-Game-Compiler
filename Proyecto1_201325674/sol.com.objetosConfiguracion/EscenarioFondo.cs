@@ -14,7 +14,6 @@ namespace Proyecto1_201325674.sol.com.archivoConfiguracion
 
 
         public EscenarioFondo() {
-
         }
 
         public EscenarioFondo(String identificador, String ruta) {

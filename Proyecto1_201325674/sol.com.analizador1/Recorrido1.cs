@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Irony.Parsing;
 using Proyecto1_201325674.sol.com.archivoConfiguracion;
+using Proyecto1_201325674.sol.com.objetosConfiguracion;
 
 namespace Practica1.sol.com.analyzer
 {
@@ -13,6 +14,7 @@ namespace Practica1.sol.com.analyzer
     {
         public static List<EscenarioFondo> miListaFondos = new List<EscenarioFondo>();
         public static List<Personaje> miListaPersonajes = new List<Personaje>();
+        public static List<ObjetoEscenario> miListaObjetos = new List<ObjetoEscenario>();
 
         public static String recorrerAST1(ParseTreeNode root)
         {
@@ -110,7 +112,6 @@ namespace Practica1.sol.com.analyzer
                 case "ATRIBUTOS_FIGURE":
                     String atributoFigure = "";
                     String valorFigure = "";
-                    String cadenaFigure;
                     switch (root.ChildNodes.Count)
                     {
 
@@ -149,16 +150,107 @@ namespace Practica1.sol.com.analyzer
                     break;
 
                 case "DESIGN":
+                    String design = recorrerAST1(root.ChildNodes.ElementAt(0));
                     break;
 
                 case "LISTA_DESIGN":
+                    String atributosDesign;
+                    String listaDesign;
+                    switch (root.ChildNodes.Count) {
+                        case 0:
+                            break;
+                        case 1:
+                             listaDesign= recorrerAST1(root.ChildNodes.ElementAt(0));
+                            if (listaDesign != "") {
+                                agregarObjetosDeEscenario(listaDesign);
+                            }
+                            break;
+                        case 2:
+                            listaDesign = recorrerAST1(root.ChildNodes.ElementAt(0));
+                            if (listaDesign != "") {
+                                agregarObjetosDeEscenario(listaDesign);
+                            }
+                            atributosDesign = recorrerAST1(root.ChildNodes.ElementAt(1));
+                            if (atributosDesign != "") {
+                                agregarObjetosDeEscenario(atributosDesign);
+                            }
+                            break;
+                    }
                     break;
 
                 case "ATRIBUTOS_DESIGN":
+                    String design_valores;
+                    switch (root.ChildNodes.Count) {
+
+                        case 0:
+                            break;
+
+                        case 1:
+                            break;
+
+                        case 4:
+                            design_valores = recorrerAST1(root.ChildNodes.ElementAt(0));
+                            if (root.ChildNodes.ElementAt(0).ChildNodes.Count != 0)
+                            {
+                                design_valores += root.ChildNodes.ElementAt(2);
+                                if ((root.ChildNodes.ElementAt(3).Term.Name == "EXPRESION") ||
+                                  (root.ChildNodes.ElementAt(3).Term.Name == "DESIGN_TIPO"))
+                                {
+                                    design_valores += "," + recorrerAST1(root.ChildNodes.ElementAt(3));
+                                }
+                                else
+                                {
+                                    design_valores += "," + root.ChildNodes.ElementAt(3)+";";
+                                }
+                            }
+                            else {
+                                design_valores += root.ChildNodes.ElementAt(2);
+                                if ((root.ChildNodes.ElementAt(3).Term.Name == "EXPRESION") ||
+                                    (root.ChildNodes.ElementAt(3).Term.Name == "DESIGN_TIPO"))
+                                {
+                                    design_valores += "," + recorrerAST1(root.ChildNodes.ElementAt(3));
+                                }
+                                else {
+                                    design_valores += "," + root.ChildNodes.ElementAt(3)+";";
+                                }
+                            }
+                            return design_valores;
+                        case 5:
+                            design_valores = recorrerAST1(root.ChildNodes.ElementAt(0))+";";
+                            if (root.ChildNodes.ElementAt(0).ChildNodes.Count != 0)
+                            {
+                                design_valores += root.ChildNodes.ElementAt(2);
+                                if ((root.ChildNodes.ElementAt(4).Term.Name == "EXPRESION") ||
+                                  (root.ChildNodes.ElementAt(4).Term.Name == "DESIGN_TIPO"))
+                                {
+                                    design_valores += "," + recorrerAST1(root.ChildNodes.ElementAt(4));
+                                }
+                                else
+                                {
+                                    design_valores += "," + root.ChildNodes.ElementAt(4)+";";
+                                }
+                            }
+                            else
+                            {
+                                design_valores += root.ChildNodes.ElementAt(2);
+                                if ((root.ChildNodes.ElementAt(4).Term.Name == "EXPRESION") ||
+                                    (root.ChildNodes.ElementAt(4).Term.Name == "DESIGN_TIPO"))
+                                {
+                                    design_valores += "," + recorrerAST1(root.ChildNodes.ElementAt(4));
+                                }
+                                else
+                                {
+                                    design_valores += "," + root.ChildNodes.ElementAt(4)+";";
+                                }
+                            }
+                            return design_valores;
+
+                    }
                     break;
 
                 case "DESIGN_TIPO":
-                    break;
+                    String design_tipo = root.ChildNodes.ElementAt(0).ToString();
+                    return design_tipo;
 
                 case "FIGURE_TIPO":
                     return root.ChildNodes.ElementAt(0).ToString();
@@ -205,7 +297,6 @@ namespace Practica1.sol.com.analyzer
                                     return recorrerAST1(root.ChildNodes.ElementAt(1)).ToString();
 
                             }
-
                     }
                     break;
 
@@ -214,6 +305,8 @@ namespace Practica1.sol.com.analyzer
             return "";
 
         }
+
+
 
         private static void agregarEscenarios(String[] lista)
         {
@@ -265,7 +358,6 @@ namespace Practica1.sol.com.analyzer
         //Metodo que agrega heroes y enemigos
         private static void agregarPersonajes(String lista)
         {
-            Boolean encontrado = false;
             String nombre = "";
             String vida = "";
             String imagen = "";
@@ -367,6 +459,95 @@ namespace Practica1.sol.com.analyzer
             }
         }
 
+        public static Boolean agregarObjetosDeEscenario(String objetos){
+            String[] atributoDesign= splitPtoYcoma(objetos);
+            String nombre="";
+            String ptosDestruccion="";
+            String ruta="";
+            String tipo="";
+            String bonus="";
+
+            for (int i =0; i<atributoDesign.Length; i++) {
+                String[] tipos = splitComa(atributoDesign[i]);
+                String[] token = splitEspacio(tipos[0]);
+                String[] valor = splitEspacio(tipos[1]);
+
+                if (string.Equals(token[0], "nombre", StringComparison.OrdinalIgnoreCase)) {
+                    nombre = valor[0];
+                } else if (string.Equals(token[0], "destruir", StringComparison.OrdinalIgnoreCase)) {
+                    ptosDestruccion = valor[0];
+                } else if (string.Equals(token[0], "imagen", StringComparison.OrdinalIgnoreCase)) {
+                    ruta = valor[0];
+                } else if (string.Equals(token[0], "tipo", StringComparison.OrdinalIgnoreCase)) {
+                    tipo = valor[0];
+                } else if (string.Equals(token[0], "creditos", StringComparison.OrdinalIgnoreCase)) {
+                    bonus = valor[0];
+                }
+                
+            }
+
+            if (miListaObjetos.Count > 0)
+            {
+                foreach (ObjetoEscenario item in miListaObjetos) {
+                    if (string.Equals(item.nombre, nombre, StringComparison.OrdinalIgnoreCase)) {
+                        if (string.Equals(item.tipo, tipo, StringComparison.OrdinalIgnoreCase))
+                        {
+                            //Si existe un identificador con el mismo tipo, lo actualiza
+                            actualizarObjetosEscenario(nombre, ptosDestruccion, ruta, tipo, bonus, item);
+                            return true;
+                        }
+                        else {
+                            Console.WriteLine("Identificador de objeto " + nombre +" ya existe");
+                            return false;
+                        }
+                    }
+                }
+                //Si no existe el nombre lo crea
+                miListaObjetos.Add(new ObjetoEscenario(nombre, ptosDestruccion, ruta, tipo, bonus));
+                return true;
+
+            }
+            else
+            {
+                miListaObjetos.Add(new ObjetoEscenario(nombre, ptosDestruccion, ruta, tipo, bonus));
+                return true;
+            }
+        }
+        
+        public static void actualizarObjetosEscenario(String nombre, String ptosDestruccion, String ruta, String tipo, String bonus, ObjetoEscenario item)
+        {
+            
+            if (string.Equals(item.tipo, "bomba", StringComparison.OrdinalIgnoreCase) || string.Equals(item.tipo, "arma", StringComparison.OrdinalIgnoreCase))
+            {
+                item.creditos = "";
+                if (ptosDestruccion != "") {
+                    item.ptosDestruccion = ptosDestruccion;
+                }
+
+                if (ruta != "") {
+                    item.rutaImagen = ruta;
+                }
+            }
+            else if (string.Equals(item.tipo, "bonus", StringComparison.OrdinalIgnoreCase))
+            {
+                item.ptosDestruccion = "";
+                if (ruta != "") {
+                    item.rutaImagen = ruta;
+                }
+                if (bonus != "") {
+                    item.creditos = bonus;
+                }
+
+            }
+            else if (string.Equals(item.tipo, "meta", StringComparison.OrdinalIgnoreCase) || string.Equals(item.tipo, "bloque", StringComparison.OrdinalIgnoreCase))
+            {
+                item.creditos = "";
+                item.ptosDestruccion = "";
+                if (ruta != "") {
+                    item.rutaImagen = ruta;
+                }
+            }
+        }
 
         private static String[] splitEspacio(String cadena)
         {
