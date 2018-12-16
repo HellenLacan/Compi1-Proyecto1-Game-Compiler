@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,10 +18,20 @@ namespace Proyecto1_201325674
 {
     public partial class Form1 : Form
     {
+        public String archivo1, archivo2;
         public Form1()
         {
             InitializeComponent();
-          
+            using (StreamReader reader = new StreamReader("C:/Users/Hellen/Documents/Cursos/COMPI1_VACAS_DIC_2018/Proyecto1_201325674/PruebaArchivoEntrada1.txt"))
+            {
+                 archivo1 = reader.ReadToEnd();
+            }
+
+            using (StreamReader reader2 = new StreamReader("C:/Users/Hellen/Documents/Cursos/COMPI1_VACAS_DIC_2018/Proyecto1_201325674/PruebaArchivoEntrada2.txt"))
+            {
+                archivo2 = reader2.ReadToEnd();
+            }
+
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -28,7 +39,7 @@ namespace Proyecto1_201325674
             //Console.WriteLine(!(true || false));
             Syntactic mySyntactic = new Syntactic();
             //bool resultado = mySyntactic.analyze(getRichTextBox().Text);
-            ParseTreeNode resultado = mySyntactic.analyze(richTextBox1.Text);
+            ParseTreeNode resultado = mySyntactic.analyze(archivo1);
 
             if (resultado != null)
             {

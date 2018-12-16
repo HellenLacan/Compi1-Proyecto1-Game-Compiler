@@ -101,7 +101,7 @@ namespace Proyecto1_201325674.sol.com.analizador2
 
             EXTRAS.Rule = menor + _x + guion + _extras + mayor + LISTA_EXTRAS + menor + slash + _x + guion + _extras + mayor;
 
-            META.Rule = menor  + _meta + mayor + POSICIONES_X_Y_OBJETOS + menor + _meta + mayor;
+            META.Rule = menor  + _x + guion + _meta + mayor + POSICIONES_X_Y_OBJETOS + menor +  slash + _x + guion + _meta + mayor;
 
             LISTA_PERSONAJES.Rule = LISTA_PERSONAJES + HEROES
                                    |LISTA_PERSONAJES + VILLANOS
@@ -134,14 +134,13 @@ namespace Proyecto1_201325674.sol.com.analizador2
                                          | menor + _bonus + mayor + POSICIONES_X_Y_OBJETOS + menor + slash + _bonus + mayor;
 
             EXPRESION.Rule = EXPRESION + mas + EXPRESION
-                             | EXPRESION + menos + EXPRESION
-                             | EXPRESION + por + EXPRESION
-                             | EXPRESION + slash + EXPRESION
-                             | parentAb + EXPRESION + parentCerr
-                             | numero
-                             | numeroDecimal
-                             | identificador;
-
+                            | EXPRESION + menos + EXPRESION
+                            | EXPRESION + por + EXPRESION
+                            | EXPRESION + slash + EXPRESION
+                            | parentAb + EXPRESION + parentCerr
+                            | mas + EXPRESION
+                            | menos + EXPRESION
+                            | numero;
             #endregion
 
             #region Preferencias
