@@ -43,7 +43,7 @@ namespace Proyecto1_201325674
 
             if (resultado != null)
             {
-                MessageBox.Show("Analisis Correcto");
+                MessageBox.Show("Analisis con errores");
                 String text = "";
                 richTextBox2.Text = "";
                 Recorrido1.recorrerAST1(resultado.ChildNodes.ElementAt(0));
@@ -68,11 +68,11 @@ namespace Proyecto1_201325674
                             " path: " + item.rutaImagen + "\n";
                 }
 
-                richTextBox2.Text = text;
+                //richTextBox2.Text = text;
             }
             else
             {
-                MessageBox.Show("Analisis con errores");
+                MessageBox.Show("Analisis correcto");
 
             }
         }
@@ -86,13 +86,13 @@ namespace Proyecto1_201325674
 
             if (resultado != null)
             {
-                MessageBox.Show("Analisis Correcto");
+                MessageBox.Show("Analisis con errores");
                 Syntactic.generarImagen(resultado);
                 Recorrido2.recorrerAST2(resultado.ChildNodes.ElementAt(0));
             }
             else
             {
-                MessageBox.Show("Analisis con errores");
+                MessageBox.Show("Analisis correcto");
 
             }
         }

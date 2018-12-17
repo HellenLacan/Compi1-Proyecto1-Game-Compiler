@@ -78,6 +78,9 @@ namespace Proyecto1_201325674.sol.com.analizador2
             NonTerminal ATRIBUTOS_LISTA_EXTRAS = new NonTerminal("ATRIBUTOS_LISTA_EXTRAS");
             NonTerminal TIPO_OBJETOS = new NonTerminal("TIPO_OBJETOS");
             NonTerminal FINALESCENARIO = new NonTerminal("FINALESCENARIO");
+            NonTerminal ARMAS = new NonTerminal("ARMAS");
+            NonTerminal BONUS = new NonTerminal("BONUS");
+
             #endregion
 
             #region Gramatica
@@ -138,8 +141,12 @@ namespace Proyecto1_201325674.sol.com.analizador2
                                 |ATRIBUTOS_LISTA_EXTRAS
                                 |Empty;
 
-            ATRIBUTOS_LISTA_EXTRAS.Rule = menor + _armas + mayor + POSICIONES_X_Y_OBJETOS + menor + slash + _armas + mayor
-                                         | menor + _bonus + mayor + POSICIONES_X_Y_OBJETOS + menor + slash + _bonus + mayor;
+            ARMAS.Rule = menor + _armas + mayor + POSICIONES_X_Y_OBJETOS + menor + slash + _armas + mayor;
+
+            BONUS.Rule = menor + _bonus + mayor + POSICIONES_X_Y_OBJETOS + menor + slash + _bonus + mayor;
+
+            ATRIBUTOS_LISTA_EXTRAS.Rule = ARMAS
+                                         |BONUS;
 
             EXPRESION.Rule = EXPRESION + mas + EXPRESION
                             | EXPRESION + menos + EXPRESION
@@ -156,7 +163,7 @@ namespace Proyecto1_201325674.sol.com.analizador2
             #endregion
 
             MarkPunctuation(mayor, menor, igual, _x, guion, ptoYcoma, parentAb, parentCerr,_personajes,_paredes,_extras,_meta,
-                            coma, _heroes);
+                            coma, _heroes, _villanos, _armas, _bonus, _meta);
 
             }
         }

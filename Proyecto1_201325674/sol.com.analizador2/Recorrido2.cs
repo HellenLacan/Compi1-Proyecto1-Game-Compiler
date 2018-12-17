@@ -76,59 +76,93 @@ namespace Proyecto1_201325674.sol.com.analizador2
                     break;
 
                 case "TIPO_PERSONAJES":
-                    return recorrerAST2(root.ChildNodes.ElementAt(0));
+                    tipoPersonaje = recorrerAST2(root.ChildNodes.ElementAt(0));
+                    //Console.WriteLine("tipo_personaje " + tipoPersonaje);
+                    return tipoPersonaje;
 
                 case "HEROES":
-                    return recorrerAST2(root.ChildNodes.ElementAt(0));
+                    String heroes  = "";
+                    heroes += recorrerAST2(root.ChildNodes.ElementAt(0));
+                    almacenarPersonajes("villano;" + heroes);
+                    //Console.WriteLine("heroe;" + heroes);
+                    return "Mheroe;" + heroes;
+
+                case "VILLANOS":
+                    String villano = "";
+                    villano += recorrerAST2(root.ChildNodes.ElementAt(0));
+                    almacenarPersonajes("villano;" + villano);
+                    return "villano;" + villano;
 
                 case "POSICIONES_X_Y_OBJETOS":
-                    String heroes = "";
+                    heroes = "";
                     String posX = ""; 
                     String posY = "";
-                    String listaHeroes = "";
+                    listaPersonajes = "";
                     switch (root.ChildNodes.Count)
                     {
                         case 3:
                             posX = recorrerAST2(root.ChildNodes.ElementAt(1));
                             posY = recorrerAST2(root.ChildNodes.ElementAt(2));
-                            heroes += "heroe;"+"identificador," + root.ChildNodes.ElementAt(0).ToString();
-                            heroes += ";" + "posicionX," + posX + ";posicionY," + posY;
-                            Console.WriteLine("\n" + heroes);
-                            return heroes;
+                            listaPersonajes += "@identificador," + root.ChildNodes.ElementAt(0).ToString();
+                            listaPersonajes += ";" + "posicionX," + posX + ";posicionY," + posY;
+                            return listaPersonajes;
 
                         case 4:
-                            listaHeroes = recorrerAST2(root.ChildNodes.ElementAt(0));
+                            listaPersonajes += recorrerAST2(root.ChildNodes.ElementAt(0));
                             posX = recorrerAST2(root.ChildNodes.ElementAt(2));
                             posY = recorrerAST2(root.ChildNodes.ElementAt(3));
-                            heroes += "heroe;"+"identificador," + root.ChildNodes.ElementAt(1).ToString()+
+                            listaPersonajes += "@identificador," + root.ChildNodes.ElementAt(1).ToString()+
                                       ";" + "posicionX," + posX + ";posicionY," + posY;
-                            Console.WriteLine("\n" + heroes);
-                            return heroes;
+                            return listaPersonajes;
                     }
                     break;
 
-                case "VILLANOS":
-                    break;
-
-                case "PAREDES":
-                    break;
-
                 case "EXTRAS":
+                    String listaExtras = recorrerAST2(root.ChildNodes.ElementAt(0));
+                    break;
+
+                case "LISTA_EXTRAS":
+                    String atributosLitas;
+                    switch (root.ChildNodes.Count) {
+                        case 1:
+                            listaExtras = recorrerAST2(root.ChildNodes.ElementAt(0));
+                            break;
+                        case 2:
+                            listaExtras = recorrerAST2(root.ChildNodes.ElementAt(0));
+                            atributosLitas = recorrerAST2(root.ChildNodes.ElementAt(1));
+                            break;
+                    }
+                    break;
+                    
+                case "ATRIBUTOS_LISTA_EXTRAS":
+                    atributosLitas = recorrerAST2(root.ChildNodes.ElementAt(0));
+                    break;
+
+                case "ARMAS":
+                    String extras = "";
+                    extras += recorrerAST2(root.ChildNodes.ElementAt(0));
+                    almacenarPersonajes("armas;" + extras);
+                    return "armas;" + extras;
+
+                case "BONUS":
+                    extras = "";
+                    extras += recorrerAST2(root.ChildNodes.ElementAt(0));
+                    almacenarPersonajes("bonus;" + extras);
+                    return "bonus;" + extras;
+
+                case "PAREDES": 
                     break;
 
                 case "META":
-                    break;
+                    extras = "";
+                    extras += recorrerAST2(root.ChildNodes.ElementAt(0));
+                    almacenarPersonajes("meta;" + extras);
+                    return "meta;" + extras;
 
                 case "LISTA_PAREDES":
                     break;
 
                 case "ATRIBUTOS_LISTA_PAREDES":
-                    break;
-
-                case "LISTA_EXTRAS":
-                    break;
-
-                case "ATRIBUTOS_LISTA_EXTRAS":
                     break;
 
                 case "EXPRESION":
@@ -176,6 +210,37 @@ namespace Proyecto1_201325674.sol.com.analizador2
             }
             return "";
         }
+
+        private static void almacenarPersonajes(String listaPersonaje) {
+            //String[] lista = spliArroba(listaPersonaje);
+            //for (int i =0; i<lista.Length;i++) {
+            //    String[] token = splitPtoYcoma(lista[i]) ;
+            //    String[] identificador= splitComa(token[0]);
+            //    if (string.Equals(token[0], "heroe", StringComparison.OrdinalIgnoreCase) || string.Equals(token[0], "villano", StringComparison.OrdinalIgnoreCase))
+            //    {
+
+            //    }
+            //    else {
+            //        String[] posX = splitComa(token[1]);
+            //        String[] posY = splitComa(token[2]);
+            //        Console.WriteLine(" Token: " + identificador[0]);
+            //        Console.WriteLine(" Valor:" + identificador[1]);
+            //        Console.WriteLine(" PosX:" + posX[0]);
+            //        Console.WriteLine(" Valor:" + posX[1]);
+            //        Console.WriteLine(" PosY:" + posY[0]);
+            //        Console.WriteLine(" Valor:" + posY[1] + "\n");
+            //    }
+                
+            //}
+
+        }
+
+        private static String[] spliArroba(String cadena)
+        {
+            String[] valor = cadena.ToString().Split('@');
+            return valor;
+        }
+
 
         private static String[] splitEspacio(String cadena)
         {
