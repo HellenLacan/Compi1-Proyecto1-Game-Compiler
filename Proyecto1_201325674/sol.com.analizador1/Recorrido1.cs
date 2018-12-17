@@ -306,8 +306,6 @@ namespace Practica1.sol.com.analyzer
 
         }
 
-
-
         private static void agregarEscenarios(String[] lista)
         {
             String id = "";

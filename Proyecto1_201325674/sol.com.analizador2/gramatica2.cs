@@ -76,42 +76,50 @@ namespace Proyecto1_201325674.sol.com.analizador2
             NonTerminal ATRIBUTOS_LISTA_PAREDES = new NonTerminal("ATRIBUTOS_LISTA_PAREDES");
             NonTerminal LISTA_EXTRAS = new NonTerminal("LISTA_EXTRAS");
             NonTerminal ATRIBUTOS_LISTA_EXTRAS = new NonTerminal("ATRIBUTOS_LISTA_EXTRAS");
+            NonTerminal TIPO_OBJETOS = new NonTerminal("TIPO_OBJETOS");
+            NonTerminal FINALESCENARIO = new NonTerminal("FINALESCENARIO");
             #endregion
 
             #region Gramatica
 
             INICIO.Rule = ESCENARIOS;
 
-            ESCENARIOS.Rule = menor + _x + guion + _escenarios + _background + igual + identificador + ptoYcoma + _ancho + igual + EXPRESION 
-                              + ptoYcoma + _alto +igual + EXPRESION + mayor + LISTA_ESCENARIO + menor +slash + _x + guion + _escenarios + mayor;
+            ESCENARIOS.Rule = menor + _x + guion + _escenarios + _background + igual + identificador + ptoYcoma + _ancho + igual + EXPRESION
+                              + ptoYcoma + _alto + igual + EXPRESION + mayor + CUERPO_ESCENARIO;
 
-            LISTA_ESCENARIO.Rule = LISTA_ESCENARIO + PERSONAJES
-                                  |LISTA_ESCENARIO + PAREDES
-                                  |LISTA_ESCENARIO + EXTRAS
-                                  |LISTA_ESCENARIO + META
-                                  |PERSONAJES
-                                  |EXTRAS
-                                  |PAREDES
-                                  |META
-                                  |Empty;
+            CUERPO_ESCENARIO.Rule = LISTA_ESCENARIO + FINALESCENARIO
+                                   |FINALESCENARIO;
 
-            PERSONAJES.Rule = menor + _x + guion +_personajes + mayor +  LISTA_PERSONAJES +menor + slash + _x + guion + _personajes + mayor;
+            FINALESCENARIO.Rule = menor + slash + _x + guion + _escenarios + mayor;
 
-            PAREDES.Rule = menor + _x + guion + _paredes + mayor + LISTA_PAREDES + menor + slash + _x + guion + _paredes + mayor;
+            LISTA_ESCENARIO.Rule = LISTA_ESCENARIO + menor + _x + guion + TIPO_OBJETOS
+                      | menor + _x + guion + TIPO_OBJETOS
+                      | Empty;
 
-            EXTRAS.Rule = menor + _x + guion + _extras + mayor + LISTA_EXTRAS + menor + slash + _x + guion + _extras + mayor;
+            TIPO_OBJETOS.Rule = PERSONAJES
+                               | PAREDES
+                               | EXTRAS
+                               | META;
 
-            META.Rule = menor  + _x + guion + _meta + mayor + POSICIONES_X_Y_OBJETOS + menor +  slash + _x + guion + _meta + mayor;
+            PAREDES.Rule = _paredes + mayor + LISTA_PAREDES + menor + slash + _x + guion + _paredes + mayor;
 
-            LISTA_PERSONAJES.Rule = LISTA_PERSONAJES + HEROES
-                                   |LISTA_PERSONAJES + VILLANOS
-                                   |HEROES
-                                   |VILLANOS
+            EXTRAS.Rule = _extras + mayor + LISTA_EXTRAS + menor + slash + _x + guion + _extras + mayor;
+
+            META.Rule =  _meta + mayor + POSICIONES_X_Y_OBJETOS + menor +  slash + _x + guion + _meta + mayor;
+
+            PERSONAJES.Rule = _personajes + mayor + LISTA_PERSONAJES + menor + slash + _x + guion + _personajes + mayor;
+
+            LISTA_PERSONAJES.Rule = LISTA_PERSONAJES + menor + _x + guion +  TIPO_PERSONAJES
+                                   |TIPO_PERSONAJES
                                    |Empty;
 
-            HEROES.Rule = menor + _x + guion + _heroes + mayor + POSICIONES_X_Y_OBJETOS + menor + slash + _x + guion + _heroes + mayor;
+            TIPO_PERSONAJES.Rule = HEROES
+                                  |VILLANOS;
 
-            VILLANOS.Rule = menor + _x + guion + _villanos + mayor + POSICIONES_X_Y_OBJETOS + menor + slash + _x + guion + _villanos + mayor;
+            HEROES.Rule =  _heroes + mayor + POSICIONES_X_Y_OBJETOS + menor + slash + _x + guion + _heroes + mayor;
+
+            VILLANOS.Rule = _villanos + mayor + POSICIONES_X_Y_OBJETOS + menor + slash + _x + guion + _villanos + mayor;
+
 
             POSICIONES_X_Y_OBJETOS.Rule = POSICIONES_X_Y_OBJETOS + identificador + parentAb + EXPRESION + coma + EXPRESION + parentCerr + ptoYcoma
                                              |identificador + parentAb + EXPRESION + coma + EXPRESION + parentCerr + ptoYcoma
@@ -147,7 +155,8 @@ namespace Proyecto1_201325674.sol.com.analizador2
             this.Root = INICIO;
             #endregion
 
-            //MarkPunctuation(parentAb, parentCerr,coma, _extraer, ptoYcoma );
+            MarkPunctuation(mayor, menor, igual, _x, guion, ptoYcoma, parentAb, parentCerr,_personajes,_paredes,_extras,_meta,
+                            coma, _heroes);
 
             }
         }

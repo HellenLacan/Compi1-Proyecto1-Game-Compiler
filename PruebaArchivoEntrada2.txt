@@ -36,8 +36,47 @@
 	</x-extras>
 
 
-	<meta>
+	<x-meta>
 		salida(10,10);
-	<meta>
+	</x-meta>
 
 </x-escenarios>
+
+
+
+
+
+
+
+
+
+
+
+
+<x-escenarios background=Fondo1; ancho = 15 ; alto = 15 >
+	
+</x-escenarios>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

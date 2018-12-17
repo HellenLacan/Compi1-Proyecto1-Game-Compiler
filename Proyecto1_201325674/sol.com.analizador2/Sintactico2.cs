@@ -18,6 +18,9 @@ namespace Proyecto1_201325674.sol.com.analizador2
             Parser p = new Parser(lenguaje);
             ParseTree tree = p.Parse(text);
             ParseTreeNode root = tree.Root;
+            if (root!=null) {
+                generarImagen(root);
+            }
             return root;
         }
 
@@ -25,9 +28,9 @@ namespace Proyecto1_201325674.sol.com.analizador2
         {
             String grafoDot = ControlDot2.getDot(raiz);
             Console.WriteLine(grafoDot);
-            //WINGRAPHVIZLib.DOT dot = new WINGRAPHVIZLib.DOT();
-            // WINGRAPHVIZLib.BinaryImage img = dot.ToPNG(grafoDot);
-            //img.Save("AST.png");
+            WINGRAPHVIZLib.DOT dot = new WINGRAPHVIZLib.DOT();
+            WINGRAPHVIZLib.BinaryImage img = dot.ToPNG(grafoDot);
+            img.Save("AST2.png");
         }
     }
 }

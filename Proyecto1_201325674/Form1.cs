@@ -88,6 +88,7 @@ namespace Proyecto1_201325674
             {
                 MessageBox.Show("Analisis Correcto");
                 Syntactic.generarImagen(resultado);
+                Recorrido2.recorrerAST2(resultado.ChildNodes.ElementAt(0));
             }
             else
             {
