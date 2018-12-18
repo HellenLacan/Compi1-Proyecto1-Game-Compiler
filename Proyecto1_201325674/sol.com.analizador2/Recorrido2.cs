@@ -26,6 +26,7 @@ namespace Proyecto1_201325674.sol.com.analizador2
                                           root.ChildNodes.ElementAt(3).ToString() + "," + ancho +";"+ 
                                           root.ChildNodes.ElementAt(5).ToString() + "," + alto + ";";
                     String cuerpo = recorrerAST2(root.ChildNodes.ElementAt(7));
+                    almacenarFondo("background", root.ChildNodes.ElementAt(2).ToString() , ancho, alto);
                     break;
 
                 case "CUERPO_ESCENARIO":
@@ -396,6 +397,29 @@ namespace Proyecto1_201325674.sol.com.analizador2
             }
         }
 
+        public static void almacenarFondo(String tipo, String nombre, String ancho, String alto) {
+            String[] fondo = splitEspacio(nombre);
+            Boolean encontrado = false;
+            EscenarioFondo escenario = null;
+            if (string.Equals(tipo, "background", StringComparison.OrdinalIgnoreCase))
+            {
+                foreach (EscenarioFondo item in Recorrido1.miListaFondos) {
+                    if (string.Equals(item.identificador, fondo[0], StringComparison.OrdinalIgnoreCase)) {
+                        encontrado = true;
+                        escenario = item;
+                    }
+                }
+
+                if (encontrado == true)
+                {
+                    milistaObjetosEscenario.Add(new SuperEscenario(tipo, escenario, Convert.ToInt32(ancho), Convert.ToInt32(alto)));
+                    Console.WriteLine("Fondo id => " + nombre + " agregado a la lista super");
+                }
+                else {
+                    Console.WriteLine("Sematico, no existe fondo con el id =>" + fondo[0]);
+                }
+            }
+        }
 
         public static ObjetoEscenario verificarSiExisteObjeto(String tipo, String id) {
             if (string.Equals(tipo, "bloque", StringComparison.OrdinalIgnoreCase))
@@ -438,6 +462,7 @@ namespace Proyecto1_201325674.sol.com.analizador2
             }
             return null;
         }
+
         public static Personaje verificarSiExistePersonaje(String tipo, String id)
         {
             if (string.Equals(tipo, "heroe", StringComparison.OrdinalIgnoreCase))

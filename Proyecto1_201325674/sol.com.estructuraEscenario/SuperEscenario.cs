@@ -18,6 +18,8 @@ namespace Proyecto1_201325674.sol.com.estructuraEscenario
         public int posFinX { get; set; }
         public int posIniY { get; set; }
         public int posFinY { get; set; }
+        public int ancho { get; set; }
+        public int alto { get; set; }
 
         public SuperEscenario() {
 
@@ -29,11 +31,33 @@ namespace Proyecto1_201325674.sol.com.estructuraEscenario
             this.posFinX = posFinX;
             this.posIniY = posIniY;
             this.posFinY = posFinY;
+            
             if (tipoObjecto.GetType().ToString() == "Proyecto1_201325674.sol.com.archivoConfiguracion.Personaje.EscenarioFondo") {
                 this.fondo = (EscenarioFondo)tipoObjecto;
             } else if (tipoObjecto.GetType().ToString() == "Proyecto1_201325674.sol.com.objetosConfiguracion.ObjetoEscenario") {
                 this.objeto = (ObjetoEscenario)tipoObjecto;
             } else if (tipoObjecto.GetType().ToString() == "Proyecto1_201325674.sol.com.archivoConfiguracion.Personaje") {
+                this.personaje = (Personaje)tipoObjecto;
+            }
+
+        }
+
+        public SuperEscenario(String tipo, Object tipoObjecto, int ancho, int alto)
+        {
+            this.tipo = tipo;
+            this.alto = alto;
+            this.alto = ancho;
+
+            if (tipoObjecto.GetType().ToString() == "Proyecto1_201325674.sol.com.archivoConfiguracion.Personaje.EscenarioFondo")
+            {
+                this.fondo = (EscenarioFondo)tipoObjecto;
+            }
+            else if (tipoObjecto.GetType().ToString() == "Proyecto1_201325674.sol.com.objetosConfiguracion.ObjetoEscenario")
+            {
+                this.objeto = (ObjetoEscenario)tipoObjecto;
+            }
+            else if (tipoObjecto.GetType().ToString() == "Proyecto1_201325674.sol.com.archivoConfiguracion.Personaje")
+            {
                 this.personaje = (Personaje)tipoObjecto;
             }
 

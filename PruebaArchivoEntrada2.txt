@@ -1,4 +1,4 @@
-<x-escenarios background=Fondo1; ancho = 15 ; alto = 15 >
+<x-escenarios background=Fondo_1; ancho = 15 ; alto = 15 >
 	<x-personajes>
 		<x-heroes>
 			heroe(4,8);
