@@ -29,12 +29,13 @@ namespace Proyecto1_201325674.sol.com.estructuraEscenario
             this.posFinX = posFinX;
             this.posIniY = posIniY;
             this.posFinY = posFinY;
+            Console.WriteLine(tipoObjecto.GetType());
 
-            if (tipoObjecto.GetType().ToString() == "EscenarioFondo") {
+            if (tipoObjecto.GetType().ToString() == "Proyecto1_201325674.sol.com.archivoConfiguracion.Personaje.EscenarioFondo") {
                 this.fondo = (EscenarioFondo)tipoObjecto;
-            } else if (tipoObjecto.GetType().ToString() == "ObjetoEscenario") {
+            } else if (tipoObjecto.GetType().ToString() == "Proyecto1_201325674.sol.com.archivoConfiguracion.Personaje.ObjetoEscenario") {
                 this.objeto = (ObjetoEscenario)tipoObjecto;
-            } else if (tipoObjecto.GetType().ToString() == "Personaje") {
+            } else if (tipoObjecto.GetType().ToString() == "Proyecto1_201325674.sol.com.archivoConfiguracion.Personaje") {
                 this.personaje = (Personaje)tipoObjecto;
             }
         }

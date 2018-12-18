@@ -1,4 +1,7 @@
 ﻿using Irony.Parsing;
+using Practica1.sol.com.analyzer;
+using Proyecto1_201325674.sol.com.archivoConfiguracion;
+using Proyecto1_201325674.sol.com.estructuraEscenario;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +12,8 @@ namespace Proyecto1_201325674.sol.com.analizador2
 {
     class Recorrido2
     {
+        public static List<SuperEscenario> milistaObjetosEscenario = new List<SuperEscenario>();
+
         public static String recorrerAST2(ParseTreeNode root)
         {
             switch (root.Term.Name) {
@@ -264,7 +269,6 @@ namespace Proyecto1_201325674.sol.com.analizador2
         }
 
         private static void almacenarHeroes(String listaPersonaje) {
-            String id = "";
             String posXIni ="";
             String posYIni = "";
             String[] lista = spliArroba(listaPersonaje);
@@ -273,13 +277,33 @@ namespace Proyecto1_201325674.sol.com.analizador2
                 String[] token = splitPtoYcoma(lista[i]);
                 String[] identificador = splitComa(token[0]);
 
-                    String[] posX = splitComa(token[1]);
-                    String[] posY = splitComa(token[2]);
-                    id = identificador[1];
-                    posXIni = posX[1];
-                    posYIni = posY[1];
-            }
+                String[] posX = splitComa(token[1]);
+                String[] posY = splitComa(token[2]);
+                String[] id = splitEspacio(identificador[1]);
+                posXIni = posX[1];
+                posYIni = posY[1];
 
+                Personaje heroe = verificarSiExisteHeroe(id[0]);
+
+                //Agregando heroes a la super lista, para cargar el escenario
+                if (heroe != null)
+                {
+                    milistaObjetosEscenario.Add(new SuperEscenario("heroe",heroe, Convert.ToInt32(posXIni), Convert.ToInt32(posXIni), Convert.ToInt32(posYIni), Convert.ToInt32(posYIni)));
+                    Console.WriteLine(" id => " + id[0] + " agregado a la lista super");
+                }
+                else {
+                    Console.WriteLine("Sematico, no existe heroe con el id =>" + id[0]);
+                }
+            }
+        }
+
+        public static Personaje verificarSiExisteHeroe(String id){
+            foreach (Personaje item in Recorrido1.milistaHeroes) {
+                if (string.Equals(item.nombre, id, StringComparison.OrdinalIgnoreCase)) {
+                    return item;
+                }
+            }
+            return null;
         }
 
         private static void almacenarVillanos(String listaPersonaje)
@@ -333,7 +357,7 @@ namespace Proyecto1_201325674.sol.com.analizador2
                     posYFin = token[1];
                 }
             }
-            Console.WriteLine(id + " => posXIni, " + posXIni + ";posXFin, " + posXFin +" ;posYIni, " + posYIni +"; posYFin " + posYFin);
+            //Console.WriteLine(id + " => posXIni, " + posXIni + ";posXFin, " + posXFin +" ;posYIni, " + posYIni +"; posYFin " + posYFin);
         }
 
         private static String[] spliArroba(String cadena)

@@ -1,7 +1,7 @@
 <x-escenarios background=Fondo1; ancho = 15 ; alto = 15 >
 	<x-personajes>
 		<x-heroes>
-			Rey(4,8);
+			heroe(4,8);
 		</x-heroes>
 
 		<x-villanos>
@@ -40,53 +40,4 @@
 	</x-meta>
 
 </x-escenarios>
-
-
-
-
-
-
-
-
-
-
-
-
-<x-escenarios background=Fondo1; ancho = 11-10 ; alto = (15/12)*((9-7)) >
-	
-	
-	<x-paredes>
-		suelo(0,11);
-		suelo(1..2,11);
-		suelo(0..2,10);
-		suelo(4,9..11);
-		suelo(5,10..11);
-		suelo(7..10,11);
-		suelo(21,11..10);
-	</x-paredes>
-	
-</x-escenarios>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

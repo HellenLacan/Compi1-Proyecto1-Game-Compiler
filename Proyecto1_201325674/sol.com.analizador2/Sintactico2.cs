@@ -27,7 +27,7 @@ namespace Proyecto1_201325674.sol.com.analizador2
         public static void generarImagen(ParseTreeNode raiz)
         {
             String grafoDot = ControlDot2.getDot(raiz);
-            Console.WriteLine(grafoDot);
+            //Console.WriteLine(grafoDot);
             WINGRAPHVIZLib.DOT dot = new WINGRAPHVIZLib.DOT();
             WINGRAPHVIZLib.BinaryImage img = dot.ToPNG(grafoDot);
             img.Save("AST2.png");

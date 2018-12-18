@@ -23,12 +23,6 @@ namespace Proyecto1_201325674
         {
             InitializeComponent();
 
-
-            using (StreamReader reader2 = new StreamReader("C:/Users/Hellen/Documents/Cursos/COMPI1_VACAS_DIC_2018/Proyecto1_201325674/PruebaArchivoEntrada2.txt"))
-            {
-                archivo2 = reader2.ReadToEnd();
-            }
-
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -87,10 +81,15 @@ namespace Proyecto1_201325674
 
         private void button2_Click(object sender, EventArgs e)
         {
+            using (StreamReader reader = new StreamReader("C:/Users/Hellen/Documents/Cursos/COMPI1_VACAS_DIC_2018/Proyecto1_201325674/PruebaArchivoEntrada2.txt"))
+            {
+                archivo2 = reader.ReadToEnd();
+            }
+
             //Console.WriteLine(!(true || false));
             Sintactico2 mySyntactic = new Sintactico2();
             //bool resultado = mySyntactic.analyze(getRichTextBox().Text);
-            ParseTreeNode resultado = mySyntactic.analyze(richTextBox1.Text);
+            ParseTreeNode resultado = mySyntactic.analyze(archivo2);
 
             if (resultado != null)
             {

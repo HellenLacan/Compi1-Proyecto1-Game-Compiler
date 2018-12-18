@@ -43,8 +43,8 @@
         x-destruir = 10;
    },
    {
-        x-nombre=heroe2;
-        x-imagen="C:/Users/Hellen/Desktop/imagenes/heroe2.png";
+        x-nombre=heroe;
+        x-imagen="C:/Users/Hellen/Desktop/imagenes/heroe.png";
         x-vida=50+50-1;
         x-tipo=x-HerOe;
         x-descripcion="Personaje principal del juego el cual tiene como objetivo salvar a la reyna";
@@ -58,7 +58,7 @@
         x-destruir = 10;
    },
    {
-        x-nombre=Heroe;
+        x-nombre=enemigo5;
         x-imagen="C:/Users/Hellen/Desktop/imagenes/heroexD.png";
         x-vida=50+50;
         x-tipo=x-enemigo;
@@ -71,14 +71,18 @@
         x-vida=50+50-1;
         x-tipo=x-enemigo;
         x-descripcion="Personaje principal del juego el cual tiene como objetivo salvar a la reyna";
-   },
-   {
-        x-nombre=Enemigo2;
-        x-imagen="C:/Users/Hellen/Desktop/imagenes/enemigo2xD.png";
-        x-vida=50+50;
-        x-tipo=x-enemigo;
+   },{
+        x-nombre=heroe2;
+        x-imagen="C:/Users/Hellen/Desktop/imagenes/heroe2.png";
+        x-vida=50+50-1;
+        x-tipo=x-HerOe;
         x-descripcion="Personaje principal del juego el cual tiene como objetivo salvar a la reyna";
-        x-destruir = 10;
+   },{
+        x-nombre=heroe3;
+        x-imagen="C:/Users/Hellen/Desktop/imagenes/heroe3.png";
+        x-vida=50+50-1;
+        x-tipo=x-HerOe;
+        x-descripcion="Personaje principal del juego el cual tiene como objetivo salvar a la reyna";
    }
    </figure>
 
