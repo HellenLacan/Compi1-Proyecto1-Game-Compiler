@@ -170,7 +170,7 @@ namespace Practica1.sol.com.analizador
             #endregion
          
             MarkPunctuation(menor, mayor,coma, llaveAb, llaveCerr, igual, ptoYComa, slash, parentAb, parentCerr );
-            MarkPunctuation(_configuration, _background, _figure, _design,_x);
+            MarkPunctuation(_configuration, _background, _figure, _design,_x, guion);
 
             this.RegisterOperators(1, Associativity.Left, "+", "-");
 

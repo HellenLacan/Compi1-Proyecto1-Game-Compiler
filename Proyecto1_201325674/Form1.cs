@@ -51,7 +51,7 @@ namespace Proyecto1_201325674
                 text += "\n          *****HEROES DEL JUEGO*****\n";
                 foreach (Personaje item in Recorrido1.milistaHeroes)
                 {
-                    text += "Nombre: " + item.nombre + "   ,   " + " vida: " + item.vida + " tipo: " + item.tipo + " destruir: " + item.ptosDestruccion +
+                    text += "Nombre: " + item.nombre + "   ,   " + " vida: " + item.vida + " tipo: " + item.tipo + ", destruir: " + item.ptosDestruccion +
                             " path: " + item.rutaImagen +  "\n";
                 }
 
@@ -59,14 +59,14 @@ namespace Proyecto1_201325674
                 text += "\n          *****ENEMIGOS DEL JUEGO*****\n";
                 foreach (Personaje item in Recorrido1.milistaEnemigos)
                 {
-                    text += "Nombre: " + item.nombre + "   ,   " + " vida: " + item.vida + " tipo: " + item.tipo + " destruir: " + item.ptosDestruccion +
+                    text += "Nombre: " + item.nombre + "   ,   " + " vida: " + item.vida + " tipo: " + item.tipo + ", destruir: " + item.ptosDestruccion +
                             " path: " + item.rutaImagen + "\n";
                 }
 
                 text += "\n          *****OBJETOS *****\n";
                 foreach (ObjetoEscenario item in Recorrido1.miListaObjetos)
                 {
-                    text += "Nombre: " + item.nombre + "   ,   " + " ptosDestruccion: " + item.ptosDestruccion + " tipo: " + item.tipo + " creditos: " + item.creditos +
+                    text += "Nombre: " + item.nombre + "   ,   " + " ptosDestruccion: " + item.ptosDestruccion + ", tipo: " + item.tipo + " creditos: " + item.creditos +
                             " path: " + item.rutaImagen + "\n";
                 }
 

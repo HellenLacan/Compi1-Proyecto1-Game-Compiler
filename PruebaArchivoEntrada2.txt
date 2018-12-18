@@ -21,17 +21,19 @@
 		suelo(4,9..11);
 		suelo(5,10..11);
 		suelo(7..10,11);
-		suelo(21,11..10);
+		suelo2(21,11..10);
 	</x-paredes>
 
 	<x-extras>
 		<armas>
 			arma1(10,10);
 			arma1(1,9);
+			bomba1(1,9);
+			bombaxD(1,9);
 		</armas>
 
 		<bonus>
-			Diamante(10,10);
+			flor2(10,10);
 			Diamante2(1,9);
 		</bonus>
 

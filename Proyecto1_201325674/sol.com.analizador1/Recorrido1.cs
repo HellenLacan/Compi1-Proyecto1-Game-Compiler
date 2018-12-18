@@ -61,20 +61,20 @@ namespace Practica1.sol.com.analyzer
                     {
                         case 0:
                             break;
-                        case 4:
+                        case 3:
                             String tipo = "";
                             String valor = "";
                             if (root.ChildNodes.ElementAt(0).ChildNodes.Count != 0)
                             {
                                 tipo = recorrerAST1(root.ChildNodes.ElementAt(0));
+                                tipo += "," + root.ChildNodes.ElementAt(1);
                                 tipo += "," + root.ChildNodes.ElementAt(2);
-                                tipo += "," + root.ChildNodes.ElementAt(3);
                                 agregarEscenarios(splitComa(tipo));
                             }
                             else
                             {
-                                tipo = root.ChildNodes.ElementAt(2).ToString();
-                                valor = "," + root.ChildNodes.ElementAt(3).ToString();
+                                tipo = root.ChildNodes.ElementAt(1).ToString();
+                                valor = "," + root.ChildNodes.ElementAt(2).ToString();
 
                             }
 
@@ -119,33 +119,29 @@ namespace Practica1.sol.com.analyzer
                         case 0:
                             break;
 
-                        case 4:
+                        case 3:
                             if (root.ChildNodes.ElementAt(0).ChildNodes.Count != 0)
                             {
                                 atributoFigure += recorrerAST1(root.ChildNodes.ElementAt(0)) + ";";
-                                atributoFigure += root.ChildNodes.ElementAt(2).ToString();
-                                if (root.ChildNodes.ElementAt(3).Term.Name == "EXPRESION")
+                                atributoFigure += root.ChildNodes.ElementAt(1).ToString();
+                                if (root.ChildNodes.ElementAt(2).Term.Name == "EXPRESION" ||
+                                    root.ChildNodes.ElementAt(2).Term.Name == "FIGURE_TIPO")
                                 {
-                                    valorFigure = recorrerAST1(root.ChildNodes.ElementAt(3));
+                                    valorFigure = recorrerAST1(root.ChildNodes.ElementAt(2));
                                 }
                                 else
                                 {
-                                    valorFigure = root.ChildNodes.ElementAt(3).ToString();
+                                    valorFigure = root.ChildNodes.ElementAt(2).ToString();
                                 }
                                 atributoFigure = atributoFigure + "," + valorFigure;
                                 return atributoFigure;
                             }
                             else
                             {
-                                atributoFigure = root.ChildNodes.ElementAt(2).ToString();
-                                atributoFigure += "," + root.ChildNodes.ElementAt(3).ToString();
+                                atributoFigure = root.ChildNodes.ElementAt(1).ToString();
+                                atributoFigure += "," + root.ChildNodes.ElementAt(2).ToString();
                                 return atributoFigure;
                             }
-                        case 5:
-                            atributoFigure = recorrerAST1(root.ChildNodes.ElementAt(0));
-                            atributoFigure += ";" + root.ChildNodes.ElementAt(2).ToString();
-                            atributoFigure += "," + recorrerAST1(root.ChildNodes.ElementAt(4));
-                            return atributoFigure;
                     }
 
                     break;
@@ -180,7 +176,7 @@ namespace Practica1.sol.com.analyzer
                     break;
 
                 case "ATRIBUTOS_DESIGN":
-                    String design_valores;
+                    String design_valores="";
                     switch (root.ChildNodes.Count) {
 
                         case 0:
@@ -189,62 +185,62 @@ namespace Practica1.sol.com.analyzer
                         case 1:
                             break;
 
-                        case 4:
-                            design_valores = recorrerAST1(root.ChildNodes.ElementAt(0));
+                        case 3:
+                            design_valores+= recorrerAST1(root.ChildNodes.ElementAt(0));
                             if (root.ChildNodes.ElementAt(0).ChildNodes.Count != 0)
                             {
-                                design_valores += root.ChildNodes.ElementAt(2);
-                                if ((root.ChildNodes.ElementAt(3).Term.Name == "EXPRESION") ||
-                                  (root.ChildNodes.ElementAt(3).Term.Name == "DESIGN_TIPO"))
+                                design_valores += root.ChildNodes.ElementAt(1);
+                                if ((root.ChildNodes.ElementAt(2).Term.Name == "EXPRESION") ||
+                                  (root.ChildNodes.ElementAt(2).Term.Name == "DESIGN_TIPO"))
                                 {
-                                    design_valores += "," + recorrerAST1(root.ChildNodes.ElementAt(3));
+                                    design_valores += "," + recorrerAST1(root.ChildNodes.ElementAt(2))+";";
                                 }
                                 else
                                 {
-                                    design_valores += "," + root.ChildNodes.ElementAt(3)+";";
+                                    design_valores += "," + root.ChildNodes.ElementAt(2)+";";
                                 }
                             }
                             else {
-                                design_valores += root.ChildNodes.ElementAt(2);
-                                if ((root.ChildNodes.ElementAt(3).Term.Name == "EXPRESION") ||
-                                    (root.ChildNodes.ElementAt(3).Term.Name == "DESIGN_TIPO"))
+                                design_valores += root.ChildNodes.ElementAt(1);
+                                if ((root.ChildNodes.ElementAt(2).Term.Name == "EXPRESION") ||
+                                    (root.ChildNodes.ElementAt(2).Term.Name == "DESIGN_TIPO"))
                                 {
-                                    design_valores += "," + recorrerAST1(root.ChildNodes.ElementAt(3));
+                                    design_valores += "," + recorrerAST1(root.ChildNodes.ElementAt(2));
                                 }
                                 else {
-                                    design_valores += "," + root.ChildNodes.ElementAt(3)+";";
+                                    design_valores += "," + root.ChildNodes.ElementAt(2)+";";
                                 }
                             }
                             return design_valores;
-                        case 5:
-                            design_valores = recorrerAST1(root.ChildNodes.ElementAt(0))+";";
-                            if (root.ChildNodes.ElementAt(0).ChildNodes.Count != 0)
-                            {
-                                design_valores += " "+root.ChildNodes.ElementAt(2);
-                                if ((root.ChildNodes.ElementAt(4).Term.Name == "EXPRESION") ||
-                                  (root.ChildNodes.ElementAt(4).Term.Name == "DESIGN_TIPO"))
-                                {
-                                    design_valores += "," + recorrerAST1(root.ChildNodes.ElementAt(4));
-                                }
-                                else
-                                {
-                                    design_valores += "," + root.ChildNodes.ElementAt(4)+";";
-                                }
-                            }
-                            else
-                            {
-                                design_valores += root.ChildNodes.ElementAt(2);
-                                if ((root.ChildNodes.ElementAt(4).Term.Name == "EXPRESION") ||
-                                    (root.ChildNodes.ElementAt(4).Term.Name == "DESIGN_TIPO"))
-                                {
-                                    design_valores += "," + recorrerAST1(root.ChildNodes.ElementAt(4));
-                                }
-                                else
-                                {
-                                    design_valores += "," + root.ChildNodes.ElementAt(4)+";";
-                                }
-                            }
-                            return design_valores;
+                        //case 4:
+                        //    design_valores = recorrerAST1(root.ChildNodes.ElementAt(0))+";";
+                        //    if (root.ChildNodes.ElementAt(0).ChildNodes.Count != 0)
+                        //    {
+                        //        design_valores += " "+root.ChildNodes.ElementAt(1);
+                        //        if ((root.ChildNodes.ElementAt(3).Term.Name == "EXPRESION") ||
+                        //          (root.ChildNodes.ElementAt(3).Term.Name == "DESIGN_TIPO"))
+                        //        {
+                        //            design_valores += "," + recorrerAST1(root.ChildNodes.ElementAt(3));
+                        //        }
+                        //        else
+                        //        {
+                        //            design_valores += "," + root.ChildNodes.ElementAt(3)+";";
+                        //        }
+                        //    }
+                        //    else
+                        //    {
+                        //        design_valores += root.ChildNodes.ElementAt(2);
+                        //        if ((root.ChildNodes.ElementAt(3).Term.Name == "EXPRESION") ||
+                        //            (root.ChildNodes.ElementAt(3).Term.Name == "DESIGN_TIPO"))
+                        //        {
+                        //            design_valores += "," + recorrerAST1(root.ChildNodes.ElementAt(3));
+                        //        }
+                        //        else
+                        //        {
+                        //            design_valores += "," + root.ChildNodes.ElementAt(3)+";";
+                        //        }
+                        //    }
+                        //    return design_valores;
 
                     }
                     break;
@@ -272,26 +268,24 @@ namespace Practica1.sol.com.analyzer
                             }
 
                         case 2:
-                            String numero = root.ChildNodes.ElementAt(0).ToString() + root.ChildNodes.ElementAt(1).ToString();
-                            return numero;
-                        case 3:
-                            int resultado;
-                            String[] signo = splitEspacio(root.ChildNodes.ElementAt(1).ToString());
                             String a = recorrerAST1(root.ChildNodes.ElementAt(0));
-                            String b = recorrerAST1(root.ChildNodes.ElementAt(2));
+                            String b = recorrerAST1(root.ChildNodes.ElementAt(1));
+                            double resultado = Convert.ToDouble(a) - Convert.ToDouble(b);
+                            return resultado.ToString();
+                        case 3:
+                            String[] signo = splitEspacio(root.ChildNodes.ElementAt(1).ToString());
+                            a = recorrerAST1(root.ChildNodes.ElementAt(0));
+                            b = recorrerAST1(root.ChildNodes.ElementAt(2));
                             switch (signo[0])
                             {
                                 case "+":
-                                    resultado = Convert.ToInt32(a) + Convert.ToInt32(b);
-                                    return resultado.ToString();
-                                case "-":
-                                    resultado = Convert.ToInt32(a) - Convert.ToInt32(b);
+                                    resultado = Convert.ToDouble(a) + Convert.ToDouble(b);
                                     return resultado.ToString();
                                 case "*":
-                                    resultado = Convert.ToInt32(a) * Convert.ToInt32(b);
+                                    resultado = Convert.ToDouble(a) * Convert.ToDouble(b);
                                     return resultado.ToString();
                                 case "/":
-                                    resultado = Convert.ToInt32(a) / Convert.ToInt32(b);
+                                    resultado = Convert.ToDouble(a) / Convert.ToDouble(b);
                                     return resultado.ToString();
                                 //Son parentesis
                                 default:
@@ -300,7 +294,6 @@ namespace Practica1.sol.com.analyzer
                             }
                     }
                     break;
-
 
             }
             return "";

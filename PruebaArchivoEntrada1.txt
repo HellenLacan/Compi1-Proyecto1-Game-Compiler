@@ -101,24 +101,24 @@
         x-tipo=x-bonus;
    } ,
    {
-        x-nombre=pared;
+        x-nombre=suelo;
         x-imagen="/home/usuario/imagenes/pared1.jpg";
         x-tipo=x-bloque;
    } ,
    {
         x-nombre=salida;
         x-imagen="/home/usuario/imagenes/salida.jpg";
-        x-tipo=x-bloque;
+        x-tipo=x-meta;
    } ,
    {
-        x-nombre=arma1;
-        x-imagen="/home/usuario/imagenes/fondo1.jpg";
+        x-nombre=flor3;
+        x-imagen="/home/usuario/imagenes/flor2.jpg";
        x-creditos=100;
         x-tipo=x-bonus;
    } ,
    {
-        x-nombre=arma1;
-        x-imagen="/home/usuario/imagenes/fondo1.jpg";
+        x-nombre=flor2;
+        x-imagen="/home/usuario/imagenes/flor2.jpg";
        x-creditos=200;
         x-tipo=x-bonus;
    } 
