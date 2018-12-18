@@ -29,7 +29,6 @@ namespace Proyecto1_201325674.sol.com.estructuraEscenario
             this.posFinX = posFinX;
             this.posIniY = posIniY;
             this.posFinY = posFinY;
-            Console.WriteLine(tipoObjecto.GetType());
 
             if (tipoObjecto.GetType().ToString() == "Proyecto1_201325674.sol.com.archivoConfiguracion.Personaje.EscenarioFondo") {
                 this.fondo = (EscenarioFondo)tipoObjecto;

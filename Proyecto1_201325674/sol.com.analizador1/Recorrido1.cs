@@ -316,8 +316,8 @@ namespace Practica1.sol.com.analyzer
             for (int i = 0; i < lista.Length; i++)
             {
                 String[] term = lista[i].ToString().Split(' ');
-                Console.WriteLine(term[0]);
-                Console.WriteLine(term[1]);
+                //Console.WriteLine(term[0]);
+                //Console.WriteLine(term[1]);
 
                 if (term[1] == "(identificador)")
                 {

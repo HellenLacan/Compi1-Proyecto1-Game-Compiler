@@ -5,9 +5,12 @@
 		</x-heroes>
 
 		<x-villanos>
-			soldado(4,8);
-			soldado(4,8+8);
-			soldado(9+10,8);
+			enemigo1(4,8);
+			enemigo2(4,8+8);
+			enemigo3(9+10,8);
+			enemigoxD(9+10,8);
+			enemigo4(9+10,8);
+			enemigo5(9+10,8);
 		</x-villanos>
 	</x-personajes>
 

@@ -65,13 +65,6 @@
         x-descripcion="Personaje principal del juego el cual tiene como objetivo salvar a la reyna";
         x-destruir = 10;
    },{
-        x-nombre=fondo_1;
-        x-imagen="C:/Users/Hellen/Desktop/imagenes/heroe1.png";
-        x-imagen="C:/Users/Hellen/Desktop/imagenes/fondo_1.png";
-        x-vida=50+50-1;
-        x-tipo=x-enemigo;
-        x-descripcion="Personaje principal del juego el cual tiene como objetivo salvar a la reyna";
-   },{
         x-nombre=heroe2;
         x-imagen="C:/Users/Hellen/Desktop/imagenes/heroe2.png";
         x-vida=50+50-1;

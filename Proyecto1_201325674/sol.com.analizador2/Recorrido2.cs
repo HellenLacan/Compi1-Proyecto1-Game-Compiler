@@ -283,13 +283,13 @@ namespace Proyecto1_201325674.sol.com.analizador2
                 posXIni = posX[1];
                 posYIni = posY[1];
 
-                Personaje heroe = verificarSiExisteHeroe(id[0]);
+                Personaje heroe = verificarSiExistePersonaje("heroe", id[0]);
 
                 //Agregando heroes a la super lista, para cargar el escenario
                 if (heroe != null)
                 {
                     milistaObjetosEscenario.Add(new SuperEscenario("heroe",heroe, Convert.ToInt32(posXIni), Convert.ToInt32(posXIni), Convert.ToInt32(posYIni), Convert.ToInt32(posYIni)));
-                    Console.WriteLine(" id => " + id[0] + " agregado a la lista super");
+                    Console.WriteLine("heroe id => " + id[0] + " agregado a la lista super");
                 }
                 else {
                     Console.WriteLine("Sematico, no existe heroe con el id =>" + id[0]);
@@ -297,41 +297,57 @@ namespace Proyecto1_201325674.sol.com.analizador2
             }
         }
 
-        public static Personaje verificarSiExisteHeroe(String id){
-            foreach (Personaje item in Recorrido1.milistaHeroes) {
-                if (string.Equals(item.nombre, id, StringComparison.OrdinalIgnoreCase)) {
-                    return item;
-                }
-            }
-            return null;
-        }
-
         private static void almacenarVillanos(String listaPersonaje)
         {
-            String id = "";
             String posXIni = "";
-            String posXFin = "";
             String posYIni = "";
-            String posYFin = "";
             String[] lista = spliArroba(listaPersonaje);
-            for (int i = 0; i < lista.Length; i++)
+            for (int i = 1; i < lista.Length; i++)
             {
                 String[] token = splitPtoYcoma(lista[i]);
                 String[] identificador = splitComa(token[0]);
-                if (string.Equals(token[0], "villano", StringComparison.OrdinalIgnoreCase))
-                {
-                    //id = "heroe";
-                }
-                else
-                {
                     String[] posX = splitComa(token[1]);
                     String[] posY = splitComa(token[2]);
-                    id = identificador[1];
+                    String[]id = splitEspacio(identificador[1]);
                     posXIni = posX[1];
                     posYIni = posY[1];
-                }
 
+                Personaje enemigo= verificarSiExistePersonaje("enemigo", id[0]);
+                if (enemigo != null)
+                {
+                    milistaObjetosEscenario.Add(new SuperEscenario("enemigo", enemigo, Convert.ToInt32(posXIni), Convert.ToInt32(posXIni), Convert.ToInt32(posYIni), Convert.ToInt32(posYIni)));
+                    Console.WriteLine(" enemigo con id => " + id[0] + " agregado a la lista super");
+                }
+                else {
+                    Console.WriteLine(" enemigo con id => " + id[0] + " No existe");
+                }
             }
+        }
+
+        public static Personaje verificarSiExistePersonaje(String tipo, String id)
+        {
+            if (string.Equals(tipo, "heroe", StringComparison.OrdinalIgnoreCase))
+            {
+                foreach (Personaje item in Recorrido1.milistaHeroes)
+                {
+                    if (string.Equals(item.nombre, id, StringComparison.OrdinalIgnoreCase))
+                    {
+                        return item;
+                    }
+                }
+            }
+            else if (string.Equals(tipo, "enemigo", StringComparison.OrdinalIgnoreCase))
+            {
+                foreach (Personaje item in Recorrido1.milistaEnemigos)
+                {
+                    if (string.Equals(item.nombre, id, StringComparison.OrdinalIgnoreCase))
+                    {
+                        return item;
+                    }
+                }
+            }
+
+            return null;
         }
 
         public static void almacenarParedes(String listaParedes) {
