@@ -83,14 +83,14 @@ namespace Proyecto1_201325674.sol.com.analizador2
                 case "HEROES":
                     String heroes  = "";
                     heroes += recorrerAST2(root.ChildNodes.ElementAt(0));
-                    almacenarPersonajes("villano;" + heroes);
+                    almacenarHeroes("heroe;" + heroes);
                     //Console.WriteLine("heroe;" + heroes);
-                    return "Mheroe;" + heroes;
+                    return "heroe;" + heroes;
 
                 case "VILLANOS":
                     String villano = "";
                     villano += recorrerAST2(root.ChildNodes.ElementAt(0));
-                    almacenarPersonajes("villano;" + villano);
+                    almacenarVillanos("villano;" + villano);
                     return "villano;" + villano;
 
                 case "POSICIONES_X_Y_OBJETOS":
@@ -141,28 +141,80 @@ namespace Proyecto1_201325674.sol.com.analizador2
                 case "ARMAS":
                     String extras = "";
                     extras += recorrerAST2(root.ChildNodes.ElementAt(0));
-                    almacenarPersonajes("armas;" + extras);
+                    //almacenarPersonajes("armas;" + extras);
                     return "armas;" + extras;
 
                 case "BONUS":
                     extras = "";
                     extras += recorrerAST2(root.ChildNodes.ElementAt(0));
-                    almacenarPersonajes("bonus;" + extras);
+                    //almacenarPersonajes("bonus;" + extras);
                     return "bonus;" + extras;
-
-                case "PAREDES": 
-                    break;
 
                 case "META":
                     extras = "";
                     extras += recorrerAST2(root.ChildNodes.ElementAt(0));
-                    almacenarPersonajes("meta;" + extras);
+                    //almacenarPersonajes("meta;" + extras);
                     return "meta;" + extras;
 
+                case "PAREDES":
+                    String paredes = recorrerAST2(root.ChildNodes.ElementAt(0));
+                    break;
+
                 case "LISTA_PAREDES":
+                    String atribListaParedes ="";
+                    String listaParedes;
+                    switch (root.ChildNodes.Count) {
+                        case 1:
+                            atribListaParedes = recorrerAST2(root.ChildNodes.ElementAt(0));
+                            break;
+                        case 2:
+                            listaParedes = recorrerAST2(root.ChildNodes.ElementAt(0));
+                            atribListaParedes = recorrerAST2(root.ChildNodes.ElementAt(1));
+                            break;
+                    }
                     break;
 
                 case "ATRIBUTOS_LISTA_PAREDES":
+                    String id = root.ChildNodes.ElementAt(0).ToString();
+                    switch (root.ChildNodes.Count) {
+
+                        case 3:
+                            atribListaParedes = root.ChildNodes.ElementAt(0).ToString();
+                            posX = recorrerAST2(root.ChildNodes.ElementAt(1));
+                            posY = recorrerAST2(root.ChildNodes.ElementAt(2));
+                            String atributosParedes = "id," + id + ";posXIni," + posX + ";posXFin," + posX +
+                                                         ";posYIni," + posY + ";posYFin," + posY;
+                            almacenarParedes(atributosParedes);
+                            return atributosParedes;
+
+                        case 6:
+                            id = root.ChildNodes.ElementAt(0).ToString();
+                            //id(2..10,8);
+                            if (root.ChildNodes.ElementAt(1).Term.Name == "EXPRESION" && root.ChildNodes.ElementAt(4).Term.Name == "EXPRESION"
+                                && root.ChildNodes.ElementAt(5).Term.Name == "EXPRESION") {
+                                String posXIni = recorrerAST2(root.ChildNodes.ElementAt(1));
+                                String posXFin = recorrerAST2(root.ChildNodes.ElementAt(4));
+                                String posYIni = recorrerAST2(root.ChildNodes.ElementAt(5));
+                                String posYFin = recorrerAST2(root.ChildNodes.ElementAt(5));
+                                atributosParedes = "id," + id + ";posXIni," + posXIni + ";posXFin," + posXFin+
+                                                          ";posYIni," + posYIni + ";posYFin," + posYFin;
+                                almacenarParedes(atributosParedes);
+                                return atributosParedes;
+                            }
+                            //id(8,3..5)
+                            else if (root.ChildNodes.ElementAt(1).Term.Name == "EXPRESION" && root.ChildNodes.ElementAt(2).Term.Name == "EXPRESION"
+                                && root.ChildNodes.ElementAt(5).Term.Name == "EXPRESION") {
+                                String posXIni = recorrerAST2(root.ChildNodes.ElementAt(1));
+                                String posXFin = recorrerAST2(root.ChildNodes.ElementAt(1));
+                                String posYIni = recorrerAST2(root.ChildNodes.ElementAt(2));
+                                String posYFin = recorrerAST2(root.ChildNodes.ElementAt(5));
+                                atributosParedes = "id," + id + ";posXIni," + posXIni + ";posXFin," + posXFin +
+                                                          ";posYIni," + posYIni + ";posYFin," + posYFin;
+                                almacenarParedes(atributosParedes);
+                                return atributosParedes;
+                            }
+                            break;
+                    }
                     break;
 
                 case "EXPRESION":
@@ -211,36 +263,92 @@ namespace Proyecto1_201325674.sol.com.analizador2
             return "";
         }
 
-        private static void almacenarPersonajes(String listaPersonaje) {
-            //String[] lista = spliArroba(listaPersonaje);
-            //for (int i =0; i<lista.Length;i++) {
-            //    String[] token = splitPtoYcoma(lista[i]) ;
-            //    String[] identificador= splitComa(token[0]);
-            //    if (string.Equals(token[0], "heroe", StringComparison.OrdinalIgnoreCase) || string.Equals(token[0], "villano", StringComparison.OrdinalIgnoreCase))
-            //    {
+        private static void almacenarHeroes(String listaPersonaje) {
+            String id = "";
+            String posXIni ="";
+            String posYIni = "";
+            String[] lista = spliArroba(listaPersonaje);
+            for (int i = 0; i < lista.Length; i++)
+            {
+                String[] token = splitPtoYcoma(lista[i]);
+                String[] identificador = splitComa(token[0]);
+                if (string.Equals(token[0], "heroe", StringComparison.OrdinalIgnoreCase))
+                {
+                    //id = "heroe";
+                }
+                else
+                {
+                    String[] posX = splitComa(token[1]);
+                    String[] posY = splitComa(token[2]);
+                    id = identificador[1];
+                    posXIni = posX[1];
+                    posYIni = posY[1];
+                }
 
-            //    }
-            //    else {
-            //        String[] posX = splitComa(token[1]);
-            //        String[] posY = splitComa(token[2]);
-            //        Console.WriteLine(" Token: " + identificador[0]);
-            //        Console.WriteLine(" Valor:" + identificador[1]);
-            //        Console.WriteLine(" PosX:" + posX[0]);
-            //        Console.WriteLine(" Valor:" + posX[1]);
-            //        Console.WriteLine(" PosY:" + posY[0]);
-            //        Console.WriteLine(" Valor:" + posY[1] + "\n");
-            //    }
-                
-            //}
+            }
 
         }
+
+        private static void almacenarVillanos(String listaPersonaje)
+        {
+            String id = "";
+            String posXIni = "";
+            String posXFin = "";
+            String posYIni = "";
+            String posYFin = "";
+            String[] lista = spliArroba(listaPersonaje);
+            for (int i = 0; i < lista.Length; i++)
+            {
+                String[] token = splitPtoYcoma(lista[i]);
+                String[] identificador = splitComa(token[0]);
+                if (string.Equals(token[0], "villano", StringComparison.OrdinalIgnoreCase))
+                {
+                    //id = "heroe";
+                }
+                else
+                {
+                    String[] posX = splitComa(token[1]);
+                    String[] posY = splitComa(token[2]);
+                    id = identificador[1];
+                    posXIni = posX[1];
+                    posYIni = posY[1];
+                }
+
+            }
+        }
+
+        public static void almacenarParedes(String listaParedes) {
+            String id="";
+            String posXIni="";
+            String posXFin="";
+            String posYIni="";
+            String posYFin="";
+
+            String[] lista = splitPtoYcoma(listaParedes);
+
+            for (int i =0; i< lista.Length; i++) {
+                String[] token = splitComa(lista[i]);
+                if (token[0] == "id") {
+                    id = token[1];
+                } else if (token[0] == "posXIni") {
+                    posXIni = token[1];
+                } else if (token[0] == "posXFin") {
+                    posXFin = token[1];
+                } else if (token[0] == "posYIni") {
+                    posYIni = token[1];
+                } else if (token[0] == "posYFin") {
+                    posYFin = token[1];
+                }
+            }
+            Console.WriteLine(id + " => posXIni, " + posXIni + ";posXFin, " + posXFin +" ;posYIni, " + posYIni +"; posYFin " + posYFin);
+        }
+
 
         private static String[] spliArroba(String cadena)
         {
             String[] valor = cadena.ToString().Split('@');
             return valor;
         }
-
 
         private static String[] splitEspacio(String cadena)
         {
