@@ -268,23 +268,16 @@ namespace Proyecto1_201325674.sol.com.analizador2
             String posXIni ="";
             String posYIni = "";
             String[] lista = spliArroba(listaPersonaje);
-            for (int i = 0; i < lista.Length; i++)
+            for (int i = 1; i < lista.Length; i++)
             {
                 String[] token = splitPtoYcoma(lista[i]);
                 String[] identificador = splitComa(token[0]);
-                if (string.Equals(token[0], "heroe", StringComparison.OrdinalIgnoreCase))
-                {
-                    //id = "heroe";
-                }
-                else
-                {
+
                     String[] posX = splitComa(token[1]);
                     String[] posY = splitComa(token[2]);
                     id = identificador[1];
                     posXIni = posX[1];
                     posYIni = posY[1];
-                }
-
             }
 
         }
@@ -342,7 +335,6 @@ namespace Proyecto1_201325674.sol.com.analizador2
             }
             Console.WriteLine(id + " => posXIni, " + posXIni + ";posXFin, " + posXFin +" ;posYIni, " + posYIni +"; posYFin " + posYFin);
         }
-
 
         private static String[] spliArroba(String cadena)
         {

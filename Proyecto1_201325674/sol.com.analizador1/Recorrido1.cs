@@ -13,7 +13,8 @@ namespace Practica1.sol.com.analyzer
     class Recorrido1
     {
         public static List<EscenarioFondo> miListaFondos = new List<EscenarioFondo>();
-        public static List<Personaje> miListaPersonajes = new List<Personaje>();
+        public static List<Personaje> milistaHeroes = new List<Personaje>();
+        public static List<Personaje> milistaEnemigos = new List<Personaje>();
         public static List<ObjetoEscenario> miListaObjetos = new List<ObjetoEscenario>();
 
         public static String recorrerAST1(ParseTreeNode root)
@@ -219,7 +220,7 @@ namespace Practica1.sol.com.analyzer
                             design_valores = recorrerAST1(root.ChildNodes.ElementAt(0))+";";
                             if (root.ChildNodes.ElementAt(0).ChildNodes.Count != 0)
                             {
-                                design_valores += root.ChildNodes.ElementAt(2);
+                                design_valores += " "+root.ChildNodes.ElementAt(2);
                                 if ((root.ChildNodes.ElementAt(4).Term.Name == "EXPRESION") ||
                                   (root.ChildNodes.ElementAt(4).Term.Name == "DESIGN_TIPO"))
                                 {
@@ -310,7 +311,7 @@ namespace Practica1.sol.com.analyzer
         {
             String id = "";
             String ruta = "";
-
+            Boolean encontrado = false;
             EscenarioFondo miEscenario = new EscenarioFondo();
             for (int i = 0; i < lista.Length; i++)
             {
@@ -334,17 +335,19 @@ namespace Practica1.sol.com.analyzer
             {
                 foreach (EscenarioFondo item in miListaFondos)
                 {
+                    //Si encuentra un id repetido lo actualiza
                     if (string.Equals(item.identificador, id, StringComparison.OrdinalIgnoreCase))
                     {
                         item.ruta = ruta;
-                        break;
-                    }
-                    else
-                    {
-                        miListaFondos.Add(new EscenarioFondo(id, ruta));
+                        encontrado = true;
                         break;
                     }
                 }
+                //Si no encuentra ningun id repetido lo actualiza
+                if (encontrado == false) {
+                    miListaFondos.Add(new EscenarioFondo(id, ruta));
+                }
+
             }
             else
             {
@@ -399,44 +402,85 @@ namespace Practica1.sol.com.analyzer
             }
 
 
-            if (string.Equals(tipoPersonaje, "heroe", StringComparison.OrdinalIgnoreCase) ||
-                string.Equals(tipoPersonaje, "enemigo", StringComparison.OrdinalIgnoreCase))
+            if (string.Equals(tipoPersonaje, "heroe", StringComparison.OrdinalIgnoreCase))
             {
-                if (miListaPersonajes.Count != 0)
+                if (milistaHeroes.Count != 0)
                 {
-                        buscarPersonaje(tipoPersonaje, nombre, vida, imagen, descripcion, destruir);
+                    buscarPersonaje(tipoPersonaje, nombre, vida, imagen, descripcion, destruir);
                 }
                 else
                 {
-                    miListaPersonajes.Add(new Personaje(nombre, vida, imagen, tipoPersonaje, destruir,descripcion));
+                    milistaHeroes.Add(new Personaje(nombre, vida, imagen, tipoPersonaje, destruir, descripcion));
                 }
             }
-            else
+            else if (string.Equals(tipoPersonaje, "enemigo", StringComparison.OrdinalIgnoreCase))
             {
-                Console.WriteLine("Tipo incorrecto");
+
+                if (milistaEnemigos.Count != 0)
+                {
+                    buscarPersonaje(tipoPersonaje, nombre, vida, imagen, descripcion, destruir);
+                }
+                else
+                {
+                    milistaEnemigos.Add(new Personaje(nombre, vida, imagen, tipoPersonaje, destruir, descripcion));
+                }
+            }
+            else {
+                Console.WriteLine("Semantico, Tipo incorrecto");
             }
         }
 
         public static bool buscarPersonaje(String tipo, String id, String vida, String imagen, String descripcion, String destruir) {
 
-            foreach (Personaje item in miListaPersonajes) {
-                if (string.Equals(item.nombre, id, StringComparison.OrdinalIgnoreCase))
+            if (string.Equals(tipo, "heroe", StringComparison.OrdinalIgnoreCase))
+            {
+                foreach (Personaje item in milistaHeroes)
                 {
-                    if (string.Equals(item.tipo, tipo, StringComparison.OrdinalIgnoreCase))
+                    if (string.Equals(item.nombre, id, StringComparison.OrdinalIgnoreCase))
                     {
-                        actualizarDatosPersonajes(vida, id, imagen, descripcion, destruir, item, tipo);
-                        return true;
-                    }
-                    else
-                    {
-                        Console.Write("Identificador duplicado");
-                        return false;
+                        if (string.Equals(item.tipo, tipo, StringComparison.OrdinalIgnoreCase))
+                        {
+                            actualizarDatosPersonajes(vida, id, imagen, descripcion, destruir, item, tipo);
+                            return true;
+                        }
+                        else
+                        {
+                            Console.Write("Identificador duplicado");
+                            return false;
+                        }
                     }
                 }
-            }
 
-            miListaPersonajes.Add(new Personaje(id, vida, imagen, tipo, destruir, descripcion));
-            return true;
+                milistaHeroes.Add(new Personaje(id, vida, imagen, tipo, destruir, descripcion));
+                return true;
+
+            }
+            else if (string.Equals(tipo, "enemigo", StringComparison.OrdinalIgnoreCase))
+            {
+                foreach (Personaje item in milistaEnemigos)
+                {
+                    if (string.Equals(item.nombre, id, StringComparison.OrdinalIgnoreCase))
+                    {
+                        if (string.Equals(item.tipo, tipo, StringComparison.OrdinalIgnoreCase))
+                        {
+                            actualizarDatosPersonajes(vida, id, imagen, descripcion, destruir, item, tipo);
+                            return true;
+                        }
+                        else
+                        {
+                            Console.Write("Identificador duplicado");
+                            return false;
+                        }
+                    }
+                }
+
+                milistaEnemigos.Add(new Personaje(id, vida, imagen, tipo, destruir, descripcion));
+                return true;
+            }
+            else {
+                Console.WriteLine("Tipo incorrecto");
+                return false;
+            }
         }
 
         public static void actualizarDatosPersonajes(String vida, String nombre, String imagen, String descripcion, String ptosDestruir, Personaje item, String tipo) {
@@ -464,22 +508,33 @@ namespace Practica1.sol.com.analyzer
             String ruta="";
             String tipo="";
             String bonus="";
+            Boolean condicion = false;
 
             for (int i =0; i<atributoDesign.Length; i++) {
                 String[] tipos = splitComa(atributoDesign[i]);
                 String[] token = splitEspacio(tipos[0]);
-                String[] valor = splitEspacio(tipos[1]);
-
-                if (string.Equals(token[0], "nombre", StringComparison.OrdinalIgnoreCase)) {
-                    nombre = valor[0];
-                } else if (string.Equals(token[0], "destruir", StringComparison.OrdinalIgnoreCase)) {
-                    ptosDestruccion = valor[0];
-                } else if (string.Equals(token[0], "imagen", StringComparison.OrdinalIgnoreCase)) {
-                    ruta = valor[0];
-                } else if (string.Equals(token[0], "tipo", StringComparison.OrdinalIgnoreCase)) {
-                    tipo = valor[0];
-                } else if (string.Equals(token[0], "creditos", StringComparison.OrdinalIgnoreCase)) {
-                    bonus = valor[0];
+                if (tipos.Length > 1) {
+                    String[] valor = splitEspacio(tipos[1]);
+                    if (string.Equals(token[0], "nombre", StringComparison.OrdinalIgnoreCase))
+                    {
+                        nombre = valor[0];
+                    }
+                    else if (string.Equals(token[0], "destruir", StringComparison.OrdinalIgnoreCase))
+                    {
+                        ptosDestruccion = valor[0];
+                    }
+                    else if (string.Equals(token[0], "imagen", StringComparison.OrdinalIgnoreCase))
+                    {
+                        ruta = valor[0];
+                    }
+                    else if (string.Equals(token[0], "tipo", StringComparison.OrdinalIgnoreCase) || string.Equals(token[1], "tipo", StringComparison.OrdinalIgnoreCase))
+                    {
+                        tipo = valor[0];
+                    }
+                    else if (string.Equals(token[0], "creditos", StringComparison.OrdinalIgnoreCase))
+                    {
+                        bonus = valor[0];
+                    }
                 }
                 
             }
@@ -494,12 +549,9 @@ namespace Practica1.sol.com.analyzer
                             actualizarObjetosEscenario(nombre, ptosDestruccion, ruta, tipo, bonus, item);
                             return true;
                         }
-                        else {
-                            Console.WriteLine("Identificador de objeto " + nombre +" ya existe");
-                            return false;
-                        }
                     }
                 }
+
                 //Si no existe el nombre lo crea
                 miListaObjetos.Add(new ObjetoEscenario(nombre, ptosDestruccion, ruta, tipo, bonus));
                 return true;

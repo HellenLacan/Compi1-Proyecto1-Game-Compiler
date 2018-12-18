@@ -4,6 +4,8 @@
    {
         x-nombre=fondo_1;
         x-imagen="/home/usuario/imagenes/fondo1.jpg";
+        x-imagen="/home/usuario/imagenes/fondo1_1.jpg";
+
    },
    {
         x-nombre=fondo_2;
@@ -23,14 +25,7 @@
    }
    </background>
 
-     <figure>
-   {
-        x-nombre=heroe1;
-        x-imagen="C:/Users/Hellen/Desktop/imagenes/heroe1.png";
-        x-vida=50+50-1;
-        x-tipo=x-HerOe;
-        x-descripcion="Personaje principal del juego el cual tiene como objetivo salvar a la reyna";
-   },
+<figure>
    {
         x-nombre=Enemigo1;
         x-imagen="C:/Users/Hellen/Desktop/imagenes/enemigo1.png";
@@ -64,7 +59,22 @@
    },
    {
         x-nombre=Heroe;
-        x-imagen="C:/Users/Hellen/Desktop/imagenes/heroe5.png";
+        x-imagen="C:/Users/Hellen/Desktop/imagenes/heroexD.png";
+        x-vida=50+50;
+        x-tipo=x-enemigo;
+        x-descripcion="Personaje principal del juego el cual tiene como objetivo salvar a la reyna";
+        x-destruir = 10;
+   },{
+        x-nombre=fondo_1;
+        x-imagen="C:/Users/Hellen/Desktop/imagenes/heroe1.png";
+        x-imagen="C:/Users/Hellen/Desktop/imagenes/fondo_1.png";
+        x-vida=50+50-1;
+        x-tipo=x-enemigo;
+        x-descripcion="Personaje principal del juego el cual tiene como objetivo salvar a la reyna";
+   },
+   {
+        x-nombre=Enemigo2;
+        x-imagen="C:/Users/Hellen/Desktop/imagenes/enemigo2xD.png";
         x-vida=50+50;
         x-tipo=x-enemigo;
         x-descripcion="Personaje principal del juego el cual tiene como objetivo salvar a la reyna";
@@ -73,7 +83,7 @@
    </figure>
 
 
-   <design>
+<design>
    {
         x-nombre=bomba1;
         x-imagen="/home/usuario/imagenes/fondo1.jpg";
@@ -91,6 +101,28 @@
         x-imagen="/home/usuario/imagenes/fondo1.jpg";
         x-imagen="/home/usuario/imagenes/fondo1_1.jpg";
         x-creditos=100;
+        x-tipo=x-bonus;
+   } ,
+   {
+        x-nombre=pared;
+        x-imagen="/home/usuario/imagenes/pared1.jpg";
+        x-tipo=x-bloque;
+   } ,
+   {
+        x-nombre=salida;
+        x-imagen="/home/usuario/imagenes/salida.jpg";
+        x-tipo=x-bloque;
+   } ,
+   {
+        x-nombre=arma1;
+        x-imagen="/home/usuario/imagenes/fondo1.jpg";
+       x-creditos=100;
+        x-tipo=x-bonus;
+   } ,
+   {
+        x-nombre=arma1;
+        x-imagen="/home/usuario/imagenes/fondo1.jpg";
+       x-creditos=200;
         x-tipo=x-bonus;
    } 
    </design>

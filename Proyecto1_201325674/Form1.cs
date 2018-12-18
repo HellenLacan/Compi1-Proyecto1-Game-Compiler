@@ -22,10 +22,7 @@ namespace Proyecto1_201325674
         public Form1()
         {
             InitializeComponent();
-            using (StreamReader reader = new StreamReader("C:/Users/Hellen/Documents/Cursos/COMPI1_VACAS_DIC_2018/Proyecto1_201325674/PruebaArchivoEntrada1.txt"))
-            {
-                 archivo1 = reader.ReadToEnd();
-            }
+
 
             using (StreamReader reader2 = new StreamReader("C:/Users/Hellen/Documents/Cursos/COMPI1_VACAS_DIC_2018/Proyecto1_201325674/PruebaArchivoEntrada2.txt"))
             {
@@ -36,6 +33,10 @@ namespace Proyecto1_201325674
 
         private void button1_Click(object sender, EventArgs e)
         {
+            using (StreamReader reader = new StreamReader("C:/Users/Hellen/Documents/Cursos/COMPI1_VACAS_DIC_2018/Proyecto1_201325674/PruebaArchivoEntrada1.txt"))
+            {
+                archivo1 = reader.ReadToEnd();
+            }
             //Console.WriteLine(!(true || false));
             Syntactic mySyntactic = new Syntactic();
             //bool resultado = mySyntactic.analyze(getRichTextBox().Text);
@@ -43,22 +44,29 @@ namespace Proyecto1_201325674
 
             if (resultado != null)
             {
-                MessageBox.Show("Analisis con errores");
+                MessageBox.Show("Analisis correcto");
                 String text = "";
                 richTextBox2.Text = "";
                 Recorrido1.recorrerAST1(resultado.ChildNodes.ElementAt(0));
-                //getRichTextBox2().Text = lenguaje;
-                //Recorrido.traducir(resultado);
+
                 text += "          *****FONDOS DEL JUEGO*****\n";
                 foreach (EscenarioFondo item in Recorrido1.miListaFondos) {
                     text += "Nombre: " + item.identificador + "   ,   " + "Ruta: " + item.ruta + "\n";
                 }
 
-                text += "\n          *****HEROES Y ENEMIGOS DEL JUEGO*****\n";
-                foreach (Personaje item in Recorrido1.miListaPersonajes)
+                text += "\n          *****HEROES DEL JUEGO*****\n";
+                foreach (Personaje item in Recorrido1.milistaHeroes)
                 {
                     text += "Nombre: " + item.nombre + "   ,   " + " vida: " + item.vida + " tipo: " + item.tipo + " destruir: " + item.ptosDestruccion +
                             " path: " + item.rutaImagen +  "\n";
+                }
+
+
+                text += "\n          *****ENEMIGOS DEL JUEGO*****\n";
+                foreach (Personaje item in Recorrido1.milistaEnemigos)
+                {
+                    text += "Nombre: " + item.nombre + "   ,   " + " vida: " + item.vida + " tipo: " + item.tipo + " destruir: " + item.ptosDestruccion +
+                            " path: " + item.rutaImagen + "\n";
                 }
 
                 text += "\n          *****OBJETOS *****\n";
@@ -68,11 +76,11 @@ namespace Proyecto1_201325674
                             " path: " + item.rutaImagen + "\n";
                 }
 
-                //richTextBox2.Text = text;
+                richTextBox2.Text = text;
             }
             else
             {
-                MessageBox.Show("Analisis correcto");
+                MessageBox.Show("Analisis incorrecto");
 
             }
         }
@@ -86,13 +94,13 @@ namespace Proyecto1_201325674
 
             if (resultado != null)
             {
-                MessageBox.Show("Analisis con errores");
+                MessageBox.Show("Analisis correcto");
                 Syntactic.generarImagen(resultado);
                 Recorrido2.recorrerAST2(resultado.ChildNodes.ElementAt(0));
             }
             else
             {
-                MessageBox.Show("Analisis correcto");
+                MessageBox.Show("Analisis incorrecto");
 
             }
         }
@@ -103,10 +111,10 @@ namespace Proyecto1_201325674
         {
             if (personajeSelect == -1) {
                 personajeSelect = 0;
-                pictureBox1.Image = Image.FromFile(Recorrido1.miListaPersonajes[personajeSelect].rutaImagen);
+                pictureBox1.Image = Image.FromFile(Recorrido1.milistaHeroes[personajeSelect].rutaImagen);
             } else if (personajeSelect >= 0) {
                 personajeSelect -= 1;
-                pictureBox1.Image = Image.FromFile(Recorrido1.miListaPersonajes[personajeSelect].rutaImagen);
+                pictureBox1.Image = Image.FromFile(Recorrido1.milistaHeroes[personajeSelect].rutaImagen);
             }
 
             habilitarBotonesHeroes(personajeSelect);
@@ -118,11 +126,11 @@ namespace Proyecto1_201325674
             if (personajeSelect == -1)
             {
                 personajeSelect = 0;
-                pictureBox1.Image = Image.FromFile(Recorrido1.miListaPersonajes[personajeSelect].rutaImagen);
-            } else if (personajeSelect <= Recorrido1.miListaPersonajes.Count-1)
+                pictureBox1.Image = Image.FromFile(Recorrido1.milistaHeroes[personajeSelect].rutaImagen);
+            } else if (personajeSelect <= Recorrido1.milistaHeroes.Count-1)
             {
                 personajeSelect += 1;
-                pictureBox1.Image = Image.FromFile(Recorrido1.miListaPersonajes[personajeSelect].rutaImagen);
+                pictureBox1.Image = Image.FromFile(Recorrido1.milistaHeroes[personajeSelect].rutaImagen);
             }
 
             habilitarBotonesHeroes(personajeSelect);
@@ -130,12 +138,12 @@ namespace Proyecto1_201325674
         }
 
         private void habilitarBotonesHeroes(int id) {
-            if (id == 0 && (id != Recorrido1.miListaPersonajes.Count - 1))
+            if (id == 0 && (id != Recorrido1.milistaHeroes.Count - 1))
             {
                 button3.Enabled = false;
                 button4.Enabled = true;
             }
-            else if (id != 0 && (id == Recorrido1.miListaPersonajes.Count - 1))
+            else if (id != 0 && (id == Recorrido1.milistaHeroes.Count - 1))
             {
                 button3.Enabled = true;
                 button4.Enabled = false;
