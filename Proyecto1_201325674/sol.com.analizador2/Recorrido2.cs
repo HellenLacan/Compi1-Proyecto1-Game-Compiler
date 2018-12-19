@@ -15,6 +15,88 @@ namespace Proyecto1_201325674.sol.com.analizador2
     {
         public static List<SuperEscenario> milistaObjetosEscenario = new List<SuperEscenario>();
 
+        public static SuperEscenario[,] cargarMatrizLogica() {
+            int ancho = 0;
+            int alto = 0;
+            SuperEscenario[,] matrizLogica = null;
+
+            foreach (SuperEscenario item in milistaObjetosEscenario)
+            {
+                if (string.Equals(item.tipo, "background", StringComparison.OrdinalIgnoreCase))
+                {
+                    alto = item.alto + 1;
+                    ancho = item.ancho + 1;
+                    matrizLogica = new SuperEscenario[alto, ancho];
+                }
+            }
+
+            foreach (SuperEscenario item in milistaObjetosEscenario) {
+                if (string.Equals(item.tipo, "bloque", StringComparison.OrdinalIgnoreCase))
+                {
+                    if (item.posIniX == item.posFinX && item.posIniY == item.posFinY)
+                    {
+                        if (item.posIniX < alto)
+                        {
+                            if (item.posIniY < ancho)
+                            {
+                                matrizLogica[item.posIniX, item.posIniY] = item;
+                            }
+                            else
+                            {
+                                Console.WriteLine("Semantico, posicion en Y se sale de la dimension");
+                            }
+                        }
+                        else {
+                            Console.WriteLine("Semantico, posicion en X se sale de la dimension");
+                        }
+                    }
+                    else if (item.posIniX == item.posFinX && item.posIniY != item.posFinY)
+                    {
+                        for (int i = item.posIniY; i < item.posFinY; i++)
+                        {
+                            if (item.posIniX <= alto && item.posIniX > -1)
+                            {
+                                if (item.posIniY >= 0 && item.posFinY <= ancho)
+                                {
+                                    matrizLogica[item.posIniX, i] = item;
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Semantico, posicion en Y se sale de la dimension");
+                                }
+                            }
+                            else {
+                                Console.WriteLine("Semantico, posicion en X se sale de la dimension");
+                            }
+                        }
+
+                    }
+                    else if (item.posIniX != item.posFinX && item.posIniY == item.posFinY)
+                    {
+                        for (int i = item.posIniX; i < item.posFinX; i++)
+                        {
+                            if (item.posIniX >= 0 && item.posFinX <= alto)
+                            {
+                                if (item.posIniY >= 0 && item.posIniY <= ancho)
+                                {
+                                    matrizLogica[i, item.posIniY] = item;
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Semantico, posicion en Y se sale de la dimension "+"(" + "," + ")");
+                                }
+                            }
+                            else {
+                                Console.WriteLine("Semantico, posicion en X se sale de la dimension");
+                            }
+                        }
+
+                    }
+                }
+            }
+            return matrizLogica;
+        }
+
         public static String recorrerAST2(ParseTreeNode root)
         {
             switch (root.Term.Name) {
@@ -262,7 +344,6 @@ namespace Proyecto1_201325674.sol.com.analizador2
                                 //Son parentesis
                                 default:
                                     return recorrerAST2(root.ChildNodes.ElementAt(1)).ToString();
-
                             }
                     }
                     break;
@@ -354,7 +435,7 @@ namespace Proyecto1_201325674.sol.com.analizador2
 
             if (objeto != null)
             {
-                milistaObjetosEscenario.Add(new SuperEscenario("enemigo", objeto, Convert.ToInt32(posXIni), Convert.ToInt32(posXFin), Convert.ToInt32(posYIni), Convert.ToInt32(posYFin)));
+                milistaObjetosEscenario.Add(new SuperEscenario("bloque", objeto, Convert.ToInt32(posXIni), Convert.ToInt32(posXFin), Convert.ToInt32(posYIni), Convert.ToInt32(posYFin)));
                 Console.WriteLine(" bloque con id => " + identificador[0] + " agregado a la lista super");
             }
             else
@@ -407,6 +488,7 @@ namespace Proyecto1_201325674.sol.com.analizador2
                     if (string.Equals(item.identificador, fondo[0], StringComparison.OrdinalIgnoreCase)) {
                         encontrado = true;
                         escenario = item;
+                        break;
                     }
                 }
 

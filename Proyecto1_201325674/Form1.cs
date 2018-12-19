@@ -2,7 +2,9 @@
 using Practica1.sol.com.analyzer;
 using Proyecto1_201325674.sol.com.analizador2;
 using Proyecto1_201325674.sol.com.archivoConfiguracion;
+using Proyecto1_201325674.sol.com.estructuraEscenario;
 using Proyecto1_201325674.sol.com.objetosConfiguracion;
+using Proyecto1_201325674.Ventana;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,6 +20,7 @@ namespace Proyecto1_201325674
 {
     public partial class Form1 : Form
     {
+        int[,] matrizLogica = null;
         public String archivo1, archivo2;
         public Form1()
         {
@@ -31,7 +34,6 @@ namespace Proyecto1_201325674
             {
                 archivo1 = reader.ReadToEnd();
             }
-            //Console.WriteLine(!(true || false));
             Syntactic mySyntactic = new Syntactic();
             //bool resultado = mySyntactic.analyze(getRichTextBox().Text);
             ParseTreeNode resultado = mySyntactic.analyze(archivo1);
@@ -44,7 +46,8 @@ namespace Proyecto1_201325674
                 Recorrido1.recorrerAST1(resultado.ChildNodes.ElementAt(0));
 
                 text += "          *****FONDOS DEL JUEGO*****\n";
-                foreach (EscenarioFondo item in Recorrido1.miListaFondos) {
+                foreach (EscenarioFondo item in Recorrido1.miListaFondos)
+                {
                     text += "Nombre: " + item.identificador + "   ,   " + "Ruta: " + item.ruta + "\n";
                 }
 
@@ -52,9 +55,8 @@ namespace Proyecto1_201325674
                 foreach (Personaje item in Recorrido1.milistaHeroes)
                 {
                     text += "Nombre: " + item.nombre + "   ,   " + " vida: " + item.vida + " tipo: " + item.tipo + ", destruir: " + item.ptosDestruccion +
-                            " path: " + item.rutaImagen +  "\n";
+                            " path: " + item.rutaImagen + "\n";
                 }
-
 
                 text += "\n          *****ENEMIGOS DEL JUEGO*****\n";
                 foreach (Personaje item in Recorrido1.milistaEnemigos)
@@ -108,10 +110,13 @@ namespace Proyecto1_201325674
         //Boton Anterior heroes
         private void button3_Click(object sender, EventArgs e)
         {
-            if (personajeSelect == -1) {
+            if (personajeSelect == -1)
+            {
                 personajeSelect = 0;
                 pictureBox1.Image = Image.FromFile(Recorrido1.milistaHeroes[personajeSelect].rutaImagen);
-            } else if (personajeSelect >= 0) {
+            }
+            else if (personajeSelect >= 0)
+            {
                 personajeSelect -= 1;
                 pictureBox1.Image = Image.FromFile(Recorrido1.milistaHeroes[personajeSelect].rutaImagen);
             }
@@ -126,7 +131,8 @@ namespace Proyecto1_201325674
             {
                 personajeSelect = 0;
                 pictureBox1.Image = Image.FromFile(Recorrido1.milistaHeroes[personajeSelect].rutaImagen);
-            } else if (personajeSelect <= Recorrido1.milistaHeroes.Count-1)
+            }
+            else if (personajeSelect <= Recorrido1.milistaHeroes.Count - 1)
             {
                 personajeSelect += 1;
                 pictureBox1.Image = Image.FromFile(Recorrido1.milistaHeroes[personajeSelect].rutaImagen);
@@ -136,7 +142,8 @@ namespace Proyecto1_201325674
 
         }
 
-        private void habilitarBotonesHeroes(int id) {
+        private void habilitarBotonesHeroes(int id)
+        {
             if (id == 0 && (id != Recorrido1.milistaHeroes.Count - 1))
             {
                 button3.Enabled = false;
@@ -148,10 +155,63 @@ namespace Proyecto1_201325674
                 button4.Enabled = false;
 
             }
-            else {
+            else
+            {
                 button3.Enabled = true;
                 button4.Enabled = true;
             }
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+
+            SuperEscenario[,] matrizLogica = Recorrido2.cargarMatrizLogica();
+            int ancho = 0;
+            int alto = 0;
+
+            foreach (SuperEscenario item in Recorrido2.milistaObjetosEscenario)
+            {
+                if (string.Equals(item.tipo, "background", StringComparison.OrdinalIgnoreCase))
+                {
+                    ancho = item.ancho + 1;
+                    alto = item.alto + 1;
+
+                    Image image1 = Image.FromFile(item.fondo.ruta);
+
+                    panelEscenario.BackgroundImage = image1;
+                    panelEscenario.BackgroundImageLayout = ImageLayout.Stretch;
+
+                }
+            }
+
+            Boton[,] matrizGrafica = new Boton[alto, ancho]; ;
+            for (int i = 0; i < alto; i++)
+            {
+                for (int j = 0; j < ancho; j++)
+                {
+                    Boton miBoton = new Boton(i, j);
+                    matrizGrafica[i, j] = miBoton;
+                    panelEscenario.Controls.Add(miBoton);
+                }
+            }
+
+            //for (int i = 0; i < alto; i++) {
+            //    for (int j = 0; j < ancho; j++) {
+            //        PictureBox miBotoncito = new PictureBox();
+            //        int tamanio = 25;
+            //        miBotoncito.Left = i * tamanio;
+            //        miBotoncito.Top = j * tamanio;
+            //        miBotoncito.Width = tamanio;
+            //        miBotoncito.Height = tamanio;
+            //        if (matrizLogica[i, j] != null) {
+            //            miBotoncito.Image = Image.FromFile(matrizLogica[i, j].objeto.rutaImagen);
+            //            miBotoncito.SizeMode = PictureBoxSizeMode.StretchImage;
+            //        }
+            //        miBotoncito.BorderStyle = BorderStyle.FixedSingle;
+            //        miBotoncito.BackColor = Color.Transparent;
+            //        panelEscenario.Controls.Add(miBotoncito);
+            //    }
+            //}
         }
 
         private void Form1_Load(object sender, EventArgs e)

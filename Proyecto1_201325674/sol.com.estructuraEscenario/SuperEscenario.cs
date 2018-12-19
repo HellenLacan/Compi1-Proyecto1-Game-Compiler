@@ -39,26 +39,17 @@ namespace Proyecto1_201325674.sol.com.estructuraEscenario
             } else if (tipoObjecto.GetType().ToString() == "Proyecto1_201325674.sol.com.archivoConfiguracion.Personaje") {
                 this.personaje = (Personaje)tipoObjecto;
             }
-
         }
 
         public SuperEscenario(String tipo, Object tipoObjecto, int ancho, int alto)
         {
             this.tipo = tipo;
             this.alto = alto;
-            this.alto = ancho;
+            this.ancho = ancho;
 
-            if (tipoObjecto.GetType().ToString() == "Proyecto1_201325674.sol.com.archivoConfiguracion.Personaje.EscenarioFondo")
+           if (tipoObjecto.GetType().ToString() == "Proyecto1_201325674.sol.com.archivoConfiguracion.EscenarioFondo")
             {
                 this.fondo = (EscenarioFondo)tipoObjecto;
-            }
-            else if (tipoObjecto.GetType().ToString() == "Proyecto1_201325674.sol.com.objetosConfiguracion.ObjetoEscenario")
-            {
-                this.objeto = (ObjetoEscenario)tipoObjecto;
-            }
-            else if (tipoObjecto.GetType().ToString() == "Proyecto1_201325674.sol.com.archivoConfiguracion.Personaje")
-            {
-                this.personaje = (Personaje)tipoObjecto;
             }
 
         }

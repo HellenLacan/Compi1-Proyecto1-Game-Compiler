@@ -212,36 +212,7 @@ namespace Practica1.sol.com.analyzer
                                 }
                             }
                             return design_valores;
-                        //case 4:
-                        //    design_valores = recorrerAST1(root.ChildNodes.ElementAt(0))+";";
-                        //    if (root.ChildNodes.ElementAt(0).ChildNodes.Count != 0)
-                        //    {
-                        //        design_valores += " "+root.ChildNodes.ElementAt(1);
-                        //        if ((root.ChildNodes.ElementAt(3).Term.Name == "EXPRESION") ||
-                        //          (root.ChildNodes.ElementAt(3).Term.Name == "DESIGN_TIPO"))
-                        //        {
-                        //            design_valores += "," + recorrerAST1(root.ChildNodes.ElementAt(3));
-                        //        }
-                        //        else
-                        //        {
-                        //            design_valores += "," + root.ChildNodes.ElementAt(3)+";";
-                        //        }
-                        //    }
-                        //    else
-                        //    {
-                        //        design_valores += root.ChildNodes.ElementAt(2);
-                        //        if ((root.ChildNodes.ElementAt(3).Term.Name == "EXPRESION") ||
-                        //            (root.ChildNodes.ElementAt(3).Term.Name == "DESIGN_TIPO"))
-                        //        {
-                        //            design_valores += "," + recorrerAST1(root.ChildNodes.ElementAt(3));
-                        //        }
-                        //        else
-                        //        {
-                        //            design_valores += "," + root.ChildNodes.ElementAt(3)+";";
-                        //        }
-                        //    }
-                        //    return design_valores;
-
+                        
                     }
                     break;
 
@@ -270,12 +241,13 @@ namespace Practica1.sol.com.analyzer
                         case 2:
                             String a = recorrerAST1(root.ChildNodes.ElementAt(0));
                             String b = recorrerAST1(root.ChildNodes.ElementAt(1));
-                            double resultado = Convert.ToDouble(a) - Convert.ToDouble(b);
-                            return resultado.ToString();
+                            int resultadoFinal = Convert.ToInt32(a) - Convert.ToInt32(b);
+                            return resultadoFinal.ToString();
                         case 3:
                             String[] signo = splitEspacio(root.ChildNodes.ElementAt(1).ToString());
                             a = recorrerAST1(root.ChildNodes.ElementAt(0));
                             b = recorrerAST1(root.ChildNodes.ElementAt(2));
+                            double resultado=0;
                             switch (signo[0])
                             {
                                 case "+":
@@ -372,9 +344,19 @@ namespace Practica1.sol.com.analyzer
                 {
                     nombre = valor[0];
                 }
+                //Me quede aqui 
                 else if (string.Equals(tipo[0], "vida", StringComparison.OrdinalIgnoreCase))
                 {
                     vida = valor[0];
+                    int vidaActual = Convert.ToInt32(vida);
+                    if (vidaActual <= 0) {
+                        Console.WriteLine("Semantico La vida es " + vidaActual + " y se ha cambiado a 1");
+                        vidaActual = 1;
+                    } else if (vidaActual > 100) {
+                        Console.WriteLine("Semantico La vida es mayor " + vidaActual + " y se ha cambiado a 100");
+                        vidaActual = 100;
+                    }
+
                 }
                 else if (string.Equals(tipo[0], "imagen", StringComparison.OrdinalIgnoreCase))
                 {
@@ -391,9 +373,22 @@ namespace Practica1.sol.com.analyzer
                 else if (string.Equals(tipo[0], "destruir", StringComparison.OrdinalIgnoreCase))
                 {
                     destruir = valor[0];
+                    int destruirActual = Convert.ToInt32(destruir);
+                    if (destruirActual > 100) {
+                        Console.WriteLine("Semantico La vida es mayor " + destruirActual + " y se ha cambiado a 100");
+                        destruirActual = 100;
+                    }
+                    else if (destruirActual <= 0) {
+                        destruirActual = 1;
+                    }
                 }
             }
 
+            if (descripcion == "")
+            {
+                Console.WriteLine("Se le ha agregado descripcion al personaje " + nombre);
+                descripcion = "Personaje con las caracteristicas de......";
+            }
 
             if (string.Equals(tipoPersonaje, "heroe", StringComparison.OrdinalIgnoreCase))
             {

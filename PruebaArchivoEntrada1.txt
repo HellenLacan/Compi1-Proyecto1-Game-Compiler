@@ -3,13 +3,11 @@
    <background> 
    {
         x-nombre=fondo_1;
-        x-imagen="/home/usuario/imagenes/fondo1.jpg";
-        x-imagen="/home/usuario/imagenes/fondo1_1.jpg";
-
+        x-imagen="C:/Users/Hellen/Desktop/imagenes/pared.png";
    },
    {
         x-nombre=fondo_2;
-        x-imagen="/home/usuario/imagenes/fondo2.jpg";
+        x-imagen="C:/Users/Hellen/Desktop/imagenes/fondo2.jpg";
    },
    {
         x-nombre=fondo_4;
@@ -21,7 +19,7 @@
    },
    {
         x-nombre=fondo_1;
-        x-imagen="/home/usuario/imagenes/fondo5.jpg";
+        x-imagen="C:/Users/Hellen/Desktop/imagenes/fondo.jpg";
    }
    </background>
 
@@ -102,7 +100,7 @@
    } ,
    {
         x-nombre=suelo;
-        x-imagen="/home/usuario/imagenes/pared1.jpg";
+        x-imagen="C:/Users/Hellen/Desktop/imagenes/pared.png";
         x-tipo=x-bloque;
    } ,
    {
