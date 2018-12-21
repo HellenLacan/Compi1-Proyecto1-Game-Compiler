@@ -32,24 +32,50 @@ namespace Proyecto1_201325674.Ventana
             {
                 if (matrizLogica[i, j].tipo == "bloque")
                 {
-                    this.Image = Image.FromFile(matrizLogica[i, j].objeto.rutaImagen);
-                    this.SizeMode = PictureBoxSizeMode.StretchImage;
+                    capturarRuta(i, j, matrizLogica[i, j].tipo);
                 }
-                //} else if (matrizLogica[i, j].tipo == "heroe") {
-                //    this.Image = Image.FromFile(matrizLogica[i, j].personaje.rutaImagen);
-                //    this.SizeMode = PictureBoxSizeMode.StretchImage;
-                //    this.KeyDown += new KeyEventHandler(pictureBox_KeyDown);
-                //}
                 else if (matrizLogica[i, j].tipo == "meta")
                 {
-                    this.Image = Image.FromFile(matrizLogica[i, j].objeto.rutaImagen);
-                    this.SizeMode = PictureBoxSizeMode.StretchImage;
+                    capturarRuta(i, j, matrizLogica[i, j].tipo);
+                }
+                else if (matrizLogica[i, j].tipo == "enemigo")
+                {
+                    capturarRuta(i,j, matrizLogica[i, j].tipo);
+
                 }
 
             }
 
             this.BorderStyle = BorderStyle.FixedSingle;
             this.BackColor = Color.Transparent;
+        }
+
+        public void capturarRuta(int i, int j, string tipo) {
+            if (tipo == "enemigo") {
+                try
+                {
+                    this.Image = Image.FromFile(matrizLogica[i, j].personaje.rutaImagen);
+                    this.SizeMode = PictureBoxSizeMode.StretchImage;
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("Ruta no existe");
+                    Console.WriteLine("IOException source: {0}", e.Source);
+                }
+            } else if (tipo == "meta" || tipo == "bloque") {
+                try
+                {
+                    this.Image = Image.FromFile(matrizLogica[i, j].objeto.rutaImagen);
+                    this.SizeMode = PictureBoxSizeMode.StretchImage;
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("Ruta no existe");
+                    Console.WriteLine("IOException source: {0}", e.Source);
+                }
+
+            }
+            
         }
 
         //private void pictureBox_KeyDown(object sender, KeyEventArgs e)

@@ -13,6 +13,7 @@ namespace Proyecto1_201325674.sol.com.analizador2
 {
     class Recorrido2
     {
+        //null no hay pared, 1 pared, 2 heroe, 3 meta, 4 enemigos 
         public static List<SuperEscenario> milistaObjetosEscenario = new List<SuperEscenario>();
         public static SuperEscenario[,] matrizLogica = null;
 
@@ -144,13 +145,25 @@ namespace Proyecto1_201325674.sol.com.analizador2
                     }
                     else
                     {
-                        Console.WriteLine("Semantico, meta se sale del tablero");
+                        Console.WriteLine("Semantico, +"+ item.objeto + " meta se sale del tablero");
+                    }
+                }
+                else if (string.Equals(item.tipo, "enemigo", StringComparison.OrdinalIgnoreCase))
+                {
+                    if ((item.posIniX >= 0 && item.posIniX < alto) &&
+                        (item.posIniY >= 0 && item.posIniY < ancho))
+                    {
+                        item.tipoObjeto = 4;
+                        matrizLogica[item.posIniX, item.posIniY] = item;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Semantico, enemigo se sale del tablero");
                     }
                 }
                 else
                 {
-                    SuperEscenario temporal = item;
-                    Console.WriteLine("mm");
+                    Console.WriteLine(item.tipo + "no se agrego al tablero");
                 }
             }
             return matrizLogica;

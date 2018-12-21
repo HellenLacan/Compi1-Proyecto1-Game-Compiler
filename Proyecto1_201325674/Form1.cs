@@ -39,6 +39,7 @@ namespace Proyecto1_201325674
             if (personajeSelect == -1)
             {
                 personajeSelect = 0;
+
                 pictureBox1.Image = Image.FromFile(Recorrido1.milistaHeroes[personajeSelect].rutaImagen);
             }
             else if (personajeSelect >= 0)
@@ -56,12 +57,30 @@ namespace Proyecto1_201325674
             if (personajeSelect == -1)
             {
                 personajeSelect = 0;
-                pictureBox1.Image = Image.FromFile(Recorrido1.milistaHeroes[personajeSelect].rutaImagen);
+
+                try
+                {
+                    pictureBox1.Image = Image.FromFile(Recorrido1.milistaHeroes[personajeSelect].rutaImagen);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Ruta no existe");
+                    Console.WriteLine("IOException source: {0}", ex.Source);
+                }
+
             }
             else if (personajeSelect <= Recorrido1.milistaHeroes.Count - 1)
             {
                 personajeSelect += 1;
-                pictureBox1.Image = Image.FromFile(Recorrido1.milistaHeroes[personajeSelect].rutaImagen);
+                try
+                {
+                    pictureBox1.Image = Image.FromFile(Recorrido1.milistaHeroes[personajeSelect].rutaImagen);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Ruta no existe");
+                    Console.WriteLine("IOException source: {0}", ex.Source);
+                }
             }
 
             habilitarBotonesHeroes(personajeSelect);
@@ -172,9 +191,14 @@ namespace Proyecto1_201325674
             }
         }
 
-        private void ejecutarJuegoToolStripMenuItem_Click(object sender, EventArgs e)
+        private void EjecutarJuegoToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
+            
+        }
+
+        private void ejecutarJuegoToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
             this.matrizLogica = Recorrido2.cargarMatrizLogica();
             int ancho = 0;
             int alto = 0;
@@ -232,7 +256,17 @@ namespace Proyecto1_201325674
                     principal.Top = item.posIniY * tamanio;
                     principal.Width = tamanio;
                     principal.Height = tamanio;
-                    principal.Image = Image.FromFile(item.personaje.rutaImagen);
+
+                    try
+                    {
+                        principal.Image = Image.FromFile(item.personaje.rutaImagen);
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Ruta no existe");
+                        Console.WriteLine("IOException source: {0}", ex.Source);
+                    }
+
                     principal.SizeMode = PictureBoxSizeMode.StretchImage;
                     principal.KeyDown += new KeyEventHandler(pictureBox_KeyDown);
                     panelEscenario.Controls.Add(principal);
@@ -281,7 +315,7 @@ namespace Proyecto1_201325674
 
                 case Keys.Down:
                     if (posYHeroePrincipal + 1 < Recorrido2.getAnchoEscenario()) {
-                        if (matrizLogica[posXHeroePrincipal, posYHeroePrincipal + 1] == null)
+                         if (matrizLogica[posXHeroePrincipal, posYHeroePrincipal + 1] == null)
                         {
                             principal.Location = new Point(principal.Location.X, principal.Location.Y + 25);
                             posYHeroePrincipal++;

@@ -1,12 +1,17 @@
 <x-escenarios background=piedra; ancho = 25 ; alto = 25 >
-	
-	<x-Personajes>
-		<x-heroes>
-			heroe(0,0);
-		</x-heroes>
+  <x-personajes>
+    <x-villanos>
+      enemigo1(15,8);
+      enemigo2(12,8+8);
+      enemigo3(25,8+8);
+      enemigoxD(8,8+7);
+      enemigo4(17,8+5);
+      enemigo6(14,8+2);
+    </x-villanos>
+
 	</x-Personajes>
 
-<x-paredes>
+	<x-paredes>
       suelo(3,0);
       suelo(0..30,21);
       suelo(3,2);
@@ -52,12 +57,7 @@
       suelo(5,5..11);
       suelo(30,5..11);
       suelo(25,0..20);
-
   </x-paredes>
-
-  <x-meta>
-    salida2(14,10);
-  </x-meta>
 
 </x-escenarios>
 

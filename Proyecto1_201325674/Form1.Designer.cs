@@ -146,7 +146,7 @@
             this.ejecutarJuegoToolStripMenuItem.Name = "ejecutarJuegoToolStripMenuItem";
             this.ejecutarJuegoToolStripMenuItem.Size = new System.Drawing.Size(266, 22);
             this.ejecutarJuegoToolStripMenuItem.Text = "Ejecutar juego";
-            this.ejecutarJuegoToolStripMenuItem.Click += new System.EventHandler(this.ejecutarJuegoToolStripMenuItem_Click);
+            this.ejecutarJuegoToolStripMenuItem.Click += new System.EventHandler(this.ejecutarJuegoToolStripMenuItem_Click_1);
             // 
             // ayudaToolStripMenuItem
             // 
