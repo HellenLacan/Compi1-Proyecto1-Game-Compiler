@@ -1,51 +1,63 @@
-<x-escenarios background=Fondo_2; ancho = 21 ; alto = 30 >
+<x-escenarios background=piedra; ancho = 25 ; alto = 25 >
 	
-	<x-paredes>
-    	suelo(0..30,21);
-	    suelo(3,2);
-	    suelo(3,4);
-	    suelo(5,5);
-	    suelo(3,8);
-	    suelo(0,3);
-	    suelo(1,5);
-	    suelo(4,10);
-	    suelo(2,10);
-	    suelo(5,10);
-	    suelo(2,2);
-	    suelo(0,11);
-	    suelo(1..2,110);
-	    suelo(0..2,10);
-	    suelo(4,9..11);
-	    suelo(5,10..11);
-	    suelo(7..10,11);
-	    suelo2(21,11..10);
-	    suelo(15,0..8);
-	    suelo(15,15..20);
-	    suelo(5..10,10);
-	    suelo(0,0);
-	    suelo(3,2);
-	    suelo(3,4);
-	    suelo(10,5);
-	    suelo(3,8);
-	    suelo(7..15,15);
-	    suelo(7,3);
-	    suelo(1,5);
-	    suelo(8,5);
-	    suelo(17,15..20);
-	    suelo(4,24);
-	    suelo(1,23);
-	    suelo(20,10..18);
-	    suelo(20,5);
-	    suelo(2,10);
-	    suelo(5,10);
-	    suelo(20,0..20);
-	    suelo(10,5);
-	    suelo(20,18);
-	    suelo(2,2);
-	          suelo(5,5..11);
-	      suelo(30,5..11);
-		
-	</x-paredes>
+	<x-Personajes>
+		<x-heroes>
+			heroe(0,0);
+		</x-heroes>
+	</x-Personajes>
+
+<x-paredes>
+      suelo(3,0);
+      suelo(0..30,21);
+      suelo(3,2);
+      planta(18,2..20);
+      suelo(3,4);
+      suelo(5,5);
+      suelo(3,8);
+      suelo(0,3);
+      suelo(1,5);
+      suelo(4,10);
+      suelo(2,10);
+      suelo(5,10);
+      suelo(2,2);
+      suelo(0,11);
+      suelo(1..2,110);
+      suelo(0..2,10);
+      suelo(4,9..11);
+      suelo(5,10..11);
+      suelo(7..10,11);
+      suelo2(21,11..10);
+      suelo(15,0..8);
+      suelo(15,15..20);
+      suelo(5..10,10);
+      suelo(3,2);
+      suelo(3,4);
+      suelo(10,5);
+      suelo(3,8);
+      suelo(7..15,15);
+      suelo(7,3);
+      suelo(1,5);
+      suelo(8,5);
+      suelo(17,15..20);
+      suelo(4,24);
+      suelo(1,23);
+      suelo(20,10..18);
+      suelo(20,5);
+      suelo(2,10);
+      suelo(5,10);
+      suelo(20,0..20);
+      suelo(10,5);
+      suelo(20,18);
+      suelo(2,2);
+      suelo(5,5..11);
+      suelo(30,5..11);
+      suelo(25,0..20);
+
+  </x-paredes>
+
+  <x-meta>
+    salida2(14,10);
+  </x-meta>
 
 </x-escenarios>
 

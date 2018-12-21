@@ -6,8 +6,8 @@
         x-imagen="C:/Users/Hellen/Desktop/imagenes/pared.png";
    },
    {
-        x-nombre=fondo_2;
-        x-imagen="C:/Users/Hellen/Desktop/imagenes/fondo2.jpg";
+        x-nombre=piedra;
+        x-imagen="C:/Users/Hellen/Desktop/imagenes/piedra.jpg";
    },
    {
         x-nombre=fondo_4;
@@ -42,7 +42,7 @@
    },
    {
         x-nombre=heroe;
-        x-imagen="C:/Users/Hellen/Desktop/imagenes/heroe.png";
+        x-imagen="C:/Users/Hellen/Desktop/imagenes/heroe5.png";
         x-vida=50+50-1;
         x-tipo=x-HerOe;
         x-descripcion="Personaje principal del juego el cual tiene como objetivo salvar a la reyna";
@@ -64,13 +64,25 @@
         x-destruir = 10;
    },{
         x-nombre=heroe2;
-        x-imagen="C:/Users/Hellen/Desktop/imagenes/heroe2.png";
+        x-imagen="C:/Users/Hellen/Desktop/imagenes/heroe6.png";
         x-vida=50+50-1;
         x-tipo=x-HerOe;
         x-descripcion="Personaje principal del juego el cual tiene como objetivo salvar a la reyna";
    },{
         x-nombre=heroe3;
         x-imagen="C:/Users/Hellen/Desktop/imagenes/heroe3.png";
+        x-vida=50+50-1;
+        x-tipo=x-HerOe;
+        x-descripcion="Personaje principal del juego el cual tiene como objetivo salvar a la reyna";
+   },{
+        x-nombre=heroe7;
+        x-imagen="C:/Users/Hellen/Desktop/imagenes/heroe7.png";
+        x-vida=50+50-1;
+        x-tipo=x-HerOe;
+        x-descripcion="Personaje principal del juego el cual tiene como objetivo salvar a la reyna";
+   },{
+        x-nombre=heroe8;
+        x-imagen="C:/Users/Hellen/Desktop/imagenes/heroe8.png";
         x-vida=50+50-1;
         x-tipo=x-HerOe;
         x-descripcion="Personaje principal del juego el cual tiene como objetivo salvar a la reyna";
@@ -104,8 +116,13 @@
         x-tipo=x-bloque;
    } ,
    {
-        x-nombre=salida;
-        x-imagen="/home/usuario/imagenes/salida.jpg";
+        x-nombre=planta;
+        x-imagen="C:/Users/Hellen/Desktop/imagenes/planta.png";
+        x-tipo=x-bloque;
+   },
+   {
+        x-nombre=salida2;
+        x-imagen="C:/Users/Hellen/Desktop/imagenes/salida2.png";
         x-tipo=x-meta;
    } ,
    {

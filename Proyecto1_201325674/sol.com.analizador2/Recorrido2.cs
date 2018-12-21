@@ -14,11 +14,36 @@ namespace Proyecto1_201325674.sol.com.analizador2
     class Recorrido2
     {
         public static List<SuperEscenario> milistaObjetosEscenario = new List<SuperEscenario>();
+        public static SuperEscenario[,] matrizLogica = null;
+
+        public static int getAnchoEscenario() {
+            int ancho=0;
+            foreach (SuperEscenario item in milistaObjetosEscenario)
+            {
+                if (string.Equals(item.tipo, "background", StringComparison.OrdinalIgnoreCase))
+                {
+                     ancho = item.ancho + 1;
+                }
+            }
+            return ancho;
+        }
+
+        public static int getAltoEscenario()
+        {
+            int alto = 0;
+            foreach (SuperEscenario item in milistaObjetosEscenario)
+            {
+                if (string.Equals(item.tipo, "background", StringComparison.OrdinalIgnoreCase))
+                {
+                    alto = item.alto + 1;
+                }
+            }
+            return alto;
+        }
 
         public static SuperEscenario[,] cargarMatrizLogica() {
             int ancho = 0;
             int alto = 0;
-            SuperEscenario[,] matrizLogica = null;
 
             foreach (SuperEscenario item in milistaObjetosEscenario)
             {
@@ -29,7 +54,7 @@ namespace Proyecto1_201325674.sol.com.analizador2
                     matrizLogica = new SuperEscenario[alto, ancho];
                 }
             }
-
+            //1 bloque 
             foreach (SuperEscenario item in milistaObjetosEscenario) {
                 if (string.Equals(item.tipo, "bloque", StringComparison.OrdinalIgnoreCase))
                 {
@@ -39,6 +64,7 @@ namespace Proyecto1_201325674.sol.com.analizador2
                         {
                             if (item.posIniY < ancho)
                             {
+                                item.tipoObjeto = 1;
                                 matrizLogica[item.posIniX, item.posIniY] = item;
                             }
                             else
@@ -54,10 +80,11 @@ namespace Proyecto1_201325674.sol.com.analizador2
                     {
                         for (int i = item.posIniY; i < item.posFinY; i++)
                         {
-                            if (item.posIniX <= alto && item.posIniX > -1)
+                            if (item.posIniX < alto && item.posIniX > -1)
                             {
-                                if (item.posIniY >= 0 && item.posFinY <= ancho)
+                                if (item.posIniY > 0 && item.posFinY <= ancho)
                                 {
+                                    item.tipoObjeto = 1;
                                     matrizLogica[item.posIniX, i] = item;
                                 }
                                 else
@@ -75,15 +102,16 @@ namespace Proyecto1_201325674.sol.com.analizador2
                     {
                         for (int i = item.posIniX; i < item.posFinX; i++)
                         {
-                            if (item.posIniX >= 0 && item.posFinX <= alto)
+                            if (item.posIniX >= 0 && item.posFinX < alto)
                             {
-                                if (item.posIniY >= 0 && item.posIniY <= ancho)
+                                if (item.posIniY >= 0 && item.posIniY < ancho)
                                 {
+                                    item.tipoObjeto = 1;
                                     matrizLogica[i, item.posIniY] = item;
                                 }
                                 else
                                 {
-                                    Console.WriteLine("Semantico, posicion en Y se sale de la dimension "+"(" + "," + ")");
+                                    Console.WriteLine("Semantico, posicion en Y se sale de la dimension " + "(" + "," + ")");
                                 }
                             }
                             else {
@@ -92,6 +120,37 @@ namespace Proyecto1_201325674.sol.com.analizador2
                         }
 
                     }
+                }
+                else if (string.Equals(item.tipo, "heroe", StringComparison.OrdinalIgnoreCase))
+                {
+                    if ((item.posIniX >= 0 && item.posIniX < alto) &&
+                        (item.posIniY >= 0 && item.posIniY < ancho))
+                    {
+                        item.tipoObjeto = 2;
+                        matrizLogica[item.posIniX, item.posIniY] = item;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Semantico, heroe se sale del tablero");
+                    }
+                }
+                else if (string.Equals(item.tipo, "meta", StringComparison.OrdinalIgnoreCase))
+                {
+                    if ((item.posIniX >= 0 && item.posIniX < alto) &&
+                        (item.posIniY >= 0 && item.posIniY < ancho))
+                    {
+                        item.tipoObjeto = 3;
+                        matrizLogica[item.posIniX, item.posIniY] = item;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Semantico, meta se sale del tablero");
+                    }
+                }
+                else
+                {
+                    SuperEscenario temporal = item;
+                    Console.WriteLine("mm");
                 }
             }
             return matrizLogica;

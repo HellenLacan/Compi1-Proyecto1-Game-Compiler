@@ -20,6 +20,7 @@ namespace Proyecto1_201325674.sol.com.estructuraEscenario
         public int posFinY { get; set; }
         public int ancho { get; set; }
         public int alto { get; set; }
+        public int tipoObjeto { get; set; }
 
         public SuperEscenario() {
 
