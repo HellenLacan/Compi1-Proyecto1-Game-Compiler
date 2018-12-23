@@ -1,92 +1,42 @@
-<x-escenarios background=fONdo3; ancho = 21 ; alto = 15 >
-  <x-personajes>
-
-    <x-heroes>
-      heroe(4,8);
-    </x-heroes>
-  
-    <x-villanos>
-      enemigo1(15,8);
-      enemigo2(12,8+8);
-      enemigo3(25,8+8);
-      enemigoxD(8,8+7);
-      enemigo4(17,8+5);
-      enemigo6(14,8+2);
-    </x-villanos>
-
-	</x-Personajes>
+<x-escenarios background=fONdo6; ancho = 25 ; alto = 15 >
 
 	<x-paredes>
-      suelo(3,0);
-      suelo(0..30,21);
-      suelo(3,2);
-      planta(18,2..20);
-      suelo(3,4);
-      suelo(5,5);
-      suelo(3,8);
-      suelo(0,3);
-      suelo(1,5);
-      suelo(4,10);
-      suelo(2,10);
-      suelo(5,10);
-      suelo(2,2);
-      suelo(0,11);
-      suelo(1..2,110);
-      suelo(0..2,10);
-      suelo(4,9..11);
-      suelo(5,10..11);
-      suelo(7..10,11);
-      suelo2(21,11..10);
-      suelo(15,0..8);
-      suelo(15,15..20);
-      suelo(5..10,10);
-      suelo(3,2);
-      suelo(3,4);
-      suelo(10,5);
-      suelo(3,8);
-      suelo(7..15,15);
-      suelo(7,3);
-      suelo(1,5);
-      suelo(8,5);
-      suelo(17,15..20);
-      suelo(4,24);
-      suelo(1,23);
-      suelo(20,10..18);
-      suelo(20,5);
-      suelo(2,10);
-      suelo(5,10);
-      suelo(20,0..20);
-      suelo(10,5);
-      suelo(20,18);
-      suelo(2,2);
-      suelo(5,5..11);
-      suelo(30,5..11);
-      suelo(25,0..20);
+      
+	pared(1..25, 1);
+	pared(1..25,25);
+	pared(1,2..24);
+	pared(25,2..24);
+	pared(3,2..3);
+	pared(4..5,3);
+	pared(5,4..5);
+	pared(2,5);
+	pared(9,2..3);
+	pared(3,5..7);
+	pared(7,3..6);
+	pared(9,7..13);
+	pared(3..9,7);
+	pared(7..8,13);
+	pared(8,13);
+	pared(7,13..17);
+	pared(8..9,17);
+	pared(9,18);
+	pared(5..15,19);
+	pared(7,20..23);
+	pared(3..6,21);
+	pared(3,11..21);
+	pared(4,11);
+	pared(5,9..17);
+	pared(6,9);
+	pared(7,9..11);
+	pared(3..5,23);
+	pared(5,24);
+	pared(9,21..24);
+	pared(19,23..24);
+	pared(13,18);
+	pared(13..17,17);
+	pared(17,11..16);
+
   </x-paredes>
-
-  <x-extras>
-
-    <x-bonus>
-      estrella1(10,10);
-      Diamante2(20,15);
-      Flor1(18,18);
-      honGo2(17,20);
-      moneda1(20,20);
-    </x-bonus>
-
-    <x-armas>      
-    bomba1(15,15);
-    bomba1(1,5);
-    bomba1(10,5);
-    bomba1(5,15);
-    bomba1(10,15);
-    arma1(14,15);
-    arma1(17,20);
-    </x-armas>
-
-  </x-extras>
-
-
 
 
 </x-escenarios>

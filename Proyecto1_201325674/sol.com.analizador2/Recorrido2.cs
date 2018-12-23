@@ -65,8 +65,12 @@ namespace Proyecto1_201325674.sol.com.analizador2
                         {
                             if (item.posIniY < ancho)
                             {
-                                item.tipoObjeto = 1;
-                                matrizLogica[item.posIniX, item.posIniY] = item;
+                                if (validarPosicionEnMatrizLogica(item.posIniX, item.posIniY))
+                                {
+                                    item.tipoObjeto = 1;
+                                    matrizLogica[item.posIniX, item.posIniY] = item;
+                                }
+
                             }
                             else
                             {
@@ -86,8 +90,12 @@ namespace Proyecto1_201325674.sol.com.analizador2
                             {
                                 if (item.posIniY > -1 && item.posFinY <= ancho)
                                 {
-                                    item.tipoObjeto = 1;
-                                    matrizLogica[item.posIniX, i] = item;
+                                    if (validarPosicionEnMatrizLogica(item.posIniX, i))
+                                    {
+                                        item.tipoObjeto = 1;
+                                        matrizLogica[item.posIniX, i] = item;
+                                    }
+
                                 }
                                 else
                                 {
@@ -109,8 +117,11 @@ namespace Proyecto1_201325674.sol.com.analizador2
                             {
                                 if (item.posIniY >= 0 && item.posIniY < ancho)
                                 {
-                                    item.tipoObjeto = 1;
-                                    matrizLogica[i, item.posIniY] = item;
+                                    if (validarPosicionEnMatrizLogica(i, item.posIniY))
+                                    {
+                                        item.tipoObjeto = 1;
+                                        matrizLogica[i, item.posIniY] = item;
+                                    }
                                 }
                                 else
                                 {
@@ -130,8 +141,12 @@ namespace Proyecto1_201325674.sol.com.analizador2
                     if ((item.posIniX >= 0 && item.posIniX < alto) &&
                         (item.posIniY >= 0 && item.posIniY < ancho))
                     {
-                        item.tipoObjeto = 3;
-                        matrizLogica[item.posIniX, item.posIniY] = item;
+                        if (validarPosicionEnMatrizLogica(item.posIniX, item.posIniY))
+                        {
+                            item.tipoObjeto = 3;
+                            matrizLogica[item.posIniX, item.posIniY] = item;
+                        }
+
                     }
                     else
                     {
@@ -143,8 +158,12 @@ namespace Proyecto1_201325674.sol.com.analizador2
                     if ((item.posIniX >= 0 && item.posIniX < alto) &&
                         (item.posIniY >= 0 && item.posIniY < ancho))
                     {
-                        item.tipoObjeto = 4;
-                        matrizLogica[item.posIniX, item.posIniY] = item;
+                        if (validarPosicionEnMatrizLogica(item.posIniX, item.posIniY))
+                        {
+                            item.tipoObjeto = 4;
+                            matrizLogica[item.posIniX, item.posIniY] = item;
+                        }
+         
                     }
                     else
                     {
@@ -156,8 +175,11 @@ namespace Proyecto1_201325674.sol.com.analizador2
                     if ((item.posIniX >= 0 && item.posIniX < alto) &&
                         (item.posIniY >= 0 && item.posIniY < ancho))
                     {
-                        item.tipoObjeto = 5;
-                        matrizLogica[item.posIniX, item.posIniY] = item;
+                        if (validarPosicionEnMatrizLogica(item.posIniX, item.posIniY)) {
+                            item.tipoObjeto = 5;
+                            matrizLogica[item.posIniX, item.posIniY] = item;
+                        }
+
                     }
                     else
                     {
@@ -169,8 +191,12 @@ namespace Proyecto1_201325674.sol.com.analizador2
                     if ((item.posIniX >= 0 && item.posIniX < alto) &&
                         (item.posIniY >= 0 && item.posIniY < ancho))
                     {
-                        item.tipoObjeto = 6;
-                        matrizLogica[item.posIniX, item.posIniY] = item;
+                        if (validarPosicionEnMatrizLogica(item.posIniX, item.posIniY))
+                        {
+                            item.tipoObjeto = 6;
+                            matrizLogica[item.posIniX, item.posIniY] = item;
+                        }
+
                     }
                     else
                     {
@@ -182,8 +208,10 @@ namespace Proyecto1_201325674.sol.com.analizador2
                     if ((item.posIniX >= 0 && item.posIniX < alto) &&
                         (item.posIniY >= 0 && item.posIniY < ancho))
                     {
-                        item.tipoObjeto = 7;
-                        matrizLogica[item.posIniX, item.posIniY] = item;
+                        if (validarPosicionEnMatrizLogica(item.posIniX, item.posIniY)) {
+                            item.tipoObjeto = 7;
+                            matrizLogica[item.posIniX, item.posIniY] = item;
+                        }
                     }
                     else
                     {
@@ -198,8 +226,16 @@ namespace Proyecto1_201325674.sol.com.analizador2
             return matrizLogica;
         }
 
-        //public static Boolean validarPosicionEnMatrizLogica() {
-        //}
+        public static Boolean validarPosicionEnMatrizLogica(int posX, int posY) {
+            if (matrizLogica[posX, posY] == null)
+            {
+                return true;
+            }
+            else {
+                Console.WriteLine( "Semantico, casilla ya ocupada" + posX + "," + posY);
+                return false;
+            }
+        }
 
         public static String recorrerAST2(ParseTreeNode root)
         {

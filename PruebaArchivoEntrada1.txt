@@ -16,6 +16,37 @@
    {
         x-nombre=fondo3;
         x-imagen="C:/Users/Hellen/Desktop/imagenes/fondo3.jpg";
+   },{
+        x-nombre=fondo_4;
+        x-imagen="C:/Users/Hellen/Desktop/imagenes/fondo4.jpeg";
+   },
+   {
+        x-nombre=fondo5;
+        x-imagen="C:/Users/Hellen/Desktop/imagenes/fondo5.jpg";
+   },
+   {
+        x-nombre=fondo6;
+        x-imagen="C:/Users/Hellen/Desktop/imagenes/fondo6.jpg";
+   },
+   {
+        x-nombre=fondo7;
+        x-imagen="C:/Users/Hellen/Desktop/imagenes/fondo7.jpg";
+   },
+   {
+        x-nombre=fondo8;
+        x-imagen="C:/Users/Hellen/Desktop/imagenes/fondo8.jpg";
+   },
+   {
+        x-nombre=fondo9;
+        x-imagen="C:/Users/Hellen/Desktop/imagenes/fondo09.jpg";
+   },
+   {
+        x-nombre=fondo10;
+        x-imagen="C:/Users/Hellen/Desktop/imagenes/fondo10.jpg";
+   },
+   {
+        x-nombre=fondo11;
+        x-imagen="C:/Users/Hellen/Desktop/imagenes/fondo11.jpg";
    }
    </background>
 
@@ -73,7 +104,7 @@
         x-tipo=x-bonus;
    } ,
    {
-        x-nombre=suelo;
+        x-nombre=pared;
         x-imagen="C:/Users/Hellen/Desktop/imagenes/pared.png";
         x-tipo=x-bloque;
    } ,

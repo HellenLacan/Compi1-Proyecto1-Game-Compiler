@@ -210,11 +210,18 @@ namespace Proyecto1_201325674
                     ancho = item.ancho + 1;
                     alto = item.alto + 1;
 
-                    Image image1 = Image.FromFile(item.fondo.ruta);
+                    try
+                    {
+                        Image image1 = Image.FromFile(item.fondo.ruta);
+                        panelEscenario.BackgroundImage = image1;
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Ruta no existe");
+                        Console.WriteLine("IOException source: {0}", ex.Source);
+                    }
 
-                    panelEscenario.BackgroundImage = image1;
                     panelEscenario.BackgroundImageLayout = ImageLayout.Stretch;
-
                 }
             }
 
@@ -380,7 +387,7 @@ namespace Proyecto1_201325674
                         {
                             agregarOquitarVida(posXHeroePrincipal, posYHeroePrincipal + 1, "abajo", "arma");
                         }//Si es bonus
-                        else if (matrizLogica[posXHeroePrincipal, posYHeroePrincipal + 1].tipoObjeto == 7)
+                        else if (matrizLogica[posXHeroePrincipal, posYHeroePrincipal + 1].tipoObjeto == 5)
                         {
                             agregarOquitarVida(posXHeroePrincipal, posYHeroePrincipal + 1, "abajo", "bonus");
                         }
