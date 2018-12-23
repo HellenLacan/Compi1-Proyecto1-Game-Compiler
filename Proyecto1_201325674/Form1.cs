@@ -230,102 +230,193 @@ namespace Proyecto1_201325674
                 }
             }
 
-            for (int i = 0; i < alto; i++)
-            {
-                for (int j = 0; j < ancho; j++)
-                {
-                    if (matrizLogica[i, j] != null)
-                    {
-                        if (matrizLogica[i, j].tipo == "heroe")
-                        {
-                            matrizGrafica[i, j].Focus();
-                        }
-                    }
-                }
-            }
+            //for (int i = 0; i < alto; i++)
+            //{
+            //    for (int j = 0; j < ancho; j++)
+            //    {
+            //        if (matrizLogica[i, j] != null)
+            //        {
+            //            if (matrizLogica[i, j].tipo == "heroe")
+            //            {
+            //                matrizGrafica[i, j].Focus();
+            //            }
+            //        }
+            //    }
+            //}
 
             foreach (SuperEscenario item in Recorrido2.milistaObjetosEscenario)
             {
                 if (string.Equals(item.tipo, "heroe", StringComparison.OrdinalIgnoreCase))
                 {
                     int tamanio = 25;
-                    posXHeroePrincipal = item.posIniX;
-                    posYHeroePrincipal = item.posIniY;
-                    principal = new PictureBox();
-                    principal.Left = item.posIniX * tamanio;
-                    principal.Top = item.posIniY * tamanio;
-                    principal.Width = tamanio;
-                    principal.Height = tamanio;
 
-                    try
+                    if ((item.posIniX >= 0 && item.posIniX < alto) &&
+                        (item.posIniY >= 0 && item.posIniY < ancho))
                     {
-                        principal.Image = Image.FromFile(item.personaje.rutaImagen);
+                        //item.tipoObjeto = 2;
+                        //matrizLogica[item.posIniX, item.posIniY] = item;
+
+                        posXHeroePrincipal = item.posIniX;
+                        posYHeroePrincipal = item.posIniY;
+                        principal = new PictureBox();
+                        principal.Left = item.posIniX * tamanio;
+                        principal.Top = item.posIniY * tamanio;
+                        principal.Width = tamanio;
+                        principal.Height = tamanio;
+
+                        try
+                        {
+                            principal.Image = Image.FromFile(item.personaje.rutaImagen);
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine("Ruta no existe");
+                            Console.WriteLine("IOException source: {0}", ex.Source);
+                        }
+
+                        principal.SizeMode = PictureBoxSizeMode.StretchImage;
+                        principal.KeyDown += new KeyEventHandler(moverHeroePrincipal);
+                        panelEscenario.Controls.Add(principal);
+                        principal.BringToFront();
+                        principal.Focus();
+
                     }
-                    catch (Exception ex)
+                    else
                     {
-                        Console.WriteLine("Ruta no existe");
-                        Console.WriteLine("IOException source: {0}", ex.Source);
+                        Console.WriteLine("Semantico, heroe se sale del tablero");
                     }
-
-                    principal.SizeMode = PictureBoxSizeMode.StretchImage;
-                    principal.KeyDown += new KeyEventHandler(pictureBox_KeyDown);
-                    panelEscenario.Controls.Add(principal);
-                    principal.BringToFront();
-                    principal.Focus();
-
                 }
             }
-
         }
 
-        private void pictureBox_KeyDown(object sender, KeyEventArgs e)
+        private void moverHeroePrincipal(object sender, KeyEventArgs e)
         {
             switch (e.KeyCode)
             {
                 case Keys.Left:
-                    if (posXHeroePrincipal != 0) {
-                        if (matrizLogica[posXHeroePrincipal - 1,posYHeroePrincipal ] == null) {
+                    if (posXHeroePrincipal != 0)
+                    {
+                        if (matrizLogica[posXHeroePrincipal - 1, posYHeroePrincipal] == null)
+                        {
                             principal.Location = new Point(principal.Location.X - 25, principal.Location.Y);
                             posXHeroePrincipal--;
+                            //Si es bomba
+                        } else if (matrizLogica[posXHeroePrincipal - 1, posYHeroePrincipal].tipoObjeto == 6) {
+                            agregarOquitarVida(posXHeroePrincipal - 1, posYHeroePrincipal, "izquierda", "bomba");
+                        } //Si es arma
+                        else if (matrizLogica[posXHeroePrincipal - 1, posYHeroePrincipal].tipoObjeto == 7)
+                        {
+                            agregarOquitarVida(posXHeroePrincipal - 1, posYHeroePrincipal, "izquierda", "arma");
+                        } //Si es bonus
+                        else if (matrizLogica[posXHeroePrincipal - 1, posYHeroePrincipal].tipoObjeto == 5)
+                        {
+                            agregarOquitarVida(posXHeroePrincipal - 1, posYHeroePrincipal, "izquierda", "bonus");
                         }
                     }
                     break;
 
                 case Keys.Right:
-                    if (posXHeroePrincipal+1 < Recorrido2.getAltoEscenario()) {
+                    if (posXHeroePrincipal + 1 < Recorrido2.getAltoEscenario())
+                    {
                         if (matrizLogica[posXHeroePrincipal + 1, posYHeroePrincipal] == null)
                         {
                             posXHeroePrincipal++;
                             principal.Location = new Point(principal.Location.X + 25, principal.Location.Y);
                         }
+                        //Si es bomba
+                        else if (matrizLogica[posXHeroePrincipal + 1, posYHeroePrincipal].tipoObjeto == 6)
+                        {
+                            agregarOquitarVida(posXHeroePrincipal + 1, posYHeroePrincipal, "derecha", "bomba");
+                        }//Si es arma
+                        else if (matrizLogica[posXHeroePrincipal + 1, posYHeroePrincipal].tipoObjeto == 7)
+                        {
+                            agregarOquitarVida(posXHeroePrincipal + 1, posYHeroePrincipal, "derecha", "arma");
+                        }//Si es bonus
+                        else if (matrizLogica[posXHeroePrincipal + 1, posYHeroePrincipal].tipoObjeto == 5)
+                        {
+                            agregarOquitarVida(posXHeroePrincipal + 1, posYHeroePrincipal, "derecha", "bonus");
+                        }
                     }
-                  
+
                     break;
 
                 case Keys.Up:
-                    if (posYHeroePrincipal != 0) {
-                        if (matrizLogica[posXHeroePrincipal, posYHeroePrincipal-1] == null)
+                    if (posYHeroePrincipal != 0)
+                    {
+                        if (matrizLogica[posXHeroePrincipal, posYHeroePrincipal - 1] == null)
                         {
                             principal.Location = new Point(principal.Location.X, principal.Location.Y - 25);
                             posYHeroePrincipal--;
+                        }//Si es bomba
+                        else if (matrizLogica[posXHeroePrincipal, posYHeroePrincipal -1].tipoObjeto == 6)
+                        {
+                            agregarOquitarVida(posXHeroePrincipal, posYHeroePrincipal -1, "arriba", "bomba");
+                        }//Si es arma
+                        else if (matrizLogica[posXHeroePrincipal, posYHeroePrincipal - 1].tipoObjeto == 7)
+                        {
+                            agregarOquitarVida(posXHeroePrincipal, posYHeroePrincipal - 1, "arriba", "arma");
+                        }//Si es bonus
+                        else if (matrizLogica[posXHeroePrincipal, posYHeroePrincipal - 1].tipoObjeto == 5)
+                        {
+                            agregarOquitarVida(posXHeroePrincipal, posYHeroePrincipal - 1, "arriba", "bonus");
                         }
                     }
-                 
+
                     break;
 
                 case Keys.Down:
-                    if (posYHeroePrincipal + 1 < Recorrido2.getAnchoEscenario()) {
-                         if (matrizLogica[posXHeroePrincipal, posYHeroePrincipal + 1] == null)
+                    if (posYHeroePrincipal + 1 < Recorrido2.getAnchoEscenario())
+                    {
+                        if (matrizLogica[posXHeroePrincipal, posYHeroePrincipal + 1] == null)
                         {
                             principal.Location = new Point(principal.Location.X, principal.Location.Y + 25);
                             posYHeroePrincipal++;
+                        }//Si es bomba
+                        else if (matrizLogica[posXHeroePrincipal, posYHeroePrincipal+1].tipoObjeto == 6)
+                        {
+                            agregarOquitarVida(posXHeroePrincipal, posYHeroePrincipal + 1, "abajo", "bomba");
+                        }//Si es arma
+                        else if (matrizLogica[posXHeroePrincipal, posYHeroePrincipal + 1].tipoObjeto == 7)
+                        {
+                            agregarOquitarVida(posXHeroePrincipal, posYHeroePrincipal + 1, "abajo", "arma");
+                        }//Si es bonus
+                        else if (matrizLogica[posXHeroePrincipal, posYHeroePrincipal + 1].tipoObjeto == 7)
+                        {
+                            agregarOquitarVida(posXHeroePrincipal, posYHeroePrincipal + 1, "abajo", "bonus");
                         }
                     }
-
-                       
                     break;
             }
         }
+
+        public void agregarOquitarVida(int posX, int posY, String direccion, String tipo) {
+            matrizLogica[posX, posY] = null;
+            matrizGrafica[posX, posY].Image = null;
+
+            if (string.Equals(direccion, "arriba", StringComparison.OrdinalIgnoreCase)) {
+                principal.Location = new Point(principal.Location.X, principal.Location.Y - 25);
+                Console.WriteLine("Heroe ha pasado por" + tipo);
+                posYHeroePrincipal--;
+            }
+            else if (string.Equals(direccion, "abajo", StringComparison.OrdinalIgnoreCase))  {
+                principal.Location = new Point(principal.Location.X, principal.Location.Y + 25);
+                Console.WriteLine("Heroe ha pasado por" + tipo);
+                posYHeroePrincipal++;
+            }
+            else if (string.Equals(direccion, "izquierda", StringComparison.OrdinalIgnoreCase)) {
+                principal.Location = new Point(principal.Location.X - 25, principal.Location.Y);
+                Console.WriteLine("Heroe ha pasado por" + tipo);
+                posXHeroePrincipal--;
+            } else if (string.Equals(direccion, "derecha", StringComparison.OrdinalIgnoreCase)) {
+                principal.Location = new Point(principal.Location.X + 25, principal.Location.Y);
+                Console.WriteLine("Heroe ha pasado por" + tipo);
+                posXHeroePrincipal++;
+            }
+
+
+    }
+
+
 
     }
 }

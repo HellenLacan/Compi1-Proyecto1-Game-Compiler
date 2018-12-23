@@ -141,9 +141,9 @@ namespace Proyecto1_201325674.sol.com.analizador2
                                 |ATRIBUTOS_LISTA_EXTRAS
                                 |Empty;
 
-            ARMAS.Rule = menor + _armas + mayor + POSICIONES_X_Y_OBJETOS + menor + slash + _armas + mayor;
+            ARMAS.Rule = menor + _x + guion +_armas + mayor + POSICIONES_X_Y_OBJETOS + menor + slash + _x + guion + _armas + mayor;
 
-            BONUS.Rule = menor + _bonus + mayor + POSICIONES_X_Y_OBJETOS + menor + slash + _bonus + mayor;
+            BONUS.Rule = menor + _x + guion + _bonus + mayor + POSICIONES_X_Y_OBJETOS + menor + slash + _x + guion + _bonus + mayor;
 
             ATRIBUTOS_LISTA_EXTRAS.Rule = ARMAS
                                          |BONUS;

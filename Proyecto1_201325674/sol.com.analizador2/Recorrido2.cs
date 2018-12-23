@@ -13,7 +13,7 @@ namespace Proyecto1_201325674.sol.com.analizador2
 {
     class Recorrido2
     {
-        //null no hay pared, 1 pared, 2 heroe, 3 meta, 4 enemigos 
+        //null no hay pared, 1 pared, 2 heroe, 3 meta, 4 enemigos, 5 bonus, 6 bomba, 7 arma
         public static List<SuperEscenario> milistaObjetosEscenario = new List<SuperEscenario>();
         public static SuperEscenario[,] matrizLogica = null;
 
@@ -73,17 +73,18 @@ namespace Proyecto1_201325674.sol.com.analizador2
                                 Console.WriteLine("Semantico, posicion en Y se sale de la dimension");
                             }
                         }
-                        else {
+                        else
+                        {
                             Console.WriteLine("Semantico, posicion en X se sale de la dimension");
                         }
                     }
                     else if (item.posIniX == item.posFinX && item.posIniY != item.posFinY)
                     {
-                        for (int i = item.posIniY; i < item.posFinY; i++)
+                        for (int i = item.posIniY; i < item.posFinY+1; i++)
                         {
                             if (item.posIniX < alto && item.posIniX > -1)
                             {
-                                if (item.posIniY > 0 && item.posFinY <= ancho)
+                                if (item.posIniY > -1 && item.posFinY <= ancho)
                                 {
                                     item.tipoObjeto = 1;
                                     matrizLogica[item.posIniX, i] = item;
@@ -93,7 +94,8 @@ namespace Proyecto1_201325674.sol.com.analizador2
                                     Console.WriteLine("Semantico, posicion en Y se sale de la dimension");
                                 }
                             }
-                            else {
+                            else
+                            {
                                 Console.WriteLine("Semantico, posicion en X se sale de la dimension");
                             }
                         }
@@ -101,7 +103,7 @@ namespace Proyecto1_201325674.sol.com.analizador2
                     }
                     else if (item.posIniX != item.posFinX && item.posIniY == item.posFinY)
                     {
-                        for (int i = item.posIniX; i < item.posFinX; i++)
+                        for (int i = item.posIniX; i < item.posFinX+1; i++)
                         {
                             if (item.posIniX >= 0 && item.posFinX < alto)
                             {
@@ -115,24 +117,12 @@ namespace Proyecto1_201325674.sol.com.analizador2
                                     Console.WriteLine("Semantico, posicion en Y se sale de la dimension " + "(" + "," + ")");
                                 }
                             }
-                            else {
+                            else
+                            {
                                 Console.WriteLine("Semantico, posicion en X se sale de la dimension");
                             }
                         }
 
-                    }
-                }
-                else if (string.Equals(item.tipo, "heroe", StringComparison.OrdinalIgnoreCase))
-                {
-                    if ((item.posIniX >= 0 && item.posIniX < alto) &&
-                        (item.posIniY >= 0 && item.posIniY < ancho))
-                    {
-                        item.tipoObjeto = 2;
-                        matrizLogica[item.posIniX, item.posIniY] = item;
-                    }
-                    else
-                    {
-                        Console.WriteLine("Semantico, heroe se sale del tablero");
                     }
                 }
                 else if (string.Equals(item.tipo, "meta", StringComparison.OrdinalIgnoreCase))
@@ -145,7 +135,7 @@ namespace Proyecto1_201325674.sol.com.analizador2
                     }
                     else
                     {
-                        Console.WriteLine("Semantico, +"+ item.objeto + " meta se sale del tablero");
+                        Console.WriteLine("Semantico, +" + item.objeto + " meta se sale del tablero");
                     }
                 }
                 else if (string.Equals(item.tipo, "enemigo", StringComparison.OrdinalIgnoreCase))
@@ -161,6 +151,45 @@ namespace Proyecto1_201325674.sol.com.analizador2
                         Console.WriteLine("Semantico, enemigo se sale del tablero");
                     }
                 }
+                else if (string.Equals(item.tipo, "bonus", StringComparison.OrdinalIgnoreCase))
+                {
+                    if ((item.posIniX >= 0 && item.posIniX < alto) &&
+                        (item.posIniY >= 0 && item.posIniY < ancho))
+                    {
+                        item.tipoObjeto = 5;
+                        matrizLogica[item.posIniX, item.posIniY] = item;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Semantico, bonus se sale del tablero");
+                    }
+                }
+                else if (string.Equals(item.tipo, "bomba", StringComparison.OrdinalIgnoreCase))
+                {
+                    if ((item.posIniX >= 0 && item.posIniX < alto) &&
+                        (item.posIniY >= 0 && item.posIniY < ancho))
+                    {
+                        item.tipoObjeto = 6;
+                        matrizLogica[item.posIniX, item.posIniY] = item;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Semantico, bomba se sale del tablero");
+                    }
+                }
+                else if (string.Equals(item.tipo, "arma", StringComparison.OrdinalIgnoreCase))
+                {
+                    if ((item.posIniX >= 0 && item.posIniX < alto) &&
+                        (item.posIniY >= 0 && item.posIniY < ancho))
+                    {
+                        item.tipoObjeto = 7;
+                        matrizLogica[item.posIniX, item.posIniY] = item;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Semantico, bomba se sale del tablero");
+                    }
+                }
                 else
                 {
                     Console.WriteLine(item.tipo + "no se agrego al tablero");
@@ -168,6 +197,9 @@ namespace Proyecto1_201325674.sol.com.analizador2
             }
             return matrizLogica;
         }
+
+        //public static Boolean validarPosicionEnMatrizLogica() {
+        //}
 
         public static String recorrerAST2(ParseTreeNode root)
         {
@@ -540,7 +572,7 @@ namespace Proyecto1_201325674.sol.com.analizador2
                 //Agregando heroes a la super lista, para cargar el escenario
                 if (objeto != null)
                 {
-                    milistaObjetosEscenario.Add(new SuperEscenario(tipo[0], objeto , Convert.ToInt32(posXIni), Convert.ToInt32(posXIni), Convert.ToInt32(posYIni), Convert.ToInt32(posYIni)));
+                    milistaObjetosEscenario.Add(new SuperEscenario(objeto.tipo, objeto , Convert.ToInt32(posXIni), Convert.ToInt32(posXIni), Convert.ToInt32(posYIni), Convert.ToInt32(posYIni)));
                     Console.WriteLine("<design> id => " + id[0] + " agregado a la lista super");
                 }
                 else
@@ -566,8 +598,23 @@ namespace Proyecto1_201325674.sol.com.analizador2
 
                 if (encontrado == true)
                 {
-                    milistaObjetosEscenario.Add(new SuperEscenario(tipo, escenario, Convert.ToInt32(ancho), Convert.ToInt32(alto)));
-                    Console.WriteLine("Fondo id => " + nombre + " agregado a la lista super");
+                    if (Convert.ToInt32(ancho) == Convert.ToInt32(alto))
+                    {
+                        milistaObjetosEscenario.Add(new SuperEscenario(tipo, escenario, Convert.ToInt32(ancho), Convert.ToInt32(alto)));
+                        Console.WriteLine("Fondo id => " + nombre + " agregado a la lista super");
+                    }
+                    else if (Convert.ToInt32(ancho) > Convert.ToInt32(alto))
+                    {
+                        milistaObjetosEscenario.Add(new SuperEscenario(tipo, escenario, Convert.ToInt32(ancho), Convert.ToInt32(ancho)));
+                        Console.WriteLine("Fondo id => " + nombre + " agregado a la lista super");
+                        Console.WriteLine("Semantico, no es n x n alto es menor que ancho.. alto = ancho");
+                    }
+                    else if (Convert.ToInt32(ancho) < Convert.ToInt32(alto))
+                    {
+                        milistaObjetosEscenario.Add(new SuperEscenario(tipo, escenario, Convert.ToInt32(alto), Convert.ToInt32(alto)));
+                        Console.WriteLine("Fondo id => " + nombre + " agregado a la lista super");
+                        Console.WriteLine("Semantico, no es nxn ancho es menor que alto, ahora ancho=alto");
+                    }
                 }
                 else {
                     Console.WriteLine("Sematico, no existe fondo con el id =>" + fondo[0]);

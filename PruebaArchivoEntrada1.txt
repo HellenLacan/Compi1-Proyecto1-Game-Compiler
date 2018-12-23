@@ -14,12 +14,8 @@
         x-imagen="/home/usuario/imagenes/fondo4.jpg";
    },
    {
-        x-nombre=fondo_3;
-        x-imagen="/home/usuario/imagenes/fond3.jpg";
-   },
-   {
-        x-nombre=fondo_1;
-        x-imagen="C:/Users/Hellen/Desktop/imagenes/fondo.jpg";
+        x-nombre=fondo3;
+        x-imagen="C:/Users/Hellen/Desktop/imagenes/fondo3.jpg";
    }
    </background>
 
@@ -46,40 +42,6 @@
         x-vida=50+50-1;
         x-tipo=x-HerOe;
         x-descripcion="Personaje principal del juego el cual tiene como objetivo salvar a la reyna";
-   },
-   {
-        x-nombre=Enemigo4;
-        x-imagen="C:/Users/Hellen/Desktop/imagenes/enemigo4.png";
-        x-vida=50+50;
-        x-tipo=x-enemigo;
-        x-descripcion="Personaje principal del juego el cual tiene como objetivo salvar a la reyna";
-        x-destruir = 10;
-   },
-   {
-        x-nombre=enemigo6;
-        x-imagen="C:/Users/Hellen/Desktop/imagenes/enemigo6.png";
-        x-vida=50+50;
-        x-tipo=x-enemigo;
-        x-descripcion="Personaje principal del juego el cual tiene como objetivo salvar a la reyna";
-        x-destruir = 10;
-   },{
-        x-nombre=heroe2;
-        x-imagen="C:/Users/Hellen/Desktop/imagenes/heroe6.png";
-        x-vida=50+50-1;
-        x-tipo=x-HerOe;
-        x-descripcion="Personaje principal del juego el cual tiene como objetivo salvar a la reyna";
-   },{
-        x-nombre=heroe3;
-        x-imagen="C:/Users/Hellen/Desktop/imagenes/heroe3.png";
-        x-vida=50+50-1;
-        x-tipo=x-HerOe;
-        x-descripcion="Personaje principal del juego el cual tiene como objetivo salvar a la reyna";
-   },{
-        x-nombre=heroe7;
-        x-imagen="C:/Users/Hellen/Desktop/imagenes/heroe7.png";
-        x-vida=50+50-1;
-        x-tipo=x-HerOe;
-        x-descripcion="Personaje principal del juego el cual tiene como objetivo salvar a la reyna";
    },{
         x-nombre=heroe8;
         x-imagen="C:/Users/Hellen/Desktop/imagenes/heroe8.png";
@@ -93,20 +55,20 @@
 <design>
    {
         x-nombre=bomba1;
-        x-imagen="/home/usuario/imagenes/fondo1.jpg";
+        x-imagen="C:/Users/Hellen/Desktop/imagenes/bomba.png";
         x-destruir=100+50;
         x-tipo=x-bomba;
    },
    {
         x-nombre=arma1;
-        x-imagen="/home/usuario/imagenes/fondo1.jpg";
+        x-imagen="C:/Users/Hellen/Desktop/imagenes/arma1.png";
         x-destruir=100;
         x-tipo=x-arma;
    } ,
    {
-        x-nombre=rosa_1;
+        x-nombre=estrella1;
         x-imagen="/home/usuario/imagenes/fondo1.jpg";
-        x-imagen="/home/usuario/imagenes/fondo1_1.jpg";
+        x-imagen="C:/Users/Hellen/Desktop/imagenes/estrella1.png";
         x-creditos=100;
         x-tipo=x-bonus;
    } ,
@@ -116,25 +78,21 @@
         x-tipo=x-bloque;
    } ,
    {
-        x-nombre=planta;
-        x-imagen="C:/Users/Hellen/Desktop/imagenes/planta.png";
-        x-tipo=x-bloque;
-   },
-   {
         x-nombre=salida2;
         x-imagen="C:/Users/Hellen/Desktop/imagenes/salida2.png";
         x-tipo=x-meta;
    } ,
    {
-        x-nombre=flor3;
-        x-imagen="/home/usuario/imagenes/flor2.jpg";
-       x-creditos=100;
+        x-nombre=flor1;
+        x-imagen="C:/Users/Hellen/Desktop/imagenes/flor1.png";
+        x-creditos=100;
         x-tipo=x-bonus;
    } ,
    {
-        x-nombre=flor2;
-        x-imagen="/home/usuario/imagenes/flor2.jpg";
-       x-creditos=200;
+        x-nombre=moneda1;
+        x-imagen="/home/usuario/imagenes/fondo1.jpg";
+        x-imagen="C:/Users/Hellen/Desktop/imagenes/moneda.png";
+        x-creditos=100;
         x-tipo=x-bonus;
    } 
    </design>

@@ -1,5 +1,10 @@
-<x-escenarios background=piedra; ancho = 25 ; alto = 25 >
+<x-escenarios background=fONdo3; ancho = 21 ; alto = 15 >
   <x-personajes>
+
+    <x-heroes>
+      heroe(4,8);
+    </x-heroes>
+  
     <x-villanos>
       enemigo1(15,8);
       enemigo2(12,8+8);
@@ -58,6 +63,31 @@
       suelo(30,5..11);
       suelo(25,0..20);
   </x-paredes>
+
+  <x-extras>
+
+    <x-bonus>
+      estrella1(10,10);
+      Diamante2(20,15);
+      Flor1(18,18);
+      honGo2(17,20);
+      moneda1(20,20);
+    </x-bonus>
+
+    <x-armas>      
+    bomba1(15,15);
+    bomba1(1,5);
+    bomba1(10,5);
+    bomba1(5,15);
+    bomba1(10,15);
+    arma1(14,15);
+    arma1(17,20);
+    </x-armas>
+
+  </x-extras>
+
+
+
 
 </x-escenarios>
 

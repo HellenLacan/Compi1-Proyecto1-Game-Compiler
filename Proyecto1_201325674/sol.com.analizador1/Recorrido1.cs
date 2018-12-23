@@ -496,7 +496,6 @@ namespace Practica1.sol.com.analyzer
             String ruta="";
             String tipo="";
             String bonus="";
-            Boolean condicion = false;
 
             for (int i =0; i<atributoDesign.Length; i++) {
                 String[] tipos = splitComa(atributoDesign[i]);
