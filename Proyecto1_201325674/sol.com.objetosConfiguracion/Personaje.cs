@@ -9,7 +9,7 @@ namespace Proyecto1_201325674.sol.com.archivoConfiguracion
     class Personaje
     {
         public string nombre { get; set; }
-        public String vida { get; set; }
+        public int vida { get; set; }
         public string rutaImagen { get; set; }
         public string tipo { get; set; }
         public String ptosDestruccion { get; set; }
@@ -19,7 +19,7 @@ namespace Proyecto1_201325674.sol.com.archivoConfiguracion
         }
         
         //Constructor para villano
-        public Personaje(String nombre, String vida, String rutaimagen, String tipo, String ptosDestruccion, String descripcion) {
+        public Personaje(String nombre, int vida, String rutaimagen, String tipo, String ptosDestruccion, String descripcion) {
             this.nombre = nombre;
             this.vida = vida;
             this.rutaImagen = rutaimagen;
@@ -29,7 +29,7 @@ namespace Proyecto1_201325674.sol.com.archivoConfiguracion
         }
 
         //Constructor para heroe
-        public Personaje(String nombre, String vida, String rutaimagen, String tipo, String descripcion)
+        public Personaje(String nombre, int vida, String rutaimagen, String tipo, String descripcion)
         {
             this.nombre = nombre;
             this.vida = vida;

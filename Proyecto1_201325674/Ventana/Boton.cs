@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -17,15 +18,14 @@ namespace Proyecto1_201325674.Ventana
         public int posY { get; set; }
 
         SuperEscenario[,] matrizLogica = Recorrido2.matrizLogica;
-        public Boton(int i, int j)
+        public Boton(int i, int j, int tamanioMatriz)
         {
 
-            int tamanio = 25;
-            this.Left = i * tamanio;
-            this.Top = j * tamanio;
-            this.Width = tamanio;
-            this.Height = tamanio;
-
+            int tamanioPanel = 629;
+            this.Left = i * (tamanioPanel / tamanioMatriz);
+            this.Top = j * (tamanioPanel / tamanioMatriz);
+            this.Width = tamanioPanel / tamanioMatriz;
+            this.Height = tamanioPanel / tamanioMatriz;
             this.posX = i;
             this.posY = j;
 
@@ -59,6 +59,7 @@ namespace Proyecto1_201325674.Ventana
                 {
                     this.Image = Image.FromFile(matrizLogica[i, j].personaje.rutaImagen);
                     this.SizeMode = PictureBoxSizeMode.StretchImage;
+                    Console.WriteLine("El enemigo esta en la posicion " + this.Location.X + "," + this.Location.Y);
                 }
                 catch (Exception e)
                 {
@@ -85,5 +86,43 @@ namespace Proyecto1_201325674.Ventana
 
             }
         }
+
+        public void moverEnemigo(Boton[,] matrizGrafica)
+        {
+            while (matrizLogica[Recorrido2.getPosXMeta(), Recorrido2.getPosYMeta()] != null)
+            {
+                for (int i = 0; i < Recorrido2.getAltoEscenario(); i++)
+                {
+                    for (int j = 0; j < Recorrido2.getAnchoEscenario(); j++)
+                    {
+                        if (matrizLogica[i, j] != null)
+                        {
+                            if (matrizLogica[i, j].tipoObjeto == 4)
+                            {
+                                if (matrizLogica[i, j + 1] == null)
+                                {
+                                    try
+                                    {
+                                        matrizGrafica[i, j + 1].Image = Image.FromFile(matrizLogica[i, j].personaje.rutaImagen);
+                                        matrizLogica[i, j + 1] = matrizLogica[i, j];
+                                        matrizGrafica[i, j + 1].SizeMode = PictureBoxSizeMode.StretchImage;
+                                        matrizLogica[i, j] = null;
+                                        matrizGrafica[i, j].Image = null;
+                                        matrizGrafica[i, j].BackColor = Color.Transparent;
+                                        Thread.Sleep(1000);
+                                    }
+                                    catch (Exception e)
+                                    {
+                                        Console.WriteLine("Ruta no existe");
+                                        Console.WriteLine("IOException source: {0}", e.Source);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
     }
 }

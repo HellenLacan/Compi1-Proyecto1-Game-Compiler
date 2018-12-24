@@ -42,6 +42,36 @@ namespace Proyecto1_201325674.sol.com.analizador2
             return alto;
         }
 
+        public static int getPosXMeta() {
+            {
+                int meta = 0;
+                foreach (SuperEscenario item in milistaObjetosEscenario)
+                {
+                    if (string.Equals(item.tipo, "meta", StringComparison.OrdinalIgnoreCase))
+                    {
+                        meta = item.posIniX;
+                    }
+                }
+                return meta;
+            }
+        }
+
+        public static int getPosYMeta()
+        {
+            {
+                int meta = 0;
+                foreach (SuperEscenario item in milistaObjetosEscenario)
+                {
+                    if (string.Equals(item.tipo, "meta", StringComparison.OrdinalIgnoreCase))
+                    {
+                        meta = item.posIniY;
+                    }
+                }
+                return meta;
+            }
+        }
+
+
         public static SuperEscenario[,] cargarMatrizLogica() {
             int ancho = 0;
             int alto = 0;

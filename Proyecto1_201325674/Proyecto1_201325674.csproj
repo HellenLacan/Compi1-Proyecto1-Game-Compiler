@@ -91,6 +91,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="Ventana\TableroLaberinto.resx">
       <DependentUpon>TableroLaberinto.cs</DependentUpon>
@@ -121,6 +122,15 @@
       <Isolated>False</Isolated>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\fondoImagenes.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\fondoImagenes1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\fondoImagenes2.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

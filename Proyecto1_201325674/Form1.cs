@@ -15,6 +15,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Threading;
 
 namespace Proyecto1_201325674
 {
@@ -26,29 +27,82 @@ namespace Proyecto1_201325674
         public String archivo1, archivo2;
         int posXHeroePrincipal = 0;
         int posYHeroePrincipal = 0;
+        int tamanioPanel = 629;
+        int noPasos = 0;
+        int ancho = 0;
+        int alto = 0;
+
         public Form1()
         {
             InitializeComponent();
+            panelSelectPersonaje.Visible = false;
+            panelSelectFondos.Visible = false;
+            this.BackgroundImageLayout = ImageLayout.Stretch;
+            BtnSeleccionarOtroPersonaje.Visible = false;
+            btnSelectOTroFondo.Visible = false;
 
         }
 
         int personajeSelect = -1;
+        int fondoPrincipalSelect = -1;
+
         //Boton Anterior heroes
+
+
+        private void BtnSeleccionarOtroPersonaje_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                principal.Image = Image.FromFile(Recorrido1.milistaHeroes[personajeSelect].rutaImagen);
+                lblNombrePersonaje.Text = Recorrido1.milistaHeroes[personajeSelect].nombre;
+                lblVidaPersonaje.Text = Recorrido1.milistaHeroes[personajeSelect].vida.ToString();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Ruta no existe");
+                Console.WriteLine("IOException source: {0}", ex.Source);
+            }
+        }
+
         private void button3_Click(object sender, EventArgs e)
         {
             if (personajeSelect == -1)
             {
                 personajeSelect = 0;
 
-                pictureBox1.Image = Image.FromFile(Recorrido1.milistaHeroes[personajeSelect].rutaImagen);
+                try
+                {
+                    pictureBox1.Image = Image.FromFile(Recorrido1.milistaHeroes[personajeSelect].rutaImagen);
+                    NombrePersonajeSelect.Text = Recorrido1.milistaHeroes[personajeSelect].nombre;
+                    vidaPersonajeSelect.Text = Recorrido1.milistaHeroes[personajeSelect].vida.ToString();
+                    richTextBox1.Text = Recorrido1.milistaHeroes[personajeSelect].descripcion;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Ruta no existe");
+                    Console.WriteLine("IOException source: {0}", ex.Source);
+                }
+
             }
             else if (personajeSelect >= 0)
             {
                 personajeSelect -= 1;
-                pictureBox1.Image = Image.FromFile(Recorrido1.milistaHeroes[personajeSelect].rutaImagen);
+                try
+                {
+                    pictureBox1.Image = Image.FromFile(Recorrido1.milistaHeroes[personajeSelect].rutaImagen);
+                    NombrePersonajeSelect.Text = Recorrido1.milistaHeroes[personajeSelect].nombre;
+                    vidaPersonajeSelect.Text = Recorrido1.milistaHeroes[personajeSelect].vida.ToString();
+                    richTextBox1.Text = Recorrido1.milistaHeroes[personajeSelect].descripcion;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Ruta no existe");
+                    Console.WriteLine("IOException source: {0}", ex.Source);
+                }
             }
 
             habilitarBotonesHeroes(personajeSelect);
+            BtnSeleccionarOtroPersonaje.Visible = true;
         }
 
         //Boton Siguiente heroes
@@ -61,6 +115,9 @@ namespace Proyecto1_201325674
                 try
                 {
                     pictureBox1.Image = Image.FromFile(Recorrido1.milistaHeroes[personajeSelect].rutaImagen);
+                    NombrePersonajeSelect.Text = Recorrido1.milistaHeroes[personajeSelect].nombre;
+                    vidaPersonajeSelect.Text = Recorrido1.milistaHeroes[personajeSelect].vida.ToString();
+                    richTextBox1.Text = Recorrido1.milistaHeroes[personajeSelect].descripcion;
                 }
                 catch (Exception ex)
                 {
@@ -75,6 +132,9 @@ namespace Proyecto1_201325674
                 try
                 {
                     pictureBox1.Image = Image.FromFile(Recorrido1.milistaHeroes[personajeSelect].rutaImagen);
+                    NombrePersonajeSelect.Text = Recorrido1.milistaHeroes[personajeSelect].nombre;
+                    vidaPersonajeSelect.Text = Recorrido1.milistaHeroes[personajeSelect].vida.ToString();
+                    richTextBox1.Text = Recorrido1.milistaHeroes[personajeSelect].descripcion;
                 }
                 catch (Exception ex)
                 {
@@ -84,7 +144,7 @@ namespace Proyecto1_201325674
             }
 
             habilitarBotonesHeroes(personajeSelect);
-
+            BtnSeleccionarOtroPersonaje.Visible = true;
         }
 
         private void habilitarBotonesHeroes(int id)
@@ -107,9 +167,24 @@ namespace Proyecto1_201325674
             }
         }
 
-        private void button5_Click(object sender, EventArgs e)
+        private void habilitarBotonesFondo(int id)
         {
+            if (id == 0 && (id != Recorrido1.miListaFondos.Count - 1))
+            {
+                btnFondoAnterior.Enabled = false;
+                btnFondoSiguiente.Enabled = true;
+            }
+            else if (id != 0 && (id == Recorrido1.miListaFondos.Count - 1))
+            {
+                btnFondoAnterior.Enabled = true;
+                btnFondoSiguiente.Enabled = false;
 
+            }
+            else
+            {
+                btnFondoAnterior.Enabled = true;
+                btnFondoSiguiente.Enabled = true;
+            }
         }
 
         private void ejecutarArchivoConfiguracionToolStripMenuItem_Click(object sender, EventArgs e)
@@ -200,8 +275,6 @@ namespace Proyecto1_201325674
         private void ejecutarJuegoToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
             this.matrizLogica = Recorrido2.cargarMatrizLogica();
-            int ancho = 0;
-            int alto = 0;
 
             foreach (SuperEscenario item in Recorrido2.milistaObjetosEscenario)
             {
@@ -209,11 +282,15 @@ namespace Proyecto1_201325674
                 {
                     ancho = item.ancho + 1;
                     alto = item.alto + 1;
-
+                    noPasos = (629 / ancho);
                     try
                     {
                         Image image1 = Image.FromFile(item.fondo.ruta);
                         panelEscenario.BackgroundImage = image1;
+
+                        //Cargando el fondo para la lista de fondos a seleccionar
+                        pictureBoxFondoSelect.Image = Image.FromFile(item.fondo.ruta);
+
                     }
                     catch (Exception ex)
                     {
@@ -230,32 +307,18 @@ namespace Proyecto1_201325674
             {
                 for (int j = 0; j < ancho; j++)
                 {
-                    Boton miBoton = new Boton(i, j);
+                    Boton miBoton = new Boton(i, j, alto);
                     matrizGrafica[i, j] = miBoton;
                     panelEscenario.Controls.Add(miBoton);
 
                 }
             }
 
-            //for (int i = 0; i < alto; i++)
-            //{
-            //    for (int j = 0; j < ancho; j++)
-            //    {
-            //        if (matrizLogica[i, j] != null)
-            //        {
-            //            if (matrizLogica[i, j].tipo == "heroe")
-            //            {
-            //                matrizGrafica[i, j].Focus();
-            //            }
-            //        }
-            //    }
-            //}
-
             foreach (SuperEscenario item in Recorrido2.milistaObjetosEscenario)
             {
                 if (string.Equals(item.tipo, "heroe", StringComparison.OrdinalIgnoreCase))
                 {
-                    int tamanio = 25;
+                    //int tamanio = 25;
 
                     if ((item.posIniX >= 0 && item.posIniX < alto) &&
                         (item.posIniY >= 0 && item.posIniY < ancho))
@@ -266,14 +329,23 @@ namespace Proyecto1_201325674
                         posXHeroePrincipal = item.posIniX;
                         posYHeroePrincipal = item.posIniY;
                         principal = new PictureBox();
-                        principal.Left = item.posIniX * tamanio;
-                        principal.Top = item.posIniY * tamanio;
-                        principal.Width = tamanio;
-                        principal.Height = tamanio;
+                        principal.Left = item.posIniX * (tamanioPanel/ancho);
+                        principal.Top = item.posIniY * (tamanioPanel / ancho);
+                        principal.Width = (tamanioPanel / ancho);
+                        principal.Height = (tamanioPanel / ancho);
 
                         try
                         {
                             principal.Image = Image.FromFile(item.personaje.rutaImagen);
+                            lblNombrePersonaje.Text = item.personaje.nombre;
+                            lblVidaPersonaje.Text = item.personaje.vida.ToString();
+
+                            //Para la imagen de los personajes que se seleccionan
+                            pictureBox1.Image = Image.FromFile(item.personaje.rutaImagen);
+                            NombrePersonajeSelect.Text = item.personaje.nombre;
+                            vidaPersonajeSelect.Text = item.personaje.vida.ToString();
+                            richTextBox1.Text = item.personaje.descripcion;
+
                         }
                         catch (Exception ex)
                         {
@@ -294,6 +366,21 @@ namespace Proyecto1_201325674
                     }
                 }
             }
+
+            panelSelectPersonaje.Visible = true;
+            panelSelectFondos.Visible = true;
+            //try
+            //{
+            //    pictureBox1.Image = Image.FromFile(Recorrido1.milistaHeroes[personajeSelect].rutaImagen);
+            //}
+            //catch (Exception ex)
+            //{
+            //    Console.WriteLine("Ruta no existe");
+            //    Console.WriteLine("IOException source: {0}", ex.Source);
+            //}
+
+            //Thread misEnemigos = new Thread(moverEnemigo);
+            //misEnemigos.Start();
         }
 
         private void moverHeroePrincipal(object sender, KeyEventArgs e)
@@ -305,7 +392,7 @@ namespace Proyecto1_201325674
                     {
                         if (matrizLogica[posXHeroePrincipal - 1, posYHeroePrincipal] == null)
                         {
-                            principal.Location = new Point(principal.Location.X - 25, principal.Location.Y);
+                            principal.Location = new Point(principal.Location.X - noPasos, principal.Location.Y);
                             posXHeroePrincipal--;
                             //Si es bomba
                         } else if (matrizLogica[posXHeroePrincipal - 1, posYHeroePrincipal].tipoObjeto == 6) {
@@ -328,7 +415,7 @@ namespace Proyecto1_201325674
                         if (matrizLogica[posXHeroePrincipal + 1, posYHeroePrincipal] == null)
                         {
                             posXHeroePrincipal++;
-                            principal.Location = new Point(principal.Location.X + 25, principal.Location.Y);
+                            principal.Location = new Point(principal.Location.X + noPasos, principal.Location.Y);
                         }
                         //Si es bomba
                         else if (matrizLogica[posXHeroePrincipal + 1, posYHeroePrincipal].tipoObjeto == 6)
@@ -352,7 +439,7 @@ namespace Proyecto1_201325674
                     {
                         if (matrizLogica[posXHeroePrincipal, posYHeroePrincipal - 1] == null)
                         {
-                            principal.Location = new Point(principal.Location.X, principal.Location.Y - 25);
+                            principal.Location = new Point(principal.Location.X, principal.Location.Y - noPasos);
                             posYHeroePrincipal--;
                         }//Si es bomba
                         else if (matrizLogica[posXHeroePrincipal, posYHeroePrincipal -1].tipoObjeto == 6)
@@ -376,7 +463,7 @@ namespace Proyecto1_201325674
                     {
                         if (matrizLogica[posXHeroePrincipal, posYHeroePrincipal + 1] == null)
                         {
-                            principal.Location = new Point(principal.Location.X, principal.Location.Y + 25);
+                            principal.Location = new Point(principal.Location.X, principal.Location.Y + noPasos);
                             posYHeroePrincipal++;
                         }//Si es bomba
                         else if (matrizLogica[posXHeroePrincipal, posYHeroePrincipal+1].tipoObjeto == 6)
@@ -396,26 +483,238 @@ namespace Proyecto1_201325674
             }
         }
 
+        public void moverEnemigo()
+        {
+
+            while (matrizLogica[Recorrido2.getPosXMeta(), Recorrido2.getPosYMeta()] != null)
+            {
+                for (int i = 0; i < alto; i++)
+                {
+                    for (int j = 0; j < ancho; j++)
+                    {
+                        if (matrizLogica[i, j] != null)
+                        {
+                            if (matrizLogica[i, j].tipoObjeto == 4)
+                            {
+                                Random rnd = new Random();
+                                if (rnd.Next(99) + 1 > 60)
+                                    return;
+                                int dx = (posXHeroePrincipal*(tamanioPanel/ancho)) - matrizGrafica[i,j].Location.X;
+                                int dy = (posYHeroePrincipal*(tamanioPanel/ancho)) - matrizGrafica[i, j].Location.Y;
+
+                                if (Math.Abs(dx) > Math.Abs(dy))
+                                {
+                                    int posXEnemigo = matrizGrafica[i, j].Location.X - Math.Sign(dx);
+                                    Console.WriteLine("Enemigo esta en X:" + posXEnemigo);
+                                }
+                                else {
+                                    int posYEnemigo = matrizGrafica[i, j].Location.Y - Math.Sign(dy);
+                                    Console.WriteLine("Enemigo esta en Y en: " +posYEnemigo);
+                                }
+
+                                //if (matrizLogica[i, j + 1] == null)
+                                //{
+
+                                //    try
+                                //    {
+                                //        matrizGrafica[i, j + 1].Image = Image.FromFile(matrizLogica[i, j].personaje.rutaImagen);
+                                //        matrizLogica[i, j + 1] = matrizLogica[i, j];
+                                //        matrizGrafica[i, j + 1].SizeMode = PictureBoxSizeMode.StretchImage;
+                                //        matrizLogica[i, j] = null;
+                                //        matrizGrafica[i, j].Image = null;
+                                //        matrizGrafica[i, j].BackColor = Color.Transparent;
+                                //        Thread.Sleep(1000);
+                                //    }
+                                //    catch (Exception e)
+                                //    {
+                                //        Console.WriteLine("Ruta no existe");
+                                //        Console.WriteLine("IOException source: {0}", e.Source);
+                                //    }
+                                //}
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        private void buttonStart_Click(object sender, EventArgs e)
+        {
+            //int noEnemigos= 0;
+            //for (int i= 0; i < Recorrido2.getAltoEscenario(); i++) {
+            //    for (int j = 0; j < Recorrido2.getAltoEscenario(); j++)
+            //    {
+            //        if (matrizLogica[i, j] != null) {
+
+            //            if (matrizLogica[i, j].tipoObjeto == 4)
+            //            {
+                             Thread misEnemigos = new Thread(moverEnemigo);
+                            misEnemigos.Start();
+                //            noEnemigos++;
+                ////        }
+                ////    }
+                ////}
+            //}
+
+            //Thread[] misEnemigos = new Thread[noEnemigos];
+
+            //for (int i = 0; i < Recorrido2.getAltoEscenario(); i++)
+            //{
+            //    for (int j = 0; j < Recorrido2.getAltoEscenario(); j++)
+            //    {
+            //        if (matrizLogica[i, j] != null)
+            //        {
+            //            if (matrizLogica[i, j].tipoObjeto == 4)
+            //            {
+            //                if (noEnemigos > 0) {
+            //                    misEnemigos[noEnemigos-1] = new Thread(moverEnemigo);
+            //                    misEnemigos[noEnemigos-1].Start();
+            //                    noEnemigos--;
+            //                }
+            //            }
+            //        }
+            //    }
+            //}
+
+        }
+
+        private void Form1_Click(object sender, EventArgs e)
+        {
+            principal.Focus();
+        }
+
+        private void panelEscenario_MouseClick(object sender, MouseEventArgs e)
+        {
+            principal.Focus();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnFondoAnterior_Click(object sender, EventArgs e)
+        {
+            if (fondoPrincipalSelect == -1)
+            {
+                fondoPrincipalSelect = 0;
+
+                try
+                {
+                    pictureBoxFondoSelect.Image = Image.FromFile(Recorrido1.miListaFondos[fondoPrincipalSelect].ruta);
+                    //NombrePersonajeSelect.Text = Recorrido1.miListaFondos[fondoPrincipalSelect].identificador;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Ruta no existe");
+                    Console.WriteLine("IOException source: {0}", ex.Source);
+                }
+
+            }
+            else if (fondoPrincipalSelect >= 0)
+            {
+                fondoPrincipalSelect -= 1;
+                try
+                {
+                    pictureBoxFondoSelect.Image = Image.FromFile(Recorrido1.miListaFondos[fondoPrincipalSelect].ruta);
+                    //NombrePersonajeSelect.Text = Recorrido1.milistaHeroes[personajeSelect].nombre;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Ruta no existe");
+                    Console.WriteLine("IOException source: {0}", ex.Source);
+                }
+            }
+
+            habilitarBotonesFondo(fondoPrincipalSelect);
+            btnSelectOTroFondo.Visible = true;
+        }
+
+        private void panelSelectFondos_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void btnFondoSiguiente_Click(object sender, EventArgs e)
+        {
+            if (fondoPrincipalSelect == -1)
+            {
+                fondoPrincipalSelect = 0;
+
+                try
+                {
+                    pictureBoxFondoSelect.Image = Image.FromFile(Recorrido1.miListaFondos[fondoPrincipalSelect].ruta);
+                    //NombrePersonajeSelect.Text = Recorrido1.milistaHeroes[fondoPrincipalSelect].nombre;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Ruta no existe");
+                    Console.WriteLine("IOException source: {0}", ex.Source);
+                }
+
+            }
+            else if (fondoPrincipalSelect <= Recorrido1.miListaFondos.Count - 1)
+            {
+                fondoPrincipalSelect += 1;
+                try
+                {
+                    pictureBoxFondoSelect.Image = Image.FromFile(Recorrido1.miListaFondos[fondoPrincipalSelect].ruta);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Ruta no existe");
+                    Console.WriteLine("IOException source: {0}", ex.Source);
+                }
+            }
+
+            habilitarBotonesFondo(fondoPrincipalSelect);
+            btnSelectOTroFondo.Visible = true;
+        }
+
+        private void btnSelectOTroFondo_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panelSelectPersonaje_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void btnSelectOTroFondo_Click_1(object sender, EventArgs e)
+        {
+            try
+            {
+                panelEscenario.BackgroundImage = Image.FromFile(Recorrido1.miListaFondos[fondoPrincipalSelect].ruta);
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Ruta no existe");
+                Console.WriteLine("IOException source: {0}", ex.Source);
+            }
+        }
+
         public void agregarOquitarVida(int posX, int posY, String direccion, String tipo) {
             matrizLogica[posX, posY] = null;
             matrizGrafica[posX, posY].Image = null;
 
             if (string.Equals(direccion, "arriba", StringComparison.OrdinalIgnoreCase)) {
-                principal.Location = new Point(principal.Location.X, principal.Location.Y - 25);
+                principal.Location = new Point(principal.Location.X, principal.Location.Y - noPasos);
                 Console.WriteLine("Heroe ha pasado por" + tipo);
                 posYHeroePrincipal--;
             }
             else if (string.Equals(direccion, "abajo", StringComparison.OrdinalIgnoreCase))  {
-                principal.Location = new Point(principal.Location.X, principal.Location.Y + 25);
+                principal.Location = new Point(principal.Location.X, principal.Location.Y + noPasos);
                 Console.WriteLine("Heroe ha pasado por" + tipo);
                 posYHeroePrincipal++;
             }
             else if (string.Equals(direccion, "izquierda", StringComparison.OrdinalIgnoreCase)) {
-                principal.Location = new Point(principal.Location.X - 25, principal.Location.Y);
+                principal.Location = new Point(principal.Location.X - noPasos, principal.Location.Y);
                 Console.WriteLine("Heroe ha pasado por" + tipo);
                 posXHeroePrincipal--;
             } else if (string.Equals(direccion, "derecha", StringComparison.OrdinalIgnoreCase)) {
-                principal.Location = new Point(principal.Location.X + 25, principal.Location.Y);
+                principal.Location = new Point(principal.Location.X + noPasos, principal.Location.Y);
                 Console.WriteLine("Heroe ha pasado por" + tipo);
                 posXHeroePrincipal++;
             }

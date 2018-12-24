@@ -1,13 +1,21 @@
 <configuration>
 
-   <background> 
+   <background>
    {
-        x-nombre=fondo_1;
-        x-imagen="C:/Users/Hellen/Desktop/imagenes/pared.png";
+        x-nombre=fondo;
+        x-imagen="C:/Users/Hellen/Desktop/imagenes/fondo.jpg";
    },
    {
-        x-nombre=piedra;
-        x-imagen="C:/Users/Hellen/Desktop/imagenes/piedra.jpg";
+        x-nombre=fondo2;
+        x-imagen="C:/Users/Hellen/Desktop/imagenes/fondo2.jpg";
+   }, 
+   {
+        x-nombre=fondo5;
+        x-imagen="C:/Users/Hellen/Desktop/imagenes/fondo5.jpg";
+   },
+   {
+        x-nombre=fondo6;
+        x-imagen="C:/Users/Hellen/Desktop/imagenes/fondo6.jpg";
    },
    {
         x-nombre=fondo_4;
@@ -21,8 +29,8 @@
         x-imagen="C:/Users/Hellen/Desktop/imagenes/fondo4.jpeg";
    },
    {
-        x-nombre=fondo5;
-        x-imagen="C:/Users/Hellen/Desktop/imagenes/fondo5.jpg";
+        x-nombre=fondoAmarillo;
+        x-imagen="C:/Users/Hellen/Desktop/imagenes/fondoAmarillo.jpg";
    },
    {
         x-nombre=fondo6;
@@ -34,11 +42,11 @@
    },
    {
         x-nombre=fondo8;
-        x-imagen="C:/Users/Hellen/Desktop/imagenes/fondo8.jpg";
+        x-imagen="C:/Users/Hellen/Desktop/imagenes/fondo8.png";
    },
    {
         x-nombre=fondo9;
-        x-imagen="C:/Users/Hellen/Desktop/imagenes/fondo09.jpg";
+        x-imagen="C:/Users/Hellen/Desktop/imagenes/fondo9.png";
    },
    {
         x-nombre=fondo10;
@@ -54,7 +62,7 @@
    {
         x-nombre=Enemigo1;
         x-imagen="C:/Users/Hellen/Desktop/imagenes/enemigo1.png";
-        x-vida=50+50;
+        x-vida=50+15;
         x-tipo=x-enemigo;
         x-descripcion="Personaje principal del juego el cual tiene como objetivo salvar a la reyna";
         x-destruir = 10;
@@ -62,23 +70,47 @@
    {
         x-nombre=Enemigo2;
         x-imagen="C:/Users/Hellen/Desktop/imagenes/enemigo2.png";
-        x-vida=50+50;
+        x-vida=50+5;
         x-tipo=x-enemigo;
         x-descripcion="Personaje principal del juego el cual tiene como objetivo salvar a la reyna";
         x-destruir = 10;
    },
    {
-        x-nombre=heroe;
-        x-imagen="C:/Users/Hellen/Desktop/imagenes/heroe5.png";
-        x-vida=50+50-1;
+        x-nombre=Mario;
+        x-imagen="C:/Users/Hellen/Desktop/imagenes/heroe.png";
+        x-vida=50+65;
         x-tipo=x-HerOe;
-        x-descripcion="Personaje principal del juego el cual tiene como objetivo salvar a la reyna";
+        x-descripcion="Mario... personaje principal del juego el cual tiene como objetivo salvar a la reyna";
    },{
-        x-nombre=heroe8;
-        x-imagen="C:/Users/Hellen/Desktop/imagenes/heroe8.png";
-        x-vida=50+50-1;
+        x-nombre=kirby;
+        x-imagen="C:/Users/Hellen/Desktop/imagenes/heroe4.png";
+        x-vida=50+25;
         x-tipo=x-HerOe;
-        x-descripcion="Personaje principal del juego el cual tiene como objetivo salvar a la reyna";
+        x-descripcion="kirby... Personaje principal del juego el cual tiene como objetivo salvar a la reyna";
+   },{
+        x-nombre=Yoshi;
+        x-imagen="C:/Users/Hellen/Desktop/imagenes/heroe5.png";
+        x-vida=0;
+        x-tipo=x-HerOe;
+        x-descripcion="Yoshi... Personaje principal del juego el cual tiene como objetivo salvar a la reyna";
+   },{
+        x-nombre=Luigi;
+        x-imagen="C:/Users/Hellen/Desktop/imagenes/heroe6.png";
+        x-vida=97;
+        x-tipo=x-HerOe;
+        x-descripcion="Luigi...Personaje principal del juego el cual tiene como objetivo salvar a la reyna";
+   },{
+        x-nombre=Toad;
+        x-imagen="C:/Users/Hellen/Desktop/imagenes/heroe7.png";
+        x-vida=50+50+2;
+        x-tipo=x-HerOe;
+        x-descripcion="Toad... Personaje principal del juego el cual tiene";
+   },{
+        x-nombre=peach;
+        x-imagen="C:/Users/Hellen/Desktop/imagenes/heroe8.png";
+        x-vida=50+50;
+        x-tipo=x-HerOe;
+        x-descripcion="Peach...Personaje principal del jue";
    }
    </figure>
 

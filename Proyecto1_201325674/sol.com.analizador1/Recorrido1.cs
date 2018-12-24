@@ -330,6 +330,7 @@ namespace Practica1.sol.com.analyzer
             String tipoPersonaje = "";
             String descripcion = "";
             String destruir = "";
+            int vidaActual=0;
 
             String[] personaje = splitPtoYcoma(lista);
 
@@ -348,7 +349,7 @@ namespace Practica1.sol.com.analyzer
                 else if (string.Equals(tipo[0], "vida", StringComparison.OrdinalIgnoreCase))
                 {
                     vida = valor[0];
-                    int vidaActual = Convert.ToInt32(vida);
+                    vidaActual = Convert.ToInt32(vida);
                     if (vidaActual <= 0) {
                         Console.WriteLine("Semantico La vida es " + vidaActual + " y se ha cambiado a 1");
                         vidaActual = 1;
@@ -394,11 +395,11 @@ namespace Practica1.sol.com.analyzer
             {
                 if (milistaHeroes.Count != 0)
                 {
-                    buscarPersonaje(tipoPersonaje, nombre, vida, imagen, descripcion, destruir);
+                    buscarPersonaje(tipoPersonaje, nombre, vidaActual, imagen, descripcion, destruir);
                 }
                 else
                 {
-                    milistaHeroes.Add(new Personaje(nombre, vida, imagen, tipoPersonaje, destruir, descripcion));
+                    milistaHeroes.Add(new Personaje(nombre, vidaActual, imagen, tipoPersonaje, destruir, descripcion));
                 }
             }
             else if (string.Equals(tipoPersonaje, "enemigo", StringComparison.OrdinalIgnoreCase))
@@ -406,11 +407,11 @@ namespace Practica1.sol.com.analyzer
 
                 if (milistaEnemigos.Count != 0)
                 {
-                    buscarPersonaje(tipoPersonaje, nombre, vida, imagen, descripcion, destruir);
+                    buscarPersonaje(tipoPersonaje, nombre, vidaActual, imagen, descripcion, destruir);
                 }
                 else
                 {
-                    milistaEnemigos.Add(new Personaje(nombre, vida, imagen, tipoPersonaje, destruir, descripcion));
+                    milistaEnemigos.Add(new Personaje(nombre, vidaActual, imagen, tipoPersonaje, destruir, descripcion));
                 }
             }
             else {
@@ -418,7 +419,7 @@ namespace Practica1.sol.com.analyzer
             }
         }
 
-        public static bool buscarPersonaje(String tipo, String id, String vida, String imagen, String descripcion, String destruir) {
+        public static bool buscarPersonaje(String tipo, String id, int vida, String imagen, String descripcion, String destruir) {
 
             if (string.Equals(tipo, "heroe", StringComparison.OrdinalIgnoreCase))
             {
@@ -471,8 +472,8 @@ namespace Practica1.sol.com.analyzer
             }
         }
 
-        public static void actualizarDatosPersonajes(String vida, String nombre, String imagen, String descripcion, String ptosDestruir, Personaje item, String tipo) {
-            if (vida != "") {
+        public static void actualizarDatosPersonajes(int vida, String nombre, String imagen, String descripcion, String ptosDestruir, Personaje item, String tipo) {
+            if (vida != 0) {
                 item.vida = vida;
             }
             if (imagen != "")

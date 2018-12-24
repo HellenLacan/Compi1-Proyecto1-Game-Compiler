@@ -29,10 +29,6 @@
         private void InitializeComponent()
         {
             this.richTextBox2 = new System.Windows.Forms.RichTextBox();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.archivoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ejecutarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -44,60 +40,44 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.panelEscenario = new System.Windows.Forms.Panel();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.buttonStart = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.lblNombrePersonaje = new System.Windows.Forms.Label();
+            this.lblVidaPersonaje = new System.Windows.Forms.Label();
+            this.panelSelectFondos = new System.Windows.Forms.Panel();
+            this.label6 = new System.Windows.Forms.Label();
+            this.btnSelectOTroFondo = new System.Windows.Forms.Button();
+            this.pictureBoxFondoSelect = new System.Windows.Forms.PictureBox();
+            this.btnFondoSiguiente = new System.Windows.Forms.Button();
+            this.btnFondoAnterior = new System.Windows.Forms.Button();
+            this.panelSelectPersonaje = new System.Windows.Forms.Panel();
+            this.BtnSeleccionarOtroPersonaje = new System.Windows.Forms.Button();
+            this.vidaPersonajeSelect = new System.Windows.Forms.Label();
+            this.NombrePersonajeSelect = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.panelSelectFondos.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFondoSelect)).BeginInit();
+            this.panelSelectPersonaje.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // richTextBox2
             // 
-            this.richTextBox2.Location = new System.Drawing.Point(42, 459);
+            this.richTextBox2.Location = new System.Drawing.Point(951, 453);
             this.richTextBox2.Name = "richTextBox2";
             this.richTextBox2.Size = new System.Drawing.Size(228, 100);
             this.richTextBox2.TabIndex = 1;
             this.richTextBox2.Text = "";
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(59, 188);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 5;
-            this.button3.Text = "Anterior";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(135, 188);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 23);
-            this.button4.TabIndex = 6;
-            this.button4.Text = "Siguiente";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
-            // 
-            // panel1
-            // 
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.pictureBox1);
-            this.panel1.Controls.Add(this.button4);
-            this.panel1.Controls.Add(this.button3);
-            this.panel1.Location = new System.Drawing.Point(12, 62);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(285, 369);
-            this.panel1.TabIndex = 7;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Location = new System.Drawing.Point(59, 16);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(151, 146);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 8;
-            this.pictureBox1.TabStop = false;
             // 
             // menuStrip1
             // 
@@ -107,6 +87,7 @@
             this.ayudaToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
             this.menuStrip1.Size = new System.Drawing.Size(1171, 24);
             this.menuStrip1.TabIndex = 8;
             this.menuStrip1.Text = "menuStrip1";
@@ -161,7 +142,7 @@
             this.tabControl1.Location = new System.Drawing.Point(312, 27);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(834, 609);
+            this.tabControl1.Size = new System.Drawing.Size(636, 653);
             this.tabControl1.TabIndex = 9;
             // 
             // tabPage1
@@ -170,7 +151,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(826, 583);
+            this.tabPage1.Size = new System.Drawing.Size(628, 627);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "tabPage1";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -178,41 +159,301 @@
             // panelEscenario
             // 
             this.panelEscenario.AutoScroll = true;
-            this.panelEscenario.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelEscenario.Location = new System.Drawing.Point(3, 3);
+            this.panelEscenario.Location = new System.Drawing.Point(0, 0);
             this.panelEscenario.Name = "panelEscenario";
-            this.panelEscenario.Size = new System.Drawing.Size(820, 577);
+            this.panelEscenario.Size = new System.Drawing.Size(629, 629);
             this.panelEscenario.TabIndex = 1;
+            this.panelEscenario.MouseClick += new System.Windows.Forms.MouseEventHandler(this.panelEscenario_MouseClick);
             // 
             // tabPage2
             // 
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(826, 583);
+            this.tabPage2.Size = new System.Drawing.Size(628, 627);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Visor";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // buttonStart
+            // 
+            this.buttonStart.Location = new System.Drawing.Point(954, 641);
+            this.buttonStart.Name = "buttonStart";
+            this.buttonStart.Size = new System.Drawing.Size(78, 35);
+            this.buttonStart.TabIndex = 10;
+            this.buttonStart.Text = "Start";
+            this.buttonStart.UseVisualStyleBackColor = true;
+            this.buttonStart.Click += new System.EventHandler(this.buttonStart_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label1.Location = new System.Drawing.Point(954, 49);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(94, 22);
+            this.label1.TabIndex = 11;
+            this.label1.Text = "Personaje:";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.SystemColors.HighlightText;
+            this.label2.Location = new System.Drawing.Point(954, 79);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(51, 22);
+            this.label2.TabIndex = 12;
+            this.label2.Text = "Vida:";
+            // 
+            // lblNombrePersonaje
+            // 
+            this.lblNombrePersonaje.AutoSize = true;
+            this.lblNombrePersonaje.BackColor = System.Drawing.Color.Transparent;
+            this.lblNombrePersonaje.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNombrePersonaje.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.lblNombrePersonaje.Location = new System.Drawing.Point(1054, 49);
+            this.lblNombrePersonaje.Name = "lblNombrePersonaje";
+            this.lblNombrePersonaje.Size = new System.Drawing.Size(0, 22);
+            this.lblNombrePersonaje.TabIndex = 13;
+            // 
+            // lblVidaPersonaje
+            // 
+            this.lblVidaPersonaje.AutoSize = true;
+            this.lblVidaPersonaje.BackColor = System.Drawing.Color.Transparent;
+            this.lblVidaPersonaje.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblVidaPersonaje.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.lblVidaPersonaje.Location = new System.Drawing.Point(1054, 79);
+            this.lblVidaPersonaje.Name = "lblVidaPersonaje";
+            this.lblVidaPersonaje.Size = new System.Drawing.Size(0, 22);
+            this.lblVidaPersonaje.TabIndex = 14;
+            // 
+            // panelSelectFondos
+            // 
+            this.panelSelectFondos.BackColor = System.Drawing.Color.Transparent;
+            this.panelSelectFondos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelSelectFondos.Controls.Add(this.label6);
+            this.panelSelectFondos.Controls.Add(this.btnSelectOTroFondo);
+            this.panelSelectFondos.Controls.Add(this.pictureBoxFondoSelect);
+            this.panelSelectFondos.Controls.Add(this.btnFondoSiguiente);
+            this.panelSelectFondos.Controls.Add(this.btnFondoAnterior);
+            this.panelSelectFondos.Location = new System.Drawing.Point(12, 391);
+            this.panelSelectFondos.Name = "panelSelectFondos";
+            this.panelSelectFondos.Size = new System.Drawing.Size(285, 285);
+            this.panelSelectFondos.TabIndex = 15;
+            this.panelSelectFondos.Paint += new System.Windows.Forms.PaintEventHandler(this.panelSelectFondos_Paint);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft YaHei UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(88, 12);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(81, 26);
+            this.label6.TabIndex = 21;
+            this.label6.Text = "Fondos";
+            // 
+            // btnSelectOTroFondo
+            // 
+            this.btnSelectOTroFondo.Location = new System.Drawing.Point(93, 255);
+            this.btnSelectOTroFondo.Name = "btnSelectOTroFondo";
+            this.btnSelectOTroFondo.Size = new System.Drawing.Size(75, 23);
+            this.btnSelectOTroFondo.TabIndex = 20;
+            this.btnSelectOTroFondo.Text = "Seleccionar";
+            this.btnSelectOTroFondo.UseVisualStyleBackColor = true;
+            this.btnSelectOTroFondo.Click += new System.EventHandler(this.btnSelectOTroFondo_Click_1);
+            // 
+            // pictureBoxFondoSelect
+            // 
+            this.pictureBoxFondoSelect.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.pictureBoxFondoSelect.Location = new System.Drawing.Point(3, 41);
+            this.pictureBoxFondoSelect.Name = "pictureBoxFondoSelect";
+            this.pictureBoxFondoSelect.Size = new System.Drawing.Size(277, 166);
+            this.pictureBoxFondoSelect.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBoxFondoSelect.TabIndex = 8;
+            this.pictureBoxFondoSelect.TabStop = false;
+            // 
+            // btnFondoSiguiente
+            // 
+            this.btnFondoSiguiente.Location = new System.Drawing.Point(135, 226);
+            this.btnFondoSiguiente.Name = "btnFondoSiguiente";
+            this.btnFondoSiguiente.Size = new System.Drawing.Size(75, 23);
+            this.btnFondoSiguiente.TabIndex = 6;
+            this.btnFondoSiguiente.Text = "Siguiente";
+            this.btnFondoSiguiente.UseVisualStyleBackColor = true;
+            this.btnFondoSiguiente.Click += new System.EventHandler(this.btnFondoSiguiente_Click);
+            // 
+            // btnFondoAnterior
+            // 
+            this.btnFondoAnterior.Location = new System.Drawing.Point(59, 226);
+            this.btnFondoAnterior.Name = "btnFondoAnterior";
+            this.btnFondoAnterior.Size = new System.Drawing.Size(75, 23);
+            this.btnFondoAnterior.TabIndex = 5;
+            this.btnFondoAnterior.Text = "Anterior";
+            this.btnFondoAnterior.UseVisualStyleBackColor = true;
+            this.btnFondoAnterior.Click += new System.EventHandler(this.btnFondoAnterior_Click);
+            // 
+            // panelSelectPersonaje
+            // 
+            this.panelSelectPersonaje.BackColor = System.Drawing.Color.Transparent;
+            this.panelSelectPersonaje.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelSelectPersonaje.Controls.Add(this.richTextBox1);
+            this.panelSelectPersonaje.Controls.Add(this.BtnSeleccionarOtroPersonaje);
+            this.panelSelectPersonaje.Controls.Add(this.vidaPersonajeSelect);
+            this.panelSelectPersonaje.Controls.Add(this.NombrePersonajeSelect);
+            this.panelSelectPersonaje.Controls.Add(this.label5);
+            this.panelSelectPersonaje.Controls.Add(this.label3);
+            this.panelSelectPersonaje.Controls.Add(this.label4);
+            this.panelSelectPersonaje.Controls.Add(this.pictureBox1);
+            this.panelSelectPersonaje.Controls.Add(this.button4);
+            this.panelSelectPersonaje.Controls.Add(this.button3);
+            this.panelSelectPersonaje.Location = new System.Drawing.Point(12, 49);
+            this.panelSelectPersonaje.Name = "panelSelectPersonaje";
+            this.panelSelectPersonaje.Size = new System.Drawing.Size(285, 336);
+            this.panelSelectPersonaje.TabIndex = 7;
+            this.panelSelectPersonaje.Paint += new System.Windows.Forms.PaintEventHandler(this.panelSelectPersonaje_Paint);
+            // 
+            // BtnSeleccionarOtroPersonaje
+            // 
+            this.BtnSeleccionarOtroPersonaje.Location = new System.Drawing.Point(93, 204);
+            this.BtnSeleccionarOtroPersonaje.Name = "BtnSeleccionarOtroPersonaje";
+            this.BtnSeleccionarOtroPersonaje.Size = new System.Drawing.Size(75, 23);
+            this.BtnSeleccionarOtroPersonaje.TabIndex = 20;
+            this.BtnSeleccionarOtroPersonaje.Text = "Seleccionar";
+            this.BtnSeleccionarOtroPersonaje.UseVisualStyleBackColor = true;
+            this.BtnSeleccionarOtroPersonaje.Click += new System.EventHandler(this.BtnSeleccionarOtroPersonaje_Click);
+            // 
+            // vidaPersonajeSelect
+            // 
+            this.vidaPersonajeSelect.AutoSize = true;
+            this.vidaPersonajeSelect.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.vidaPersonajeSelect.ForeColor = System.Drawing.SystemColors.Control;
+            this.vidaPersonajeSelect.Location = new System.Drawing.Point(113, 263);
+            this.vidaPersonajeSelect.Name = "vidaPersonajeSelect";
+            this.vidaPersonajeSelect.Size = new System.Drawing.Size(0, 22);
+            this.vidaPersonajeSelect.TabIndex = 18;
+            // 
+            // NombrePersonajeSelect
+            // 
+            this.NombrePersonajeSelect.AutoSize = true;
+            this.NombrePersonajeSelect.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.NombrePersonajeSelect.ForeColor = System.Drawing.SystemColors.Control;
+            this.NombrePersonajeSelect.Location = new System.Drawing.Point(110, 241);
+            this.NombrePersonajeSelect.Name = "NombrePersonajeSelect";
+            this.NombrePersonajeSelect.Size = new System.Drawing.Size(0, 22);
+            this.NombrePersonajeSelect.TabIndex = 17;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.SystemColors.Control;
+            this.label5.Location = new System.Drawing.Point(3, 285);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(110, 22);
+            this.label5.TabIndex = 15;
+            this.label5.Text = "Descripcion:";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.SystemColors.Control;
+            this.label3.Location = new System.Drawing.Point(3, 263);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(51, 22);
+            this.label3.TabIndex = 14;
+            this.label3.Text = "Vida:";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.SystemColors.Control;
+            this.label4.Location = new System.Drawing.Point(3, 241);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(94, 22);
+            this.label4.TabIndex = 13;
+            this.label4.Text = "Personaje:";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBox1.Location = new System.Drawing.Point(59, 3);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(151, 166);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 8;
+            this.pictureBox1.TabStop = false;
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(135, 175);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(75, 23);
+            this.button4.TabIndex = 6;
+            this.button4.Text = "Siguiente";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(59, 175);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.TabIndex = 5;
+            this.button3.Text = "Anterior";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // richTextBox1
+            // 
+            this.richTextBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.richTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.richTextBox1.Font = new System.Drawing.Font("Microsoft YaHei", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.richTextBox1.ForeColor = System.Drawing.SystemColors.Info;
+            this.richTextBox1.Location = new System.Drawing.Point(119, 285);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.Size = new System.Drawing.Size(159, 44);
+            this.richTextBox1.TabIndex = 0;
+            this.richTextBox1.Text = "";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1171, 648);
+            this.BackgroundImage = global::Proyecto1_201325674.Properties.Resources.fondoImagenes2;
+            this.ClientSize = new System.Drawing.Size(1171, 690);
+            this.Controls.Add(this.panelSelectFondos);
+            this.Controls.Add(this.lblVidaPersonaje);
+            this.Controls.Add(this.lblNombrePersonaje);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.buttonStart);
             this.Controls.Add(this.tabControl1);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.panelSelectPersonaje);
             this.Controls.Add(this.richTextBox2);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
-            this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.Load += new System.EventHandler(this.Form1_Load);
+            this.Click += new System.EventHandler(this.Form1_Click);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
+            this.panelSelectFondos.ResumeLayout(false);
+            this.panelSelectFondos.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFondoSelect)).EndInit();
+            this.panelSelectPersonaje.ResumeLayout(false);
+            this.panelSelectPersonaje.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -222,7 +463,7 @@
         private System.Windows.Forms.RichTextBox richTextBox2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panelSelectPersonaje;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem archivoToolStripMenuItem;
@@ -235,6 +476,24 @@
         private System.Windows.Forms.ToolStripMenuItem ejecutarArchivoConfiguracionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem compilarArchivoDeCargaEscenarioToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ejecutarJuegoToolStripMenuItem;
+        private System.Windows.Forms.Button buttonStart;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblNombrePersonaje;
+        private System.Windows.Forms.Label lblVidaPersonaje;
+        private System.Windows.Forms.Button BtnSeleccionarOtroPersonaje;
+        private System.Windows.Forms.Label vidaPersonajeSelect;
+        private System.Windows.Forms.Label NombrePersonajeSelect;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Panel panelSelectFondos;
+        private System.Windows.Forms.Button btnSelectOTroFondo;
+        private System.Windows.Forms.PictureBox pictureBoxFondoSelect;
+        private System.Windows.Forms.Button btnFondoSiguiente;
+        private System.Windows.Forms.Button btnFondoAnterior;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.RichTextBox richTextBox1;
     }
 }
 
