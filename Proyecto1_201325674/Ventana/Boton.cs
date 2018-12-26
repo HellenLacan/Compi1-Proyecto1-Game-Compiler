@@ -41,8 +41,8 @@ namespace Proyecto1_201325674.Ventana
                 }
                 else if (matrizLogica[i, j].tipo == "enemigo")
                 {
-                    capturarRuta(i, j, matrizLogica[i, j].tipo);
-
+                    //capturarRuta(i, j, matrizLogica[i, j].tipo);
+                   // Console.WriteLine("Enemigo en: " + this.Location.X + "," + this.Location.Y);
                 }
 
             }
@@ -86,43 +86,6 @@ namespace Proyecto1_201325674.Ventana
 
             }
         }
-
-        public void moverEnemigo(Boton[,] matrizGrafica)
-        {
-            while (matrizLogica[Recorrido2.getPosXMeta(), Recorrido2.getPosYMeta()] != null)
-            {
-                for (int i = 0; i < Recorrido2.getAltoEscenario(); i++)
-                {
-                    for (int j = 0; j < Recorrido2.getAnchoEscenario(); j++)
-                    {
-                        if (matrizLogica[i, j] != null)
-                        {
-                            if (matrizLogica[i, j].tipoObjeto == 4)
-                            {
-                                if (matrizLogica[i, j + 1] == null)
-                                {
-                                    try
-                                    {
-                                        matrizGrafica[i, j + 1].Image = Image.FromFile(matrizLogica[i, j].personaje.rutaImagen);
-                                        matrizLogica[i, j + 1] = matrizLogica[i, j];
-                                        matrizGrafica[i, j + 1].SizeMode = PictureBoxSizeMode.StretchImage;
-                                        matrizLogica[i, j] = null;
-                                        matrizGrafica[i, j].Image = null;
-                                        matrizGrafica[i, j].BackColor = Color.Transparent;
-                                        Thread.Sleep(1000);
-                                    }
-                                    catch (Exception e)
-                                    {
-                                        Console.WriteLine("Ruta no existe");
-                                        Console.WriteLine("IOException source: {0}", e.Source);
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
+        
     }
 }

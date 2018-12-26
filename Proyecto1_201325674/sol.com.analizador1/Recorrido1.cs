@@ -16,6 +16,7 @@ namespace Practica1.sol.com.analyzer
         public static List<Personaje> milistaHeroes = new List<Personaje>();
         public static List<Personaje> milistaEnemigos = new List<Personaje>();
         public static List<ObjetoEscenario> miListaObjetos = new List<ObjetoEscenario>();
+        public static List<Token_> TablaDeSimbolos = new List<Token_>();
 
         public static String recorrerAST1(ParseTreeNode root)
         {
@@ -66,10 +67,15 @@ namespace Practica1.sol.com.analyzer
                             String valor = "";
                             if (root.ChildNodes.ElementAt(0).ChildNodes.Count != 0)
                             {
+                                String posxY = "";
                                 tipo = recorrerAST1(root.ChildNodes.ElementAt(0));
                                 tipo += "," + root.ChildNodes.ElementAt(1);
+                                posxY += root.ChildNodes.ElementAt(1).Span.Location.Line;
+                                posxY += ","+root.ChildNodes.ElementAt(1).Span.Location.Column;
                                 tipo += "," + root.ChildNodes.ElementAt(2);
-                                agregarEscenarios(splitComa(tipo));
+                                posxY += ";"+root.ChildNodes.ElementAt(2).Span.Location.Line;
+                                posxY += "," + root.ChildNodes.ElementAt(2).Span.Location.Column;
+                                agregarEscenarios(splitComa(tipo), posxY);
                             }
                             else
                             {
@@ -100,10 +106,10 @@ namespace Practica1.sol.com.analyzer
                             String ListaFigureB = recorrerAST1(root.ChildNodes.ElementAt(1));
 
                             if (listaFigureA != "") {
-                                agregarPersonajes(listaFigureA);
+                                agregarPersonajes(listaFigureA, root);
                             }
                             if(ListaFigureB != ""){
-                                agregarPersonajes(ListaFigureB);
+                                agregarPersonajes(ListaFigureB, root);
                             }
                             break;
                             // return a + b;
@@ -272,15 +278,17 @@ namespace Practica1.sol.com.analyzer
 
         }
 
-        private static void agregarEscenarios(String[] lista)
+        private static void agregarEscenarios(String[] lista, String posiciones)
         {
             String id = "";
             String ruta = "";
             Boolean encontrado = false;
             EscenarioFondo miEscenario = new EscenarioFondo();
+
             for (int i = 0; i < lista.Length; i++)
             {
                 String[] term = lista[i].ToString().Split(' ');
+
                 //Console.WriteLine(term[0]);
                 //Console.WriteLine(term[1]);
 
@@ -295,6 +303,11 @@ namespace Practica1.sol.com.analyzer
                 }
             }
 
+            //Agregando TOKENS
+            String[] posXY = posiciones.ToString().Split(';');
+            String[] pos1 = posXY[0].ToString().Split(',');
+            String[] pos2 = posXY[1].ToString().Split(',');
+
             //Verifico si el id del fondo no esta repetido, de lo contrario si ya esta solo, actualiza el path.
             if (miListaFondos.Count != 0)
             {
@@ -308,9 +321,11 @@ namespace Practica1.sol.com.analyzer
                         break;
                     }
                 }
-                //Si no encuentra ningun id repetido lo actualiza
+                //Si no encuentra ningun id repetido lo agrega
                 if (encontrado == false) {
                     miListaFondos.Add(new EscenarioFondo(id, ruta));
+                    agregarTokensATablaSimbolos(id, Convert.ToInt16(pos1[0]), Convert.ToInt16(pos1[1]), "background");
+                    agregarTokensATablaSimbolos(ruta, Convert.ToInt16(pos2[0]), Convert.ToInt16(pos2[1]), "ruta");
                 }
 
             }
@@ -321,8 +336,17 @@ namespace Practica1.sol.com.analyzer
 
         }
 
+        private static void agregarTokensATablaSimbolos(String lexema, int fila, int columna, String tipo)
+        {
+            if (tipo == "background") {
+                TablaDeSimbolos.Add(new Token_(tipo, lexema, "", fila, columna));
+            } else if (tipo == "ruta") {
+                //TablaDeSimbolos.Add(new Token_(tipo, lexema, "", fila, columna));
+            }
+        }
+
         //Metodo que agrega heroes y enemigos
-        private static void agregarPersonajes(String lista)
+        private static void agregarPersonajes(String lista, ParseTreeNode root)
         {
             String nombre = "";
             String vida = "";
@@ -331,6 +355,7 @@ namespace Practica1.sol.com.analyzer
             String descripcion = "";
             String destruir = "";
             int vidaActual=0;
+            int destruirActual = 0;
 
             String[] personaje = splitPtoYcoma(lista);
 
@@ -374,12 +399,13 @@ namespace Practica1.sol.com.analyzer
                 else if (string.Equals(tipo[0], "destruir", StringComparison.OrdinalIgnoreCase))
                 {
                     destruir = valor[0];
-                    int destruirActual = Convert.ToInt32(destruir);
+                    destruirActual = Convert.ToInt32(destruir);
                     if (destruirActual > 100) {
-                        Console.WriteLine("Semantico La vida es mayor " + destruirActual + " y se ha cambiado a 100");
+                        Console.WriteLine("Semantico La destruccion es mayor " + destruirActual + " y se ha cambiado a 100");
                         destruirActual = 100;
                     }
                     else if (destruirActual <= 0) {
+                        Console.WriteLine("Semantico La destruccion es menor o igual a 0 " + destruirActual + " y se ha cambiado a 1");
                         destruirActual = 1;
                     }
                 }
@@ -395,11 +421,11 @@ namespace Practica1.sol.com.analyzer
             {
                 if (milistaHeroes.Count != 0)
                 {
-                    buscarPersonaje(tipoPersonaje, nombre, vidaActual, imagen, descripcion, destruir);
+                    buscarPersonaje(tipoPersonaje, nombre, vidaActual, imagen, descripcion, destruirActual);
                 }
                 else
                 {
-                    milistaHeroes.Add(new Personaje(nombre, vidaActual, imagen, tipoPersonaje, destruir, descripcion));
+                    milistaHeroes.Add(new Personaje(nombre, vidaActual, imagen, tipoPersonaje, destruirActual, descripcion));
                 }
             }
             else if (string.Equals(tipoPersonaje, "enemigo", StringComparison.OrdinalIgnoreCase))
@@ -407,11 +433,11 @@ namespace Practica1.sol.com.analyzer
 
                 if (milistaEnemigos.Count != 0)
                 {
-                    buscarPersonaje(tipoPersonaje, nombre, vidaActual, imagen, descripcion, destruir);
+                    buscarPersonaje(tipoPersonaje, nombre, vidaActual, imagen, descripcion, destruirActual);
                 }
                 else
                 {
-                    milistaEnemigos.Add(new Personaje(nombre, vidaActual, imagen, tipoPersonaje, destruir, descripcion));
+                    milistaEnemigos.Add(new Personaje(nombre, vidaActual, imagen, tipoPersonaje, destruirActual, descripcion));
                 }
             }
             else {
@@ -419,7 +445,7 @@ namespace Practica1.sol.com.analyzer
             }
         }
 
-        public static bool buscarPersonaje(String tipo, String id, int vida, String imagen, String descripcion, String destruir) {
+        public static bool buscarPersonaje(String tipo, String id, int vida, String imagen, String descripcion, int destruir) {
 
             if (string.Equals(tipo, "heroe", StringComparison.OrdinalIgnoreCase))
             {
@@ -472,7 +498,7 @@ namespace Practica1.sol.com.analyzer
             }
         }
 
-        public static void actualizarDatosPersonajes(int vida, String nombre, String imagen, String descripcion, String ptosDestruir, Personaje item, String tipo) {
+        public static void actualizarDatosPersonajes(int vida, String nombre, String imagen, String descripcion, int ptosDestruir, Personaje item, String tipo) {
             if (vida != 0) {
                 item.vida = vida;
             }
@@ -497,6 +523,8 @@ namespace Practica1.sol.com.analyzer
             String ruta="";
             String tipo="";
             String bonus="";
+            int ptosDestruccionActual = 0;
+            int bonusActual = 0;
 
             for (int i =0; i<atributoDesign.Length; i++) {
                 String[] tipos = splitComa(atributoDesign[i]);
@@ -510,6 +538,9 @@ namespace Practica1.sol.com.analyzer
                     else if (string.Equals(token[0], "destruir", StringComparison.OrdinalIgnoreCase))
                     {
                         ptosDestruccion = valor[0];
+                        if (ptosDestruccion == "") {
+                            ptosDestruccion = "0";
+                        }
                     }
                     else if (string.Equals(token[0], "imagen", StringComparison.OrdinalIgnoreCase))
                     {
@@ -522,10 +553,49 @@ namespace Practica1.sol.com.analyzer
                     else if (string.Equals(token[0], "creditos", StringComparison.OrdinalIgnoreCase))
                     {
                         bonus = valor[0];
+                        if (bonus == "")
+                        {
+                            bonus = "0";
+                        }
                     }
                 }
                 
             }
+
+            if (ptosDestruccion != "") {
+                if (Convert.ToInt32(ptosDestruccion) <= 0)
+                {
+                    Console.WriteLine("Semantico La destruccion total del objeto es negativo o 0 y se ha cambiado a 1");
+                    ptosDestruccionActual = 1;
+                }
+                else if (Convert.ToInt32(ptosDestruccion) > 100)
+                {
+                    Console.WriteLine("Semantico La destruccion total del arma es mayor a 100 y se ha cambiado a 100");
+                    ptosDestruccionActual = 100;
+                }
+                else {
+                    ptosDestruccionActual = Convert.ToInt32(ptosDestruccion);
+                }
+            }
+
+            if (bonus != "")
+            {
+                if (Convert.ToInt32(bonus) <= 0)
+                {
+                    Console.WriteLine("Semantico La destruccion total del objeto es negativo o 0 y se ha cambiado a 1");
+                    bonusActual = 1;
+                }
+                else if (Convert.ToInt32(bonus) > 100)
+                {
+                    Console.WriteLine("Semantico La destruccion total del arma es mayor a 100 y se ha cambiado a 100");
+                    bonusActual = 100;
+                }
+                else
+                {
+                    bonusActual = Convert.ToInt32(bonus);
+                }
+            }
+
 
             if (miListaObjetos.Count > 0)
             {
@@ -534,31 +604,31 @@ namespace Practica1.sol.com.analyzer
                         if (string.Equals(item.tipo, tipo, StringComparison.OrdinalIgnoreCase))
                         {
                             //Si existe un identificador con el mismo tipo, lo actualiza
-                            actualizarObjetosEscenario(nombre, ptosDestruccion, ruta, tipo, bonus, item);
+                            actualizarObjetosEscenario(nombre, ptosDestruccionActual, ruta, tipo, Convert.ToInt32(bonusActual), item);
                             return true;
                         }
                     }
                 }
 
                 //Si no existe el nombre lo crea
-                miListaObjetos.Add(new ObjetoEscenario(nombre, ptosDestruccion, ruta, tipo, bonus));
+                miListaObjetos.Add(new ObjetoEscenario(nombre, ptosDestruccionActual, ruta, tipo, Convert.ToInt32(bonusActual)));
                 return true;
 
             }
             else
             {
-                miListaObjetos.Add(new ObjetoEscenario(nombre, ptosDestruccion, ruta, tipo, bonus));
+                miListaObjetos.Add(new ObjetoEscenario(nombre, ptosDestruccionActual, ruta, tipo, Convert.ToInt32(bonusActual)));
                 return true;
             }
         }
         
-        public static void actualizarObjetosEscenario(String nombre, String ptosDestruccion, String ruta, String tipo, String bonus, ObjetoEscenario item)
+        public static void actualizarObjetosEscenario(String nombre, int ptosDestruccion, String ruta, String tipo, int bonus, ObjetoEscenario item)
         {
             
             if (string.Equals(item.tipo, "bomba", StringComparison.OrdinalIgnoreCase) || string.Equals(item.tipo, "arma", StringComparison.OrdinalIgnoreCase))
             {
-                item.creditos = "";
-                if (ptosDestruccion != "") {
+                item.creditos = 0;
+                if (ptosDestruccion != 0) {
                     item.ptosDestruccion = ptosDestruccion;
                 }
 
@@ -568,19 +638,19 @@ namespace Practica1.sol.com.analyzer
             }
             else if (string.Equals(item.tipo, "bonus", StringComparison.OrdinalIgnoreCase))
             {
-                item.ptosDestruccion = "";
+                item.ptosDestruccion = 0;
                 if (ruta != "") {
                     item.rutaImagen = ruta;
                 }
-                if (bonus != "") {
+                if (bonus != 0) {
                     item.creditos = bonus;
                 }
 
             }
             else if (string.Equals(item.tipo, "meta", StringComparison.OrdinalIgnoreCase) || string.Equals(item.tipo, "bloque", StringComparison.OrdinalIgnoreCase))
             {
-                item.creditos = "";
-                item.ptosDestruccion = "";
+                item.creditos = 0;
+                item.ptosDestruccion = 0;
                 if (ruta != "") {
                     item.rutaImagen = ruta;
                 }

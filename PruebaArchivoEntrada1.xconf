@@ -1,4 +1,5 @@
 <configuration>
+
    <background>
    {
         x-nombre=fondo;
@@ -118,7 +119,7 @@
    {
         x-nombre=bomba1;
         x-imagen="C:/Users/Hellen/Desktop/imagenes/bomba.png";
-        x-destruir=10;
+        x-destruir=4+1;
         x-tipo=x-bomba;
    },
    {
@@ -131,7 +132,7 @@
         x-nombre=estrella1;
         x-imagen="/home/usuario/imagenes/fondo1.jpg";
         x-imagen="C:/Users/Hellen/Desktop/imagenes/estrella1.png";
-        x-creditos=100;
+        x-creditos=6;
         x-tipo=x-bonus;
    } ,
    {
@@ -147,14 +148,14 @@
    {
         x-nombre=flor1;
         x-imagen="C:/Users/Hellen/Desktop/imagenes/flor1.png";
-        x-creditos=100;
+        x-creditos=6;
         x-tipo=x-bonus;
    } ,
    {
         x-nombre=moneda1;
         x-imagen="/home/usuario/imagenes/fondo1.jpg";
         x-imagen="C:/Users/Hellen/Desktop/imagenes/moneda.png";
-        x-creditos=100;
+        x-creditos=1;
         x-tipo=x-bonus;
    } 
    </design>

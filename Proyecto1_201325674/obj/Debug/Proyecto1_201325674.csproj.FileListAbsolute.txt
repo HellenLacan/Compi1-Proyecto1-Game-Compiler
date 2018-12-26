@@ -15,4 +15,4 @@ C:\Users\Hellen\Documents\Cursos\COMPI1_VACAS_DIC_2018\Proyecto1_201325674\Proye
 C:\Users\Hellen\Documents\Cursos\COMPI1_VACAS_DIC_2018\Proyecto1_201325674\Proyecto1_201325674\obj\Debug\Proyecto1_201325674.csproj.CopyComplete
 C:\Users\Hellen\Documents\Cursos\COMPI1_VACAS_DIC_2018\Proyecto1_201325674\Proyecto1_201325674\obj\Debug\Proyecto1_201325674.exe
 C:\Users\Hellen\Documents\Cursos\COMPI1_VACAS_DIC_2018\Proyecto1_201325674\Proyecto1_201325674\obj\Debug\Proyecto1_201325674.pdb
-C:\Users\Hellen\Documents\Cursos\COMPI1_VACAS_DIC_2018\Proyecto1_201325674\Proyecto1_201325674\obj\Debug\Proyecto1_201325674.Ventana.TableroLaberinto.resources
+C:\Users\Hellen\Documents\Cursos\COMPI1_VACAS_DIC_2018\Proyecto1_201325674\Proyecto1_201325674\obj\Debug\Proyecto1_201325674.Ventana.Form_TablaSimbolos.resources

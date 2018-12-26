@@ -51,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Class1.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -71,14 +72,21 @@
     <Compile Include="sol.com.objetosConfiguracion\Personaje.cs" />
     <Compile Include="sol.com.controlDot2\ControlDot2.cs" />
     <Compile Include="sol.com.controlDot1\ControlDot.cs" />
+    <Compile Include="sol.com.objetosConfiguracion\Token_.cs" />
     <Compile Include="Ventana\Boton.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Ventana\TableroLaberinto.cs">
+    <Compile Include="Ventana\BotonEnemigo.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Ventana\BotonHeroe.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Ventana\Form_TablaSimbolos.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Ventana\TableroLaberinto.Designer.cs">
-      <DependentUpon>TableroLaberinto.cs</DependentUpon>
+    <Compile Include="Ventana\Form_TablaSimbolos.Designer.cs">
+      <DependentUpon>Form_TablaSimbolos.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
@@ -93,8 +101,8 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="Ventana\TableroLaberinto.resx">
-      <DependentUpon>TableroLaberinto.cs</DependentUpon>
+    <EmbeddedResource Include="Ventana\Form_TablaSimbolos.resx">
+      <DependentUpon>Form_TablaSimbolos.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

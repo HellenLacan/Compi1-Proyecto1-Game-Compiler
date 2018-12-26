@@ -19,8 +19,19 @@ namespace Practica1.sol.com.analyzer
             Parser p = new Parser(lenguaje);
             ParseTree tree = p.Parse(text);
             ParseTreeNode root = tree.Root;
-            if (root != null) {
+            if (root != null)
+            {
                 generarImagen(root);
+            }
+            else {
+                if (tree.Status == ParseTreeStatus.Error)
+                {
+                    if (tree.ParserMessages.Count >= 0) {
+                        Console.WriteLine(tree.ParserMessages[0].Message + "Linea, " + tree.ParserMessages[0].Location.Line + "; columna,"+tree.ParserMessages[0].Location.Column);
+                    }                    
+                }
+
+
             }
             return root;
 

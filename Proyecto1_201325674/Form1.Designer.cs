@@ -28,18 +28,23 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.richTextBox2 = new System.Windows.Forms.RichTextBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.archivoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.nuevoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.abrirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.guardarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.guardarComoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.salirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ejecutarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ejecutarArchivoConfiguracionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.compilarArchivoDeCargaEscenarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ejecutarJuegoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ayudaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.panelEscenario = new System.Windows.Forms.Panel();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.manualDeUsuarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.manualTecnicoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.acercaDeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.buttonStart = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -52,6 +57,7 @@
             this.btnFondoSiguiente = new System.Windows.Forms.Button();
             this.btnFondoAnterior = new System.Windows.Forms.Button();
             this.panelSelectPersonaje = new System.Windows.Forms.Panel();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.BtnSeleccionarOtroPersonaje = new System.Windows.Forms.Button();
             this.vidaPersonajeSelect = new System.Windows.Forms.Label();
             this.NombrePersonajeSelect = new System.Windows.Forms.Label();
@@ -61,14 +67,23 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.lblGanancia = new System.Windows.Forms.Label();
+            this.lblPerdida = new System.Windows.Forms.Label();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.panelEscenario = new System.Windows.Forms.Panel();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.erroresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tablaDeSimbolosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
-            this.tabControl1.SuspendLayout();
-            this.tabPage1.SuspendLayout();
             this.panelSelectFondos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFondoSelect)).BeginInit();
             this.panelSelectPersonaje.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.panel1.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            this.tabControl1.SuspendLayout();
             this.SuspendLayout();
             // 
             // richTextBox2
@@ -94,16 +109,58 @@
             // 
             // archivoToolStripMenuItem
             // 
+            this.archivoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.nuevoToolStripMenuItem,
+            this.abrirToolStripMenuItem,
+            this.guardarToolStripMenuItem,
+            this.guardarComoToolStripMenuItem,
+            this.salirToolStripMenuItem});
             this.archivoToolStripMenuItem.Name = "archivoToolStripMenuItem";
             this.archivoToolStripMenuItem.Size = new System.Drawing.Size(60, 20);
             this.archivoToolStripMenuItem.Text = "Archivo";
+            // 
+            // nuevoToolStripMenuItem
+            // 
+            this.nuevoToolStripMenuItem.Name = "nuevoToolStripMenuItem";
+            this.nuevoToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.nuevoToolStripMenuItem.Text = "Nuevo";
+            this.nuevoToolStripMenuItem.Click += new System.EventHandler(this.nuevoToolStripMenuItem_Click);
+            // 
+            // abrirToolStripMenuItem
+            // 
+            this.abrirToolStripMenuItem.Name = "abrirToolStripMenuItem";
+            this.abrirToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.abrirToolStripMenuItem.Text = "Abrir";
+            this.abrirToolStripMenuItem.Click += new System.EventHandler(this.abrirToolStripMenuItem_Click);
+            // 
+            // guardarToolStripMenuItem
+            // 
+            this.guardarToolStripMenuItem.Name = "guardarToolStripMenuItem";
+            this.guardarToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.guardarToolStripMenuItem.Text = "Guardar";
+            // 
+            // guardarComoToolStripMenuItem
+            // 
+            this.guardarComoToolStripMenuItem.Name = "guardarComoToolStripMenuItem";
+            this.guardarComoToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.guardarComoToolStripMenuItem.Text = "Guardar Como";
+            this.guardarComoToolStripMenuItem.Click += new System.EventHandler(this.guardarComoToolStripMenuItem_Click);
+            // 
+            // salirToolStripMenuItem
+            // 
+            this.salirToolStripMenuItem.Name = "salirToolStripMenuItem";
+            this.salirToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.salirToolStripMenuItem.Text = "Salir";
+            this.salirToolStripMenuItem.Click += new System.EventHandler(this.salirToolStripMenuItem_Click);
             // 
             // ejecutarToolStripMenuItem
             // 
             this.ejecutarToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ejecutarArchivoConfiguracionToolStripMenuItem,
             this.compilarArchivoDeCargaEscenarioToolStripMenuItem,
-            this.ejecutarJuegoToolStripMenuItem});
+            this.ejecutarJuegoToolStripMenuItem,
+            this.erroresToolStripMenuItem,
+            this.tablaDeSimbolosToolStripMenuItem});
             this.ejecutarToolStripMenuItem.Name = "ejecutarToolStripMenuItem";
             this.ejecutarToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
             this.ejecutarToolStripMenuItem.Text = "Ejecutar";
@@ -131,49 +188,32 @@
             // 
             // ayudaToolStripMenuItem
             // 
+            this.ayudaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.manualDeUsuarioToolStripMenuItem,
+            this.manualTecnicoToolStripMenuItem,
+            this.acercaDeToolStripMenuItem});
             this.ayudaToolStripMenuItem.Name = "ayudaToolStripMenuItem";
             this.ayudaToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
             this.ayudaToolStripMenuItem.Text = "Ayuda";
             // 
-            // tabControl1
+            // manualDeUsuarioToolStripMenuItem
             // 
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Location = new System.Drawing.Point(312, 27);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(636, 653);
-            this.tabControl1.TabIndex = 9;
+            this.manualDeUsuarioToolStripMenuItem.Name = "manualDeUsuarioToolStripMenuItem";
+            this.manualDeUsuarioToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
+            this.manualDeUsuarioToolStripMenuItem.Text = "Manual de Usuario";
             // 
-            // tabPage1
+            // manualTecnicoToolStripMenuItem
             // 
-            this.tabPage1.Controls.Add(this.panelEscenario);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(628, 627);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "tabPage1";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            this.manualTecnicoToolStripMenuItem.Name = "manualTecnicoToolStripMenuItem";
+            this.manualTecnicoToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
+            this.manualTecnicoToolStripMenuItem.Text = "Manual Tecnico";
             // 
-            // panelEscenario
+            // acercaDeToolStripMenuItem
             // 
-            this.panelEscenario.AutoScroll = true;
-            this.panelEscenario.Location = new System.Drawing.Point(0, 0);
-            this.panelEscenario.Name = "panelEscenario";
-            this.panelEscenario.Size = new System.Drawing.Size(629, 629);
-            this.panelEscenario.TabIndex = 1;
-            this.panelEscenario.MouseClick += new System.Windows.Forms.MouseEventHandler(this.panelEscenario_MouseClick);
-            // 
-            // tabPage2
-            // 
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(628, 627);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Visor";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.acercaDeToolStripMenuItem.Name = "acercaDeToolStripMenuItem";
+            this.acercaDeToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
+            this.acercaDeToolStripMenuItem.Text = "Acerca de";
+            this.acercaDeToolStripMenuItem.Click += new System.EventHandler(this.acercaDeToolStripMenuItem_Click);
             // 
             // buttonStart
             // 
@@ -191,7 +231,7 @@
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label1.Location = new System.Drawing.Point(954, 49);
+            this.label1.Location = new System.Drawing.Point(14, 17);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(94, 22);
             this.label1.TabIndex = 11;
@@ -203,7 +243,7 @@
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.label2.Location = new System.Drawing.Point(954, 79);
+            this.label2.Location = new System.Drawing.Point(14, 47);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(51, 22);
             this.label2.TabIndex = 12;
@@ -215,7 +255,7 @@
             this.lblNombrePersonaje.BackColor = System.Drawing.Color.Transparent;
             this.lblNombrePersonaje.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNombrePersonaje.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.lblNombrePersonaje.Location = new System.Drawing.Point(1054, 49);
+            this.lblNombrePersonaje.Location = new System.Drawing.Point(114, 17);
             this.lblNombrePersonaje.Name = "lblNombrePersonaje";
             this.lblNombrePersonaje.Size = new System.Drawing.Size(0, 22);
             this.lblNombrePersonaje.TabIndex = 13;
@@ -226,7 +266,7 @@
             this.lblVidaPersonaje.BackColor = System.Drawing.Color.Transparent;
             this.lblVidaPersonaje.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblVidaPersonaje.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.lblVidaPersonaje.Location = new System.Drawing.Point(1054, 79);
+            this.lblVidaPersonaje.Location = new System.Drawing.Point(114, 47);
             this.lblVidaPersonaje.Name = "lblVidaPersonaje";
             this.lblVidaPersonaje.Size = new System.Drawing.Size(0, 22);
             this.lblVidaPersonaje.TabIndex = 14;
@@ -244,7 +284,6 @@
             this.panelSelectFondos.Name = "panelSelectFondos";
             this.panelSelectFondos.Size = new System.Drawing.Size(285, 285);
             this.panelSelectFondos.TabIndex = 15;
-            this.panelSelectFondos.Paint += new System.Windows.Forms.PaintEventHandler(this.panelSelectFondos_Paint);
             // 
             // label6
             // 
@@ -314,7 +353,18 @@
             this.panelSelectPersonaje.Name = "panelSelectPersonaje";
             this.panelSelectPersonaje.Size = new System.Drawing.Size(285, 336);
             this.panelSelectPersonaje.TabIndex = 7;
-            this.panelSelectPersonaje.Paint += new System.Windows.Forms.PaintEventHandler(this.panelSelectPersonaje_Paint);
+            // 
+            // richTextBox1
+            // 
+            this.richTextBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.richTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.richTextBox1.Font = new System.Drawing.Font("Microsoft YaHei", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.richTextBox1.ForeColor = System.Drawing.SystemColors.Info;
+            this.richTextBox1.Location = new System.Drawing.Point(119, 285);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.Size = new System.Drawing.Size(159, 44);
+            this.richTextBox1.TabIndex = 0;
+            this.richTextBox1.Text = "";
             // 
             // BtnSeleccionarOtroPersonaje
             // 
@@ -410,17 +460,85 @@
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
-            // richTextBox1
+            // panel1
             // 
-            this.richTextBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.richTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.richTextBox1.Font = new System.Drawing.Font("Microsoft YaHei", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.richTextBox1.ForeColor = System.Drawing.SystemColors.Info;
-            this.richTextBox1.Location = new System.Drawing.Point(119, 285);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(159, 44);
-            this.richTextBox1.TabIndex = 0;
-            this.richTextBox1.Text = "";
+            this.panel1.BackColor = System.Drawing.Color.Transparent;
+            this.panel1.Controls.Add(this.lblGanancia);
+            this.panel1.Controls.Add(this.lblPerdida);
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.label2);
+            this.panel1.Controls.Add(this.lblVidaPersonaje);
+            this.panel1.Controls.Add(this.lblNombrePersonaje);
+            this.panel1.Location = new System.Drawing.Point(959, 49);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(200, 100);
+            this.panel1.TabIndex = 0;
+            // 
+            // lblGanancia
+            // 
+            this.lblGanancia.AutoSize = true;
+            this.lblGanancia.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblGanancia.ForeColor = System.Drawing.Color.Chartreuse;
+            this.lblGanancia.Location = new System.Drawing.Point(124, 69);
+            this.lblGanancia.Name = "lblGanancia";
+            this.lblGanancia.Size = new System.Drawing.Size(0, 20);
+            this.lblGanancia.TabIndex = 16;
+            // 
+            // lblPerdida
+            // 
+            this.lblPerdida.AutoSize = true;
+            this.lblPerdida.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPerdida.ForeColor = System.Drawing.Color.Red;
+            this.lblPerdida.Location = new System.Drawing.Point(56, 69);
+            this.lblPerdida.Name = "lblPerdida";
+            this.lblPerdida.Size = new System.Drawing.Size(0, 20);
+            this.lblPerdida.TabIndex = 15;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.panelEscenario);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(628, 627);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "Visor";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // panelEscenario
+            // 
+            this.panelEscenario.AutoScroll = true;
+            this.panelEscenario.Location = new System.Drawing.Point(0, 0);
+            this.panelEscenario.Name = "panelEscenario";
+            this.panelEscenario.Size = new System.Drawing.Size(629, 629);
+            this.panelEscenario.TabIndex = 1;
+            this.panelEscenario.Click += new System.EventHandler(this.panelEscenario_Click);
+            // 
+            // tabControl1
+            // 
+            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Location = new System.Drawing.Point(312, 27);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(636, 653);
+            this.tabControl1.TabIndex = 9;
+            // 
+            // timer1
+            // 
+            this.timer1.Interval = 1;
+            // 
+            // erroresToolStripMenuItem
+            // 
+            this.erroresToolStripMenuItem.Name = "erroresToolStripMenuItem";
+            this.erroresToolStripMenuItem.Size = new System.Drawing.Size(266, 22);
+            this.erroresToolStripMenuItem.Text = "Errores";
+            // 
+            // tablaDeSimbolosToolStripMenuItem
+            // 
+            this.tablaDeSimbolosToolStripMenuItem.Name = "tablaDeSimbolosToolStripMenuItem";
+            this.tablaDeSimbolosToolStripMenuItem.Size = new System.Drawing.Size(266, 22);
+            this.tablaDeSimbolosToolStripMenuItem.Text = "Tabla De Simbolos";
+            this.tablaDeSimbolosToolStripMenuItem.Click += new System.EventHandler(this.tablaDeSimbolosToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -428,11 +546,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::Proyecto1_201325674.Properties.Resources.fondoImagenes2;
             this.ClientSize = new System.Drawing.Size(1171, 690);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.panelSelectFondos);
-            this.Controls.Add(this.lblVidaPersonaje);
-            this.Controls.Add(this.lblNombrePersonaje);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.buttonStart);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.panelSelectPersonaje);
@@ -443,17 +558,19 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
-            this.Click += new System.EventHandler(this.Form1_Click);
+            this.Click += new System.EventHandler(this.Form1_Click_1);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            this.tabControl1.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
             this.panelSelectFondos.ResumeLayout(false);
             this.panelSelectFondos.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFondoSelect)).EndInit();
             this.panelSelectPersonaje.ResumeLayout(false);
             this.panelSelectPersonaje.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            this.tabPage1.ResumeLayout(false);
+            this.tabControl1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -469,10 +586,6 @@
         private System.Windows.Forms.ToolStripMenuItem archivoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ejecutarToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ayudaToolStripMenuItem;
-        private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.Panel panelEscenario;
         private System.Windows.Forms.ToolStripMenuItem ejecutarArchivoConfiguracionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem compilarArchivoDeCargaEscenarioToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ejecutarJuegoToolStripMenuItem;
@@ -494,6 +607,23 @@
         private System.Windows.Forms.Button btnFondoAnterior;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label lblGanancia;
+        private System.Windows.Forms.Label lblPerdida;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.Panel panelEscenario;
+        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.ToolStripMenuItem nuevoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem abrirToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem guardarToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem guardarComoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem salirToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem manualDeUsuarioToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem manualTecnicoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem acercaDeToolStripMenuItem;
+        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.ToolStripMenuItem erroresToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tablaDeSimbolosToolStripMenuItem;
     }
 }
 

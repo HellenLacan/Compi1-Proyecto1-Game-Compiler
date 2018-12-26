@@ -1,0 +1,104 @@
+<x-escenarios background=fondoAmarillo; ancho = 21 ; alto = 15 >
+  <x-personajes>
+
+    <x-heroes>
+          Mario(0,7);
+    </x-heroes>
+  
+    <x-villanos>
+      enemigo1(8,1);
+      enemigo2(5,11);
+      enemigo3(25,8+8);
+      enemigoxD(8,8+7);
+      enemigo4(17,8+5);
+      enemigo6(14,8+2);
+    </x-villanos>
+
+	</x-Personajes>
+
+	<x-paredes>
+    pared(0..21,0);
+    pared(21,1..19);
+    pared(0..21,21);
+    pared(0,1..6);
+    pared(0,8..20);
+    pared(1..19,2);
+    pared(2..4,4);
+    pared(6..8,4);
+    pared(16..20,4);
+    pared(14,3..5);
+    pared(12,3..4);
+    pared(10,4..5);
+    pared(6,5);
+    pared(1..2,6);
+    pared(6..19,6);
+    pared(4,5..7);
+    pared(19..20,8);
+    pared(15..17,8);
+    pared(2..13,8);
+    pared(17..19,10);
+    pared(2..11,10);
+    pared(11,9);
+    pared(19,9);
+    pared(15,9..11);
+    pared(19..20,12);
+    pared(15..17,12);
+    pared(4..13,12);
+    pared(13,10..11);
+    pared(2,11..13);
+    pared(19,13..19);
+    pared(17,13..19);
+    pared(2,17..19); 
+    pared(1,19);
+    pared(2,14);
+    pared(1..2,15);
+    pared(6..10,19);
+    pared(12..14,19);
+    pared(10,20);
+    pared(14,20);
+    pared(4,14..19);
+    pared(6,17..18);
+    pared(8..16,17);
+    pared(13,16);
+    pared(5..8,15);
+    pared(8,16);
+    pared(10..15,15);
+    pared(4,13);
+    pared(15,14);
+    pared(10,14);
+    pared(16,19);
+
+  </x-paredes>
+
+  <x-extras>
+
+    <x-bonus>
+      estrella1(3,9);
+      Diamante2(1,7);
+      Flor1(4,9);
+      honGo2(17,20);
+      moneda1(20,20);
+    </x-bonus>
+
+    <x-armas>      
+    bomba1(1,8);
+    bomba1(1,10);
+    bomba1(1,12);
+    bomba1(5,15);
+    bomba1(10,15);
+    arma1(14,15);
+    arma1(17,20);
+    </x-armas>
+
+  </x-extras>
+
+
+  <x-meta>
+  	salida2(21,20);
+  </x-meta>
+
+
+
+
+</x-escenarios>
+
