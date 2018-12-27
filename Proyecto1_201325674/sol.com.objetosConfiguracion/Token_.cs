@@ -21,5 +21,13 @@ namespace Proyecto1_201325674.sol.com.objetosConfiguracion
             this.columna = columna;
             this.tipo = tipo;
         }
+
+        public Token_(String tipo, String lexema , int fila, int columna)
+        {
+            this.lexema = lexema;
+            this.fila = fila;
+            this.columna = columna;
+            this.tipo = tipo;
+        }
     }
 }

@@ -105,6 +105,10 @@ namespace Practica1.sol.com.analizador
                                       | FIGURE
                                       | DESIGN
                                       | Empty;
+            LISTA_CONFIGURACION.ErrorRule = SyntaxError + ">";
+            LISTA_CONFIGURACION.ErrorRule = SyntaxError + ",";
+            LISTA_CONFIGURACION.ErrorRule = SyntaxError + "{";
+            LISTA_CONFIGURACION.ErrorRule = SyntaxError + "}";
 
             BACKGROUND.Rule = menor + _background + mayor + LISTA_BACKGROUND + menor + slash + _background + mayor;
 
@@ -115,18 +119,22 @@ namespace Practica1.sol.com.analizador
             LISTA_BACKGROUND.Rule = LISTA_BACKGROUND + coma + llaveAb + ATRIBUTOS_BACKGROUND + llaveCerr
                                 | llaveAb + ATRIBUTOS_BACKGROUND + llaveCerr
                                 | Empty;
+            LISTA_BACKGROUND.ErrorRule = SyntaxError + "}";
 
             LISTA_FIGURE.Rule = LISTA_FIGURE + coma + llaveAb + ATRIBUTOS_FIGURE +llaveCerr
                                 | llaveAb + ATRIBUTOS_FIGURE + llaveCerr
                                 | Empty;
+            LISTA_FIGURE.ErrorRule = SyntaxError + "}";
 
             LISTA_DESIGN.Rule = LISTA_DESIGN + coma + llaveAb + ATRIBUTOS_DESIGN +llaveCerr
                                 | llaveAb + ATRIBUTOS_DESIGN + llaveCerr
                                 | Empty;
-
+            LISTA_DESIGN.ErrorRule = SyntaxError + "}";
+            
             ATRIBUTOS_BACKGROUND.Rule = ATRIBUTOS_BACKGROUND + _x + guion + _nombre + igual + identificador + ptoYComa
                                        | ATRIBUTOS_BACKGROUND + _x + guion + _imagen + igual + cadena + ptoYComa
                                        | Empty;
+            ATRIBUTOS_BACKGROUND.ErrorRule = SyntaxError + ";";
 
             ATRIBUTOS_FIGURE.Rule = ATRIBUTOS_FIGURE + _x + guion + _nombre + igual + identificador + ptoYComa
                                    |ATRIBUTOS_FIGURE + _x + guion + _imagen + igual + cadena + ptoYComa
@@ -135,13 +143,15 @@ namespace Practica1.sol.com.analizador
                                    |ATRIBUTOS_FIGURE + _x + guion + _descripcion + igual + cadena + ptoYComa
                                    |ATRIBUTOS_FIGURE + _x + guion + _destruir + igual + EXPRESION + ptoYComa
                                    | Empty;
-
+            ATRIBUTOS_FIGURE.ErrorRule = SyntaxError + ";";
+            
             ATRIBUTOS_DESIGN.Rule = ATRIBUTOS_DESIGN + _x + guion + _nombre + igual + identificador + ptoYComa
                                        | ATRIBUTOS_DESIGN + _x + guion + _destruir + igual + EXPRESION + ptoYComa
                                        | ATRIBUTOS_DESIGN + _x + guion + _imagen + igual + cadena + ptoYComa
                                        | ATRIBUTOS_DESIGN + _x + guion + _tipo + igual + _x + guion + DESIGN_TIPO + ptoYComa
                                        | ATRIBUTOS_DESIGN + _x + guion + _creditos + igual + EXPRESION + ptoYComa
                                        | Empty;
+            ATRIBUTOS_DESIGN.ErrorRule = SyntaxError + ";";
 
             FIGURE_TIPO.Rule = _heroe
                               |_enemigo

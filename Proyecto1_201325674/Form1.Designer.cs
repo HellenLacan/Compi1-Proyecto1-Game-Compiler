@@ -41,6 +41,8 @@
             this.ejecutarArchivoConfiguracionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.compilarArchivoDeCargaEscenarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ejecutarJuegoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.erroresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tablaDeSimbolosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ayudaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.manualDeUsuarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.manualTecnicoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -74,8 +76,6 @@
             this.panelEscenario = new System.Windows.Forms.Panel();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.erroresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tablaDeSimbolosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.panelSelectFondos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFondoSelect)).BeginInit();
@@ -186,6 +186,20 @@
             this.ejecutarJuegoToolStripMenuItem.Text = "Ejecutar juego";
             this.ejecutarJuegoToolStripMenuItem.Click += new System.EventHandler(this.ejecutarJuegoToolStripMenuItem_Click_1);
             // 
+            // erroresToolStripMenuItem
+            // 
+            this.erroresToolStripMenuItem.Name = "erroresToolStripMenuItem";
+            this.erroresToolStripMenuItem.Size = new System.Drawing.Size(266, 22);
+            this.erroresToolStripMenuItem.Text = "Errores";
+            this.erroresToolStripMenuItem.Click += new System.EventHandler(this.erroresToolStripMenuItem_Click);
+            // 
+            // tablaDeSimbolosToolStripMenuItem
+            // 
+            this.tablaDeSimbolosToolStripMenuItem.Name = "tablaDeSimbolosToolStripMenuItem";
+            this.tablaDeSimbolosToolStripMenuItem.Size = new System.Drawing.Size(266, 22);
+            this.tablaDeSimbolosToolStripMenuItem.Text = "Tabla De Simbolos";
+            this.tablaDeSimbolosToolStripMenuItem.Click += new System.EventHandler(this.tablaDeSimbolosToolStripMenuItem_Click);
+            // 
             // ayudaToolStripMenuItem
             // 
             this.ayudaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -199,19 +213,21 @@
             // manualDeUsuarioToolStripMenuItem
             // 
             this.manualDeUsuarioToolStripMenuItem.Name = "manualDeUsuarioToolStripMenuItem";
-            this.manualDeUsuarioToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
+            this.manualDeUsuarioToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.manualDeUsuarioToolStripMenuItem.Text = "Manual de Usuario";
+            this.manualDeUsuarioToolStripMenuItem.Click += new System.EventHandler(this.manualDeUsuarioToolStripMenuItem_Click);
             // 
             // manualTecnicoToolStripMenuItem
             // 
             this.manualTecnicoToolStripMenuItem.Name = "manualTecnicoToolStripMenuItem";
-            this.manualTecnicoToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
+            this.manualTecnicoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.manualTecnicoToolStripMenuItem.Text = "Manual Tecnico";
+            this.manualTecnicoToolStripMenuItem.Click += new System.EventHandler(this.manualTecnicoToolStripMenuItem_Click);
             // 
             // acercaDeToolStripMenuItem
             // 
             this.acercaDeToolStripMenuItem.Name = "acercaDeToolStripMenuItem";
-            this.acercaDeToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
+            this.acercaDeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.acercaDeToolStripMenuItem.Text = "Acerca de";
             this.acercaDeToolStripMenuItem.Click += new System.EventHandler(this.acercaDeToolStripMenuItem_Click);
             // 
@@ -525,20 +541,8 @@
             // 
             // timer1
             // 
-            this.timer1.Interval = 1;
-            // 
-            // erroresToolStripMenuItem
-            // 
-            this.erroresToolStripMenuItem.Name = "erroresToolStripMenuItem";
-            this.erroresToolStripMenuItem.Size = new System.Drawing.Size(266, 22);
-            this.erroresToolStripMenuItem.Text = "Errores";
-            // 
-            // tablaDeSimbolosToolStripMenuItem
-            // 
-            this.tablaDeSimbolosToolStripMenuItem.Name = "tablaDeSimbolosToolStripMenuItem";
-            this.tablaDeSimbolosToolStripMenuItem.Size = new System.Drawing.Size(266, 22);
-            this.tablaDeSimbolosToolStripMenuItem.Text = "Tabla De Simbolos";
-            this.tablaDeSimbolosToolStripMenuItem.Click += new System.EventHandler(this.tablaDeSimbolosToolStripMenuItem_Click);
+            this.timer1.Interval = 500;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // Form1
             // 

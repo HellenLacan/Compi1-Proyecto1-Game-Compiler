@@ -183,6 +183,7 @@ namespace Practica1.sol.com.analyzer
 
                 case "ATRIBUTOS_DESIGN":
                     String design_valores="";
+                    String posXY = "";
                     switch (root.ChildNodes.Count) {
 
                         case 0:
@@ -192,10 +193,11 @@ namespace Practica1.sol.com.analyzer
                             break;
 
                         case 3:
-                            design_valores+= recorrerAST1(root.ChildNodes.ElementAt(0));
+                            design_valores += recorrerAST1(root.ChildNodes.ElementAt(0));
                             if (root.ChildNodes.ElementAt(0).ChildNodes.Count != 0)
                             {
                                 design_valores += root.ChildNodes.ElementAt(1);
+                                
                                 if ((root.ChildNodes.ElementAt(2).Term.Name == "EXPRESION") ||
                                   (root.ChildNodes.ElementAt(2).Term.Name == "DESIGN_TIPO"))
                                 {
@@ -215,6 +217,9 @@ namespace Practica1.sol.com.analyzer
                                 }
                                 else {
                                     design_valores += "," + root.ChildNodes.ElementAt(2)+";";
+                                    posXY += root.ChildNodes.ElementAt(2) + ",";
+                                    posXY += root.ChildNodes.ElementAt(2).Span.Location.Line + ",";
+                                    posXY += root.ChildNodes.ElementAt(2).Span.Location.Column;
                                 }
                             }
                             return design_valores;
@@ -334,6 +339,9 @@ namespace Practica1.sol.com.analyzer
                 miListaFondos.Add(new EscenarioFondo(id, ruta));
             }
 
+        }
+
+        private static void agregarToken(String lista) {
         }
 
         private static void agregarTokensATablaSimbolos(String lexema, int fila, int columna, String tipo)

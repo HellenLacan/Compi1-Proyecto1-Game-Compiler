@@ -92,6 +92,7 @@ namespace Proyecto1_201325674.sol.com.analizador2
 
             CUERPO_ESCENARIO.Rule = LISTA_ESCENARIO + FINALESCENARIO
                                    |FINALESCENARIO;
+            CUERPO_ESCENARIO.ErrorRule = SyntaxError + ">";
 
             FINALESCENARIO.Rule = menor + slash + _x + guion + _escenarios + mayor;
 
@@ -120,6 +121,7 @@ namespace Proyecto1_201325674.sol.com.analizador2
                                   |VILLANOS;
 
             HEROES.Rule =  _heroes + mayor + POSICIONES_X_Y_OBJETOS + menor + slash + _x + guion + _heroes + mayor;
+            POSICIONES_X_Y_OBJETOS.ErrorRule = SyntaxError + ";";
 
             VILLANOS.Rule = _villanos + mayor + POSICIONES_X_Y_OBJETOS + menor + slash + _x + guion + _villanos + mayor;
 
@@ -127,6 +129,7 @@ namespace Proyecto1_201325674.sol.com.analizador2
             POSICIONES_X_Y_OBJETOS.Rule = POSICIONES_X_Y_OBJETOS + identificador + parentAb + EXPRESION + coma + EXPRESION + parentCerr + ptoYcoma
                                              |identificador + parentAb + EXPRESION + coma + EXPRESION + parentCerr + ptoYcoma
                                              |Empty;
+            POSICIONES_X_Y_OBJETOS.ErrorRule = SyntaxError + ";";
 
             LISTA_PAREDES.Rule = LISTA_PAREDES + ATRIBUTOS_LISTA_PAREDES
                                 |ATRIBUTOS_LISTA_PAREDES
@@ -135,7 +138,7 @@ namespace Proyecto1_201325674.sol.com.analizador2
             ATRIBUTOS_LISTA_PAREDES.Rule =identificador + parentAb + EXPRESION + coma + EXPRESION + parentCerr + ptoYcoma
                                          |identificador + parentAb + EXPRESION + punto + punto +EXPRESION + coma + EXPRESION + parentCerr + ptoYcoma
                                          |identificador + parentAb + EXPRESION + coma + EXPRESION + punto + punto + EXPRESION + parentCerr + ptoYcoma;
-
+            ATRIBUTOS_LISTA_PAREDES.ErrorRule = SyntaxError + ";";
 
             LISTA_EXTRAS.Rule =  LISTA_EXTRAS + ATRIBUTOS_LISTA_EXTRAS
                                 |ATRIBUTOS_LISTA_EXTRAS

@@ -8,8 +8,8 @@
     <x-villanos>
       enemigo1(8,1);
       enemigo2(5,11);
-      enemigo3(25,8+8);
-      enemigoxD(8,8+7);
+      enemigo1(20,8);
+      enemigo2(4,1);
       enemigo4(17,8+5);
       enemigo6(14,8+2);
     </x-villanos>
@@ -96,9 +96,6 @@
   <x-meta>
   	salida2(21,20);
   </x-meta>
-
-
-
 
 </x-escenarios>
 

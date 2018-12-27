@@ -20,7 +20,7 @@ namespace Proyecto1_201325674.Ventana
         public int posY { get; set; }
         public int tipoObjeto { get; set; }
         SuperEscenario[,] matrizLogica = Recorrido2.matrizLogica;
-        Personaje personaje;
+        public Personaje personaje { get; set; }
 
         public BotonEnemigo(int i, int j, int tamanioMatriz)
         {

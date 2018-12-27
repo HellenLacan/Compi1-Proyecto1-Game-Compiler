@@ -1,6 +1,6 @@
 ﻿namespace Proyecto1_201325674.Ventana
 {
-    partial class Form_TablaSimbolos
+    partial class FormErrores
     {
         /// <summary>
         /// Required designer variable.
@@ -33,23 +33,23 @@
             // 
             // webBrowser1
             // 
-            this.webBrowser1.Location = new System.Drawing.Point(56, 77);
+            this.webBrowser1.Location = new System.Drawing.Point(114, 77);
             this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
             this.webBrowser1.Name = "webBrowser1";
-            this.webBrowser1.Size = new System.Drawing.Size(1042, 576);
-            this.webBrowser1.TabIndex = 8;
+            this.webBrowser1.Size = new System.Drawing.Size(937, 550);
+            this.webBrowser1.TabIndex = 2;
             // 
-            // Form_TablaSimbolos
+            // FormErrores
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::Proyecto1_201325674.Properties.Resources.fondoImagenes2;
             this.ClientSize = new System.Drawing.Size(1171, 690);
             this.Controls.Add(this.webBrowser1);
-            this.Name = "Form_TablaSimbolos";
+            this.Name = "FormErrores";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = " ";
-            this.Load += new System.EventHandler(this.Form_TablaSimbolos_Load);
+            this.Text = "FormErrores";
+            this.Load += new System.EventHandler(this.FormErrores_Load);
             this.ResumeLayout(false);
 
         }

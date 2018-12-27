@@ -67,12 +67,20 @@
     <Compile Include="sol.com.analizador2\Recorrido2.cs" />
     <Compile Include="sol.com.analizador2\Sintactico2.cs" />
     <Compile Include="sol.com.estructuraEscenario\SuperEscenario.cs" />
+    <Compile Include="sol.com.objetosConfiguracion\Error.cs" />
     <Compile Include="sol.com.objetosConfiguracion\EscenarioFondo.cs" />
     <Compile Include="sol.com.objetosConfiguracion\ObjetoEscenario.cs" />
     <Compile Include="sol.com.objetosConfiguracion\Personaje.cs" />
     <Compile Include="sol.com.controlDot2\ControlDot2.cs" />
     <Compile Include="sol.com.controlDot1\ControlDot.cs" />
     <Compile Include="sol.com.objetosConfiguracion\Token_.cs" />
+    <Compile Include="Ventana\AcercaDe.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ventana\AcercaDe.Designer.cs">
+      <DependentUpon>AcercaDe.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ventana\Archivo.cs" />
     <Compile Include="Ventana\Boton.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -81,6 +89,12 @@
     </Compile>
     <Compile Include="Ventana\BotonHeroe.cs">
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Ventana\FormErrores.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ventana\FormErrores.Designer.cs">
+      <DependentUpon>FormErrores.cs</DependentUpon>
     </Compile>
     <Compile Include="Ventana\Form_TablaSimbolos.cs">
       <SubType>Form</SubType>
@@ -101,6 +115,12 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Ventana\AcercaDe.resx">
+      <DependentUpon>AcercaDe.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ventana\FormErrores.resx">
+      <DependentUpon>FormErrores.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Ventana\Form_TablaSimbolos.resx">
       <DependentUpon>Form_TablaSimbolos.cs</DependentUpon>
     </EmbeddedResource>
@@ -139,6 +159,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\fondoImagenes2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Usac_logo.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
