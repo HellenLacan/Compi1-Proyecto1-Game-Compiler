@@ -33,7 +33,8 @@ namespace Proyecto1_201325674
         int noPasos = 0;
         int ancho = 0;
         int alto = 0;
-        int vidaHeroePrincipal=0;
+        int noArmas = 0;
+        int vidaHeroePrincipal = 0;
         String contenidoArchivo1 = "";
         String contenidoArchivo2 = "";
         BotonEnemigo[] enemigos = null;
@@ -202,7 +203,7 @@ namespace Proyecto1_201325674
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
                 openFileDialog.InitialDirectory = (System.Environment.GetFolderPath(Environment.SpecialFolder.Desktop));
-                       openFileDialog.Filter = "psc files (*.xconf; *.xesc;)| *.xconf; *.xesc;";
+                openFileDialog.Filter = "psc files (*.xconf; *.xesc;)| *.xconf; *.xesc;";
                 openFileDialog.FilterIndex = 2;
                 openFileDialog.RestoreDirectory = true;
 
@@ -222,7 +223,7 @@ namespace Proyecto1_201325674
                 getRichTextBox().Text = content;
 
                 Boolean encontrado = false;
-                foreach (Archivo item in listaArchivos ) {
+                foreach (Archivo item in listaArchivos) {
                     if (item.path == path) {
                         item.contenido = contenidoArchivo1;
                         encontrado = true; ;
@@ -230,7 +231,7 @@ namespace Proyecto1_201325674
                 }
 
                 if (encontrado == false) {
-                    listaArchivos.Add(new Archivo(path,contenidoArchivo1));
+                    listaArchivos.Add(new Archivo(path, contenidoArchivo1));
                 }
 
             }
@@ -361,8 +362,8 @@ namespace Proyecto1_201325674
 
         private void ejecutarJuegoToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
-            this.matrizLogica = Recorrido2.cargarMatrizLogica();
-
+            limpiarEscenario();
+            
             foreach (SuperEscenario item in Recorrido2.milistaObjetosEscenario)
             {
                 if (string.Equals(item.tipo, "background", StringComparison.OrdinalIgnoreCase))
@@ -400,7 +401,45 @@ namespace Proyecto1_201325674
 
                 }
             }
+            
+            agregarHeroeAlEscenario();
+            panelSelectPersonaje.Visible = true;
+            panelSelectFondos.Visible = true;
+            agregarEnemigos();
 
+        }
+
+        private void limpiarEscenario(){
+            principal = null;
+            posXHeroePrincipal = 0;
+            posYHeroePrincipal = 0;
+            tamanioPanel = 629;
+            noPasos = 0;
+            ancho = 0;
+            alto = 0;
+            noArmas = 0;
+            vidaHeroePrincipal = 0;
+            contenidoArchivo1 = "";
+            contenidoArchivo2 = "";
+            this.matrizLogica = Recorrido2.cargarMatrizLogica();
+
+            if (enemigos != null) {
+                for (int i = 0; i < enemigos.Length; i++)
+                {
+                    enemigos[i].Image = null;
+                    enemigos[i] = null;
+                }
+            }
+
+            if (principal != null)
+            {
+                principal.Image = null;
+                principal = null;
+            }
+ 
+        }
+
+        private void agregarHeroeAlEscenario() {
             foreach (SuperEscenario item in Recorrido2.milistaObjetosEscenario)
             {
                 if (string.Equals(item.tipo, "heroe", StringComparison.OrdinalIgnoreCase))
@@ -416,10 +455,6 @@ namespace Proyecto1_201325674
                         posXHeroePrincipal = item.posIniX;
                         posYHeroePrincipal = item.posIniY;
                         principal = new BotonHeroe(item.posIniX, item.posIniY, ancho);
-                        //principal.Left = item.posIniX * (tamanioPanel/ancho);
-                        //principal.Top = item.posIniY * (tamanioPanel / ancho);
-                        //principal.Width = (tamanioPanel / ancho);
-                        //principal.Height = (tamanioPanel / ancho);
                         vidaHeroePrincipal = item.personaje.vida;
 
                         try
@@ -441,7 +476,6 @@ namespace Proyecto1_201325674
                             Console.WriteLine("IOException source: {0}", ex.Source);
                         }
 
-                        //principal.SizeMode = PictureBoxSizeMode.StretchImage;
                         principal.KeyDown += new KeyEventHandler(moverHeroePrincipal);
                         panelEscenario.Controls.Add(principal);
                         principal.BringToFront();
@@ -454,11 +488,6 @@ namespace Proyecto1_201325674
                     }
                 }
             }
-
-            panelSelectPersonaje.Visible = true;
-            panelSelectFondos.Visible = true;
-            agregarEnemigos();
-
         }
 
         private void agregarEnemigos() {
@@ -941,23 +970,27 @@ namespace Proyecto1_201325674
                 principal.Location = new Point(principal.Location.X, principal.Location.Y - noPasos);
                 MessageBox.Show("WIN!!");
                 vidaHeroePrincipal = vidaHeroePrincipal - matrizLogica[posX, posY].objeto.ptosDestruccion;
+                timer1.Stop();
             }
             else if (string.Equals(direccion, "abajo", StringComparison.OrdinalIgnoreCase))
             {
                 principal.Location = new Point(principal.Location.X, principal.Location.Y + noPasos);
                 MessageBox.Show("WIN!!");
+                timer1.Stop();
                 vidaHeroePrincipal = vidaHeroePrincipal - matrizLogica[posX, posY].objeto.ptosDestruccion;
             }
             else if (string.Equals(direccion, "izquierda", StringComparison.OrdinalIgnoreCase))
             {
                 principal.Location = new Point(principal.Location.X - noPasos, principal.Location.Y);
                 MessageBox.Show("WIN!!");
+                timer1.Stop();
                 vidaHeroePrincipal = vidaHeroePrincipal - matrizLogica[posX, posY].objeto.ptosDestruccion;
             }
             else if (string.Equals(direccion, "derecha", StringComparison.OrdinalIgnoreCase))
             {
                 principal.Location = new Point(principal.Location.X + noPasos, principal.Location.Y);
                 MessageBox.Show("WIN!!");
+                timer1.Stop();
                 vidaHeroePrincipal = vidaHeroePrincipal - matrizLogica[posX, posY].objeto.ptosDestruccion;
             }
         }
@@ -966,7 +999,7 @@ namespace Proyecto1_201325674
             //int ptosDestruccion = vidaHeroePrincipal - matrizLogica[posX, posY].objeto.ptosDestruccion;
             int ptosDestruccion = 0;
             int bonus = 0;
-            if (tipo == "arma" || tipo == "bomba") {
+            if (tipo == "bomba") {
                 if (string.Equals(direccion, "arriba", StringComparison.OrdinalIgnoreCase))
                 {
                     principal.Location = new Point(principal.Location.X, principal.Location.Y - noPasos);
@@ -1013,7 +1046,9 @@ namespace Proyecto1_201325674
                     matrizLogica[posX - 1, posY] = null;
                     matrizGrafica[posX, posY].Image = null;
                 }
-            } else if (tipo == "bonus") {
+                /***************************************BONUS*************************************************/
+            }
+            else if (tipo == "bonus") {
                 if (string.Equals(direccion, "arriba", StringComparison.OrdinalIgnoreCase))
                 {
                     principal.Location = new Point(principal.Location.X, principal.Location.Y - noPasos);
@@ -1065,29 +1100,17 @@ namespace Proyecto1_201325674
                 if (string.Equals(direccion, "derecha", StringComparison.OrdinalIgnoreCase))
                 {
                     Console.WriteLine("Heroe ha pasado por enemigo");
-                    vidaHeroePrincipal = vidaHeroePrincipal - matrizLogica[posXHeroePrincipal+1, posYHeroePrincipal].personaje.ptosDestruccion;
-                    //principal.Location = new Point(principal.Location.X + noPasos, principal.Location.Y);
-                    //posXHeroePrincipal++;
-                    //bonus = matrizLogica[posX, posY].objeto.creditos;
-                    //matrizLogica[posX, posY] = matrizLogica[posX - 1, posY];
-                    //matrizLogica[posX - 1, posY] = null;
-                    //matrizGrafica[posX, posY].Image = null;
+                    vidaHeroePrincipal = vidaHeroePrincipal - matrizLogica[posXHeroePrincipal + 1, posYHeroePrincipal].personaje.ptosDestruccion;
                 }
                 else if (string.Equals(direccion, "izquierda", StringComparison.OrdinalIgnoreCase))
                 {
                     Console.WriteLine("Heroe ha pasado por enemigo");
-                    vidaHeroePrincipal = vidaHeroePrincipal - matrizLogica[posXHeroePrincipal -1, posYHeroePrincipal].personaje.ptosDestruccion;
-                    //principal.Location = new Point(principal.Location.X - noPasos, principal.Location.Y);
-                    //posXHeroePrincipal++;
-                    //bonus = matrizLogica[posX, posY].objeto.creditos;
-                    //matrizLogica[posX, posY] = matrizLogica[posX - 1, posY];
-                    //matrizLogica[posX - 1, posY] = null;
-                    //matrizGrafica[posX, posY].Image = null;
+                    vidaHeroePrincipal = vidaHeroePrincipal - matrizLogica[posXHeroePrincipal - 1, posYHeroePrincipal].personaje.ptosDestruccion;
                 }
                 else if (string.Equals(direccion, "arriba", StringComparison.OrdinalIgnoreCase))
                 {
                     Console.WriteLine("Heroe ha pasado por enemigo");
-                    vidaHeroePrincipal = vidaHeroePrincipal - matrizLogica[posXHeroePrincipal, posYHeroePrincipal-1].personaje.ptosDestruccion;
+                    vidaHeroePrincipal = vidaHeroePrincipal - matrizLogica[posXHeroePrincipal, posYHeroePrincipal - 1].personaje.ptosDestruccion;
                     //principal.Location = new Point(principal.Location.X - noPasos, principal.Location.Y);
                     //posXHeroePrincipal++;
                     //bonus = matrizLogica[posX, posY].objeto.creditos;
@@ -1106,6 +1129,61 @@ namespace Proyecto1_201325674
                     //matrizLogica[posX - 1, posY] = null;
                     //matrizGrafica[posX, posY].Image = null;
                 }
+                /***************************************ARMAS*************************************************/
+            } else if (tipo == "arma") {
+                if (string.Equals(direccion, "arriba", StringComparison.OrdinalIgnoreCase))
+                {
+                    principal.Location = new Point(principal.Location.X, principal.Location.Y - noPasos);
+                    Console.WriteLine("Heroe ha pasado por" + tipo);
+                    posYHeroePrincipal--;
+                    noArmas += 1;
+                    lblNoArmas.Text = noArmas.ToString();
+                    //ptosDestruccion = matrizLogica[posX, posY].objeto.ptosDestruccion;
+                    matrizLogica[posX, posY] = matrizLogica[posX, posY + 1];
+                    matrizGrafica[posX, posY].Image = null;
+                    matrizLogica[posX, posY + 1] = null;
+
+                }
+                else if (string.Equals(direccion, "abajo", StringComparison.OrdinalIgnoreCase))
+                {
+                    principal.Location = new Point(principal.Location.X, principal.Location.Y + noPasos);
+                    Console.WriteLine("Heroe ha pasado por" + tipo);
+                    //vidaHeroePrincipal = vidaHeroePrincipal - matrizLogica[posX, posY].objeto.ptosDestruccion;
+                    posYHeroePrincipal++;
+                    noArmas += 1;
+                    lblNoArmas.Text = noArmas.ToString();
+                    ptosDestruccion = matrizLogica[posX, posY].objeto.ptosDestruccion;
+                    matrizLogica[posX, posY] = matrizLogica[posX, posY - 1];
+                    matrizLogica[posX, posY - 1] = null;
+                    matrizGrafica[posX, posY].Image = null;
+                }
+                else if (string.Equals(direccion, "izquierda", StringComparison.OrdinalIgnoreCase))
+                {
+                    principal.Location = new Point(principal.Location.X - noPasos, principal.Location.Y);
+                    Console.WriteLine("Heroe ha pasado por" + tipo);
+                    //vidaHeroePrincipal = vidaHeroePrincipal - matrizLogica[posX, posY].objeto.ptosDestruccion;
+                    posXHeroePrincipal--;
+                    noArmas += 1;
+                    lblNoArmas.Text = noArmas.ToString();
+                    ptosDestruccion = matrizLogica[posX, posY].objeto.ptosDestruccion;
+                    matrizLogica[posX, posY] = matrizLogica[posX + 1, posY];
+                    matrizLogica[posX + 1, posY] = null;
+                    matrizGrafica[posX, posY].Image = null;
+
+                }
+                else if (string.Equals(direccion, "derecha", StringComparison.OrdinalIgnoreCase))
+                {
+                    principal.Location = new Point(principal.Location.X + noPasos, principal.Location.Y);
+                    Console.WriteLine("Heroe ha pasado por" + tipo);
+                    //vidaHeroePrincipal = vidaHeroePrincipal - matrizLogica[posX, posY].objeto.ptosDestruccion;
+                    posXHeroePrincipal++;
+                    noArmas += 1;
+                    lblNoArmas.Text = noArmas.ToString();
+                    ptosDestruccion = matrizLogica[posX, posY].objeto.ptosDestruccion;
+                    matrizLogica[posX, posY] = matrizLogica[posX - 1, posY];
+                    matrizLogica[posX - 1, posY] = null;
+                    matrizGrafica[posX, posY].Image = null;
+                }
             }
 
             validarVidaDeHeroe();
@@ -1114,7 +1192,8 @@ namespace Proyecto1_201325674
         public Boolean validarVidaDeHeroe()
         {
 
-            if (vidaHeroePrincipal <= 0)
+            if (vidaHeroePrincipal <= 0 || 
+                (principal.posX == Recorrido2.getPosXMeta() && principal.posY == Recorrido2.getPosYMeta()) )
             {
                 MessageBox.Show("GAME OVER");
                 timer1.Stop();
