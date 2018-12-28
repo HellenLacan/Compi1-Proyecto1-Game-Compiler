@@ -9,7 +9,7 @@
       enemigo1(8,1);
       enemigo2(5,11);
       enemigo1(20,8);
-      enemigo2(4,1);
+      enemigo2(2,21);
       enemigo4(17,8+5);
       enemigo6(14,8+2);
     </x-villanos>

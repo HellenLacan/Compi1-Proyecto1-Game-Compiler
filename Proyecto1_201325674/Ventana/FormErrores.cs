@@ -35,14 +35,6 @@ namespace Proyecto1_201325674.Ventana
             texto += "\t<td><strong > Descripcion </strong ></td>\n";
             texto += "\t</tr>\n";
 
-            foreach (Error item in Recorrido2.listaErrores)
-            {
-                texto += "\t<tr>\n";
-                texto += "\t<td>" + item.tipo + " </td>\n";
-                texto += "\t<td>" + item.descripcion + " </td>\n";
-                texto += "\t</tr>\n";
-            }
-
             foreach (Error item in Syntactic.listaErroresSintacticos1)
             {
                 texto += "\t<tr>\n";

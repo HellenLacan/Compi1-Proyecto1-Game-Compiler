@@ -69,23 +69,24 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel1Vida = new System.Windows.Forms.Panel();
+            this.lblNoArmas = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.lblVillanosDestruidos = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
             this.lblGanancia = new System.Windows.Forms.Label();
             this.lblPerdida = new System.Windows.Forms.Label();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.panelEscenario = new System.Windows.Forms.Panel();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.lblVillanosDestruidos = new System.Windows.Forms.Label();
-            this.lblNoArmas = new System.Windows.Forms.Label();
+            this.cerrarPestañaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.panelSelectFondos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFondoSelect)).BeginInit();
             this.panelSelectPersonaje.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.panel1.SuspendLayout();
+            this.panel1Vida.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.SuspendLayout();
@@ -116,6 +117,7 @@
             this.archivoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.nuevoToolStripMenuItem,
             this.abrirToolStripMenuItem,
+            this.cerrarPestañaToolStripMenuItem,
             this.guardarToolStripMenuItem,
             this.guardarComoToolStripMenuItem,
             this.salirToolStripMenuItem});
@@ -126,34 +128,34 @@
             // nuevoToolStripMenuItem
             // 
             this.nuevoToolStripMenuItem.Name = "nuevoToolStripMenuItem";
-            this.nuevoToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.nuevoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.nuevoToolStripMenuItem.Text = "Nuevo";
             this.nuevoToolStripMenuItem.Click += new System.EventHandler(this.nuevoToolStripMenuItem_Click);
             // 
             // abrirToolStripMenuItem
             // 
             this.abrirToolStripMenuItem.Name = "abrirToolStripMenuItem";
-            this.abrirToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.abrirToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.abrirToolStripMenuItem.Text = "Abrir";
             this.abrirToolStripMenuItem.Click += new System.EventHandler(this.abrirToolStripMenuItem_Click);
             // 
             // guardarToolStripMenuItem
             // 
             this.guardarToolStripMenuItem.Name = "guardarToolStripMenuItem";
-            this.guardarToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.guardarToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.guardarToolStripMenuItem.Text = "Guardar";
             // 
             // guardarComoToolStripMenuItem
             // 
             this.guardarComoToolStripMenuItem.Name = "guardarComoToolStripMenuItem";
-            this.guardarComoToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.guardarComoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.guardarComoToolStripMenuItem.Text = "Guardar Como";
             this.guardarComoToolStripMenuItem.Click += new System.EventHandler(this.guardarComoToolStripMenuItem_Click);
             // 
             // salirToolStripMenuItem
             // 
             this.salirToolStripMenuItem.Name = "salirToolStripMenuItem";
-            this.salirToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.salirToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.salirToolStripMenuItem.Text = "Salir";
             this.salirToolStripMenuItem.Click += new System.EventHandler(this.salirToolStripMenuItem_Click);
             // 
@@ -217,21 +219,21 @@
             // manualDeUsuarioToolStripMenuItem
             // 
             this.manualDeUsuarioToolStripMenuItem.Name = "manualDeUsuarioToolStripMenuItem";
-            this.manualDeUsuarioToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.manualDeUsuarioToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
             this.manualDeUsuarioToolStripMenuItem.Text = "Manual de Usuario";
             this.manualDeUsuarioToolStripMenuItem.Click += new System.EventHandler(this.manualDeUsuarioToolStripMenuItem_Click);
             // 
             // manualTecnicoToolStripMenuItem
             // 
             this.manualTecnicoToolStripMenuItem.Name = "manualTecnicoToolStripMenuItem";
-            this.manualTecnicoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.manualTecnicoToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
             this.manualTecnicoToolStripMenuItem.Text = "Manual Tecnico";
             this.manualTecnicoToolStripMenuItem.Click += new System.EventHandler(this.manualTecnicoToolStripMenuItem_Click);
             // 
             // acercaDeToolStripMenuItem
             // 
             this.acercaDeToolStripMenuItem.Name = "acercaDeToolStripMenuItem";
-            this.acercaDeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.acercaDeToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
             this.acercaDeToolStripMenuItem.Text = "Acerca de";
             this.acercaDeToolStripMenuItem.Click += new System.EventHandler(this.acercaDeToolStripMenuItem_Click);
             // 
@@ -480,23 +482,67 @@
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
-            // panel1
+            // panel1Vida
             // 
-            this.panel1.BackColor = System.Drawing.Color.Transparent;
-            this.panel1.Controls.Add(this.lblNoArmas);
-            this.panel1.Controls.Add(this.label8);
-            this.panel1.Controls.Add(this.lblVillanosDestruidos);
-            this.panel1.Controls.Add(this.label7);
-            this.panel1.Controls.Add(this.lblGanancia);
-            this.panel1.Controls.Add(this.lblPerdida);
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.lblVidaPersonaje);
-            this.panel1.Controls.Add(this.lblNombrePersonaje);
-            this.panel1.Location = new System.Drawing.Point(959, 49);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(212, 156);
-            this.panel1.TabIndex = 0;
+            this.panel1Vida.BackColor = System.Drawing.Color.Transparent;
+            this.panel1Vida.Controls.Add(this.lblNoArmas);
+            this.panel1Vida.Controls.Add(this.label8);
+            this.panel1Vida.Controls.Add(this.lblVillanosDestruidos);
+            this.panel1Vida.Controls.Add(this.label7);
+            this.panel1Vida.Controls.Add(this.lblGanancia);
+            this.panel1Vida.Controls.Add(this.lblPerdida);
+            this.panel1Vida.Controls.Add(this.label1);
+            this.panel1Vida.Controls.Add(this.label2);
+            this.panel1Vida.Controls.Add(this.lblVidaPersonaje);
+            this.panel1Vida.Controls.Add(this.lblNombrePersonaje);
+            this.panel1Vida.Location = new System.Drawing.Point(959, 49);
+            this.panel1Vida.Name = "panel1Vida";
+            this.panel1Vida.Size = new System.Drawing.Size(212, 156);
+            this.panel1Vida.TabIndex = 0;
+            // 
+            // lblNoArmas
+            // 
+            this.lblNoArmas.AutoSize = true;
+            this.lblNoArmas.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNoArmas.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.lblNoArmas.Location = new System.Drawing.Point(148, 121);
+            this.lblNoArmas.Name = "lblNoArmas";
+            this.lblNoArmas.Size = new System.Drawing.Size(0, 16);
+            this.lblNoArmas.TabIndex = 17;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.BackColor = System.Drawing.Color.Transparent;
+            this.label8.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.ForeColor = System.Drawing.SystemColors.HighlightText;
+            this.label8.Location = new System.Drawing.Point(14, 112);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(97, 22);
+            this.label8.TabIndex = 18;
+            this.label8.Text = "No Armas:";
+            // 
+            // lblVillanosDestruidos
+            // 
+            this.lblVillanosDestruidos.AutoSize = true;
+            this.lblVillanosDestruidos.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblVillanosDestruidos.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.lblVillanosDestruidos.Location = new System.Drawing.Point(148, 84);
+            this.lblVillanosDestruidos.Name = "lblVillanosDestruidos";
+            this.lblVillanosDestruidos.Size = new System.Drawing.Size(0, 16);
+            this.lblVillanosDestruidos.TabIndex = 16;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.BackColor = System.Drawing.Color.Transparent;
+            this.label7.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ForeColor = System.Drawing.SystemColors.HighlightText;
+            this.label7.Location = new System.Drawing.Point(14, 78);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(128, 22);
+            this.label7.TabIndex = 17;
+            this.label7.Text = "Villanos Destr:";
             // 
             // lblGanancia
             // 
@@ -549,52 +595,15 @@
             // 
             // timer1
             // 
-            this.timer1.Interval = 900;
+            this.timer1.Interval = 800;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // label7
+            // cerrarPestañaToolStripMenuItem
             // 
-            this.label7.AutoSize = true;
-            this.label7.BackColor = System.Drawing.Color.Transparent;
-            this.label7.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.label7.Location = new System.Drawing.Point(14, 78);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(128, 22);
-            this.label7.TabIndex = 17;
-            this.label7.Text = "Villanos Destr:";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.BackColor = System.Drawing.Color.Transparent;
-            this.label8.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.label8.Location = new System.Drawing.Point(14, 112);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(97, 22);
-            this.label8.TabIndex = 18;
-            this.label8.Text = "No Armas:";
-            // 
-            // lblVillanosDestruidos
-            // 
-            this.lblVillanosDestruidos.AutoSize = true;
-            this.lblVillanosDestruidos.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblVillanosDestruidos.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.lblVillanosDestruidos.Location = new System.Drawing.Point(148, 84);
-            this.lblVillanosDestruidos.Name = "lblVillanosDestruidos";
-            this.lblVillanosDestruidos.Size = new System.Drawing.Size(0, 16);
-            this.lblVillanosDestruidos.TabIndex = 16;
-            // 
-            // lblNoArmas
-            // 
-            this.lblNoArmas.AutoSize = true;
-            this.lblNoArmas.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNoArmas.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.lblNoArmas.Location = new System.Drawing.Point(148, 121);
-            this.lblNoArmas.Name = "lblNoArmas";
-            this.lblNoArmas.Size = new System.Drawing.Size(0, 16);
-            this.lblNoArmas.TabIndex = 17;
+            this.cerrarPestañaToolStripMenuItem.Name = "cerrarPestañaToolStripMenuItem";
+            this.cerrarPestañaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.cerrarPestañaToolStripMenuItem.Text = "Cerrar Pestaña";
+            this.cerrarPestañaToolStripMenuItem.Click += new System.EventHandler(this.cerrarPestañaToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -602,7 +611,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::Proyecto1_201325674.Properties.Resources.fondoImagenes2;
             this.ClientSize = new System.Drawing.Size(1171, 690);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.panel1Vida);
             this.Controls.Add(this.panelSelectFondos);
             this.Controls.Add(this.buttonStart);
             this.Controls.Add(this.tabControl1);
@@ -623,8 +632,8 @@
             this.panelSelectPersonaje.ResumeLayout(false);
             this.panelSelectPersonaje.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.panel1Vida.ResumeLayout(false);
+            this.panel1Vida.PerformLayout();
             this.tabPage1.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -663,7 +672,7 @@
         private System.Windows.Forms.Button btnFondoAnterior;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.RichTextBox richTextBox1;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel1Vida;
         private System.Windows.Forms.Label lblGanancia;
         private System.Windows.Forms.Label lblPerdida;
         private System.Windows.Forms.TabPage tabPage1;
@@ -684,6 +693,7 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label lblVillanosDestruidos;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.ToolStripMenuItem cerrarPestañaToolStripMenuItem;
     }
 }
 

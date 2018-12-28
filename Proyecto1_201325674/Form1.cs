@@ -50,6 +50,8 @@ namespace Proyecto1_201325674
             btnSelectOTroFondo.Visible = false;
             lblGanancia.Visible = false;
             lblPerdida.Visible = false;
+            richTextBox2.Visible = false;
+            panel1Vida.Visible = false;
         }
 
         int personajeSelect = -1;
@@ -288,8 +290,20 @@ namespace Proyecto1_201325674
                 archivo1 = reader.ReadToEnd();
             }
             Syntactic mySyntactic = new Syntactic();
+            ParseTreeNode resultado = null;
             //bool resultado = mySyntactic.analyze(getRichTextBox().Text);
-            ParseTreeNode resultado = mySyntactic.analyze(archivo1);
+
+            try
+            {
+                resultado = mySyntactic.analyze(getRichTextBox().Text);
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Debe cargar un archivo con extension xconf");
+                Console.WriteLine("IOException source: {0}", ex.Source);
+            }
+
 
             if (resultado != null)
             {
@@ -345,7 +359,19 @@ namespace Proyecto1_201325674
             //Console.WriteLine(!(true || false));
             Sintactico2 mySyntactic = new Sintactico2();
             //bool resultado = mySyntactic.analyze(getRichTextBox().Text);
-            ParseTreeNode resultado = mySyntactic.analyze(archivo2);
+            ParseTreeNode resultado = null;
+
+
+            try
+            {
+                resultado = mySyntactic.analyze(getRichTextBox().Text);
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Debe cargar un archivo con extension xesc");
+                Console.WriteLine("IOException source: {0}", ex.Source);
+            }
 
             if (resultado != null)
             {
@@ -405,6 +431,7 @@ namespace Proyecto1_201325674
             agregarHeroeAlEscenario();
             panelSelectPersonaje.Visible = true;
             panelSelectFondos.Visible = true;
+            panel1Vida.Visible = true;
             agregarEnemigos();
 
         }
@@ -421,6 +448,8 @@ namespace Proyecto1_201325674
             vidaHeroePrincipal = 0;
             contenidoArchivo1 = "";
             contenidoArchivo2 = "";
+            //panelEscenario.BackgroundImage = null;
+
             this.matrizLogica = Recorrido2.cargarMatrizLogica();
 
             if (enemigos != null) {
@@ -1308,6 +1337,21 @@ namespace Proyecto1_201325674
         {
             ProcessStartInfo startInfo = new ProcessStartInfo("C:\\Users\\Hellen\\Desktop\\ManualTecnico.pdf");
             Process.Start(startInfo);
+        }
+
+        private void cerrarPestañaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                TabPage currentTab = tabControl1.SelectedTab;
+                tabControl1.TabPages.Remove(currentTab);
+
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("No hay pestañas");
+            }
+
         }
 
         private void tablaDeSimbolosToolStripMenuItem_Click(object sender, EventArgs e)
